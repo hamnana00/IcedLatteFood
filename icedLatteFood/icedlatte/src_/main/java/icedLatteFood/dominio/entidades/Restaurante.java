@@ -5,7 +5,8 @@ import java.util.List;
 public class Restaurante{
     private String nombre;
     private String cif;
-    private Menu menu;
+    private Collection<CartaMenu> menu;
+    private Collection<Pedido> pedidos;
 
     //Constructor
     public Restaurante(String nombre, String cif) {

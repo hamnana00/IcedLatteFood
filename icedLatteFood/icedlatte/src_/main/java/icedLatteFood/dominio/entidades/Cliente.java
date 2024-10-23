@@ -1,7 +1,10 @@
-public class Cliente {
+public class Cliente extends Usuario{
 	private String nombre;
 	private String apellidos;
 	private String dni;
+	private Collection<Restaurante> favoritos;
+	private Collection<Pedido> pedidos;
+	private Direccion direcciones;
 	
 	public String getNombre() {
 		 return nombre;

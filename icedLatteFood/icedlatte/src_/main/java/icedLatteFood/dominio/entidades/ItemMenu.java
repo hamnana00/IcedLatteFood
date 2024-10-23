@@ -5,6 +5,7 @@ import java.util.List;
 public class ItemMenu{
     private String nombre;
     private double precio;
+    private TipoItemMenu tipo;
 
     //Constructor
     public ItemMenu(String nombre, double precio) {

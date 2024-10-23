@@ -1,12 +1,12 @@
 public class Direccion {
     private String calle;
-    private int numero;
+    private String numero;
     private String complemento;
-    private String codigoPostal;
+    private int codigoPostal;
     private String municipio;
 
     // Constructor
-    public Direccion(String calle, int numero, String complemento, String codigoPostal, String municipio) {
+    public Direccion(String calle, int numero, String complemento, int codigoPostal, String municipio) {
         this.calle = calle;
         this.numero = numero;
         this.complemento = complemento;
@@ -43,7 +43,7 @@ public class Direccion {
         return codigoPostal;
     }
 
-    public void setCodigoPostal(String codigoPostal) {
+    public void setCodigoPostal(int codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
 

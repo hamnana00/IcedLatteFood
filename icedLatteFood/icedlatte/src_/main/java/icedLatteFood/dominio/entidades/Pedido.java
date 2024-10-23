@@ -1,4 +1,7 @@
 public class Pedido {
+    private Cliente cliente;
+    private Restaurante restaurante;
+    private ServicioEntrega entrega;
     private Date fecha;
     private List<ItemMenu> items;
     private EstadoPedido estado;

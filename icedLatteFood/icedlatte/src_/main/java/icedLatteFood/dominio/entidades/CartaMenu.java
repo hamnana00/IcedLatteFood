@@ -3,24 +3,26 @@ import java.util.List;
 
 //Clase Menu
 public class CartaMenu{
-    private List<Plato> platos;
+    private Collection<ItemMenu> items;
+    private String nombre;
+    private Restaurante restaurante;
 
     //Constructor
     public CartaMenu() {
-        this.platos = new ArrayList<>();
+        this.items  = new ArrayList<>();
     }
 
     //Método para agregar un plato al menú
-    public void agregarPlato(Plato plato) {
-        platos.add(plato);
-        System.out.println("Plato agregado: "+ plato);
+    public void agregarPlato(ItemMenu items) {
+        platos.add(items);
+        System.out.println("Plato agregado: "+ items);
     }
 
     //Método para eliminar un plato del menú
     public void eliminarPlato(String nombrePlato) {
-        for(Plato plato : platos) {
-            if(plato.getNombre().equalsIgnoreCase(nombrePlato)) {
-                platos.remove(plato);
+        for(ItemMenu items : platos) {
+            if(items.getNombre().equalsIgnoreCase(nombrePlato)) {
+                platos.remove(items);
                 System.out.println("Plato eliminado: "+ nombrePlato);
                 return;
             }
@@ -34,8 +36,8 @@ public class CartaMenu{
             System.out.println("El menú está vacío.");
         }else {
             System.out.println("Menú del restaurante:");
-            for (Plato plato: platos) {
-                System.out.println(plato);
+            for (ItemMenu items: platos) {
+                System.out.println(items);
             }
         }
     }
