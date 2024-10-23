@@ -1,41 +1,41 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//Clase Menu
-public class Menu{
-    private List<Plato> platos;
+// Clase Menu
+class Menu {
+    private List<ItemMenu> items;
 
-    //Constructor
+    // Constructor
     public Menu() {
-        this.platos = new ArrayList<>();
+        this.items = new ArrayList<>();
     }
 
-    //Método para agregar un plato al menú
-    public void agregarPlato(Plato plato) {
-        platos.add(plato);
-        System.out.println("Plato agregado: "+ plato);
+    // Método para agregar un item al menú
+    public void agregarItemMenu(ItemMenu itemMenu) {
+        items.add(itemMenu);
+        System.out.println("Item agregado: " + itemMenu);
     }
 
-    //Método para eliminar un plato del menú
-    public void eliminarPlato(String nombrePlato) {
-        for(Plato plato : platos) {
-            if(plato.getNombre().equalsIgnoreCase(nombrePlato)) {
-                platos.remove(plato);
-                System.out.println("Plato eliminado: "+ nombrePlato);
+    // Método para eliminar un item del menú
+    public void eliminarItemMenu(String nombreItem) {
+        for (ItemMenu itemMenu : items) {
+            if (itemMenu.getNombre().equalsIgnoreCase(nombreItem)) {
+                items.remove(itemMenu);
+                System.out.println("Item eliminado: " + nombreItem);
                 return;
             }
         }
-        System.out.println("Plato no encontrado: "+ nombrePlato);
+        System.out.println("Item no encontrado: " + nombreItem);
     }
 
-    //Método para mostrar el menú
+    // Método para mostrar el menú
     public void mostrarMenu() {
-        if (platos.isEmpty()) {
+        if (items.isEmpty()) {
             System.out.println("El menú está vacío.");
-        }else {
+        } else {
             System.out.println("Menú del restaurante:");
-            for (Plato plato: platos) {
-                System.out.println(plato);
+            for (ItemMenu itemMenu : items) {
+                System.out.println(itemMenu);
             }
         }
     }
