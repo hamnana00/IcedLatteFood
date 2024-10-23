@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//Clase Plato
-public class Plato{
+//Clase ItemMenu
+public class ItemMenu{
     private String nombre;
     private double precio;
 
     //Constructor
-    public Plato(String nombre, double precio) {
+    public ItemMenu(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
     }
