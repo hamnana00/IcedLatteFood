@@ -1,3 +1,6 @@
+package dominio.entidades;
+
+import java.util.*;
 public class Direccion {
     private String calle;
     private String numero;

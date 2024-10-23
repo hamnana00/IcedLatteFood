@@ -1,3 +1,5 @@
+package dominio.entidades;
+import java.util.*;
 public class Pedido {
     private Cliente cliente;
     private Restaurante restaurante;
