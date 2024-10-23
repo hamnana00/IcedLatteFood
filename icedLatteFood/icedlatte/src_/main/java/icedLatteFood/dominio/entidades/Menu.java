@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Clase Menu
-public class Menu{
+public class CartaMenu{
     private List<Plato> platos;
 
     //Constructor
-    public Menu() {
+    public CartaMenu() {
         this.platos = new ArrayList<>();
     }
 
