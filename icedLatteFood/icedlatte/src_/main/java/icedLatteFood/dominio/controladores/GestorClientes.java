@@ -4,18 +4,19 @@ import persistencia.*;
 import dominio.entidades.*;
 import java.util.*;
 
-
 public class GestorClientes {
 
     private RestauranteDAO restauranteDAO;
+    private ClienteDAO clienteDAO;
 
     // Constructor que recibe el DAO de restaurantes
-    public GestorClientes(RestauranteDAO restauranteDAO) {
+    public GestorClientes(RestauranteDAO restauranteDAO, ClienteDAO clienteDAO) {
         this.restauranteDAO = restauranteDAO;
+        this.clienteDAO = clienteDAO;
     }
 
     // Buscar restaurante por zona (código postal)
-    public List<Restaurante> buscarRestaurante(String codigoPostal) {
+    public List<Restaurante> buscarRestaurante(CodigoPostal codigoPostal) {
         return restauranteDAO.selectPorCodigoPostal(codigoPostal);
     }
 
@@ -24,6 +25,10 @@ public class GestorClientes {
         return restauranteDAO.selectPorCodigoPostalYTextoLibre(codigoPostal, cadenaBusqueda);
     }
 
+    //Buscar restaurante solo por cadena de búsqueda
+    public List<Restaurante> buscarRestauranteCadena(String cadenaBusqueda) {
+        return restauranteDAO.selectPorTextoLibre(cadenaBusqueda);
+    }
     // Añadir un restaurante a la lista de favoritos de un cliente
     public void favorito(Cliente cliente, Restaurante restaurante) {
         if (cliente != null && restaurante != null) {
