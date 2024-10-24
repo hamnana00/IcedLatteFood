@@ -1,41 +1,34 @@
 package dominio.controladores;
 
+import dominio.entidades.Restaurante;
+import dominio.entidades.ItemMenu;
+import dominio.entidades.Direccion;
+import dominio.entidades.TipoItemMenu;
+
 import java.util.List;
 
-// Clase GestorRestaurantes
-public class GestorRestaurantes {
+public class GestorRestaurante {
 
     // Funcionalidad para registrar un nuevo restaurante
-    public Restaurante registrarRestaurante(String nombre, String cif, Direccion d) {
-        Restaurante nuevoRestaurante = new Restaurante(nombre, cif, d);
-        System.out.println("Restaurante registrado: " + nombre);
+    public Restaurante registrarRestaurante(String nombre, String cif, Direccion direccion) {
+        // Crear una nueva instancia de Restaurante con los datos proporcionados
+        Restaurante nuevoRestaurante = new Restaurante(nombre, cif, direccion);
+        // Aquí podrías llamar al DAO para guardar el nuevo restaurante en la base de datos
+        // restauranteDAO.insert(nuevoRestaurante);
         return nuevoRestaurante;
     }
 
-    // Funcionalidad para editar la carta de un restaurante
-    public void editarCarta(String nombreRestaurante, List<ItemMenu> items) {
-        Restaurante restaurante = buscarRestaurantePorNombre(nombreRestaurante);
-        if (restaurante != null) {
-            Menu menu = restaurante.getMenu();
-            for (ItemMenu item : items) {
-                menu.agregarItemMenu(item);
-            }
-            System.out.println("Carta actualizada para el restaurante: " + nombreRestaurante);
-        } else {
-            System.out.println("Restaurante no encontrado: " + nombreRestaurante);
-        }
+    // Funcionalidad para editar la carta del restaurante
+    public void editarCarta(Restaurante restaurante, List<ItemMenu> items) {
+        // Se reemplaza el menú actual del restaurante con los nuevos items
+        restaurante.getMenu().setItems(items);
+        // También podrías actualizar el menú en la base de datos usando el DAO
+        // menuDAO.update(restaurante.getMenu());
     }
 
     // Funcionalidad para crear un nuevo item del menú
     public ItemMenu crearItem(String nombre, double precio, TipoItemMenu tipo) {
-        ItemMenu nuevoItem = new ItemMenu(nombre, precio, tipo);
-        System.out.println("Item creado: " + nuevoItem);
-        return nuevoItem;
-    }
-
-    // Funcionalidad auxiliar para buscar un restaurante por nombre (opcional para la funcionalidad)
-    private Restaurante buscarRestaurantePorNombre(String nombre) {
-        // Aquí puedes implementar la lógica para buscar el restaurante en una lista o base de datos
-        return null; // Esto es solo un placeholder, el método debe retornar un restaurante válido
+        // Crear un nuevo objeto de tipo ItemMenu
+        return new ItemMenu(nombre, precio, tipo);
     }
 }
