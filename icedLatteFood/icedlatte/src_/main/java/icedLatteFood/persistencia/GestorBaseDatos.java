@@ -5,51 +5,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class GestorBaseDatos {
+public class RestauranteDAO {
     private Connection connection;
 
-    public GestorBaseDatos() {
-        this.connection = DatabaseConnection.connect(); // Conecta a la base de datos
+    public RestauranteDAO(Connection connection) {
+        this.connection = connection;
     }
 
-    public boolean conectar() {
-        return connection != null; // Retorna true si ya está conectado
+    // Método para insertar un restaurante en la base de datos
+    public void insertarRestaurante(String nombre, String cif) throws SQLException {
+        String sql = "INSERT INTO Restaurante (nombre, cif) VALUES ('" + nombre + "', '" + cif + "')";
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(sql);
     }
 
-    public boolean desconectar() {
-        DatabaseConnection.disconnect(); // Desconecta utilizando la clase DatabaseConnection
-        return true; // Siempre retorna true ya que el método disconnect maneja los errores
-    }
+    // Método para seleccionar todos los restaurantes
+    public void mostrarRestaurantes() throws SQLException {
+        String sql = "SELECT * FROM Restaurante";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
 
-    public int insert(String sql) {
-        return ejecutarModificacion(sql);
-    }
-
-    public int update(String sql) {
-        return ejecutarModificacion(sql);
-    }
-
-    public int delete(String sql) {
-        return ejecutarModificacion(sql);
-    }
-
-    public ResultSet select(String sql) {
-        try {
-            Statement statement = connection.createStatement();
-            return statement.executeQuery(sql);
-        } catch (SQLException e) {
-            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
-            return null;
-        }
-    }
-
-    private int ejecutarModificacion(String sql) {
-        try {
-            Statement statement = connection.createStatement();
-            return statement.executeUpdate(sql);
-        } catch (SQLException e) {
-            System.out.println("Error al ejecutar la modificación: " + e.getMessage());
-            return -1;
+        while (resultSet.next()) {
+            System.out.println("Nombre: " + resultSet.getString("nombre") + ", CIF: " + resultSet.getString("cif"));
         }
     }
 }
