@@ -1,7 +1,6 @@
 package persistencia;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,47 +8,31 @@ import java.sql.Statement;
 public class GestorBaseDatos {
     private Connection connection;
 
-    // Método para conectar a la base de datos
+    public GestorBaseDatos() {
+        this.connection = DatabaseConnection.connect(); // Conecta a la base de datos
+    }
+
     public boolean conectar() {
-        try {
-            // Por ejemplo, con una base de datos MySQL
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/nombreBD", "usuario", "contraseña");
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
-            return false;
-        }
+        return connection != null; // Retorna true si ya está conectado
     }
 
-    // Método para desconectar de la base de datos
     public boolean desconectar() {
-        try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Error al desconectar de la base de datos: " + e.getMessage());
-            return false;
-        }
+        DatabaseConnection.disconnect(); // Desconecta utilizando la clase DatabaseConnection
+        return true; // Siempre retorna true ya que el método disconnect maneja los errores
     }
 
-    // Método para ejecutar una inserción
     public int insert(String sql) {
         return ejecutarModificacion(sql);
     }
 
-    // Método para ejecutar una actualización
     public int update(String sql) {
         return ejecutarModificacion(sql);
     }
 
-    // Método para ejecutar una eliminación
     public int delete(String sql) {
         return ejecutarModificacion(sql);
     }
 
-    // Método para seleccionar datos
     public ResultSet select(String sql) {
         try {
             Statement statement = connection.createStatement();
@@ -60,7 +43,6 @@ public class GestorBaseDatos {
         }
     }
 
-    // Método auxiliar para ejecutar INSERT, UPDATE, DELETE
     private int ejecutarModificacion(String sql) {
         try {
             Statement statement = connection.createStatement();
