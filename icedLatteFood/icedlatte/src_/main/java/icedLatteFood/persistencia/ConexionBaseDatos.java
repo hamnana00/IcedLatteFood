@@ -5,31 +5,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static Connection connection = null;
+    private static final String URL = "jdbc:derby:memory:myDB;create=true"; // Nombre de la base de datos
+    private static final String USER = ""; // Usuario (vacío para Derby)
+    private static final String PASSWORD = ""; // Contraseña (vacío para Derby)
 
-    public static Connection connect() {
-        try {
-            // Cambia la URL según tu configuración
-            String url = "jdbc:derby:myDB;create=true"; // Para Derby
-            String user = "app"; // Cambia si es necesario
-            String password = "app"; // Cambia si es necesario
-
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Conexión exitosa a la base de datos.");
-        } catch (SQLException e) {
-            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
-        }
-        return connection;
+    public static Connection connect() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    public static void disconnect() {
-        try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-                System.out.println("Conexión cerrada.");
-            }
+    public static void main(String[] args) {
+        try (Connection connection = connect()) {
+            System.out.println("Conexión exitosa a la base de datos Derby.");
         } catch (SQLException e) {
-            System.out.println("Error al cerrar la conexión: " + e.getMessage());
+            System.out.println("Error de conexión: " + e.getMessage());
         }
     }
 }
