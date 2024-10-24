@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -53,18 +53,23 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-starter-data-jpa</artifactId>
- 		</dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- Dependencias para Apache Derby -->
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
-	 	</dependency>
+			<version>10.15.2.0</version> <!-- Asegúrate de usar la versión que necesitas -->
+		</dependency>
 		<dependency>
-	 		<groupId>org.apache.derby</groupId>
-	 		<artifactId>derbytools</artifactId>
-	 	</dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbytools</artifactId>
+			<version>10.15.2.0</version> <!-- Asegúrate de usar la versión que necesitas -->
+		</dependency>
 	</dependencies>
+	<!-- Dependencias para Apache Derby -->
 
 	<build>
 		<plugins>
@@ -74,5 +79,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
