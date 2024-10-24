@@ -5,12 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:derby:memory:myDB;create=true"; // Nombre de la base de datos
-    private static final String USER = ""; // Usuario (vacío para Derby)
-    private static final String PASSWORD = ""; // Contraseña (vacío para Derby)
+    private static final String URL = "jdbc:derby:memory:myDB;create=true"; // Para bases de datos en memoria
 
     public static Connection connect() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        return DriverManager.getConnection(URL);
     }
 
     public static void main(String[] args) {
