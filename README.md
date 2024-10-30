@@ -1,0 +1,6 @@
+codigo base de datos:
+CREATE TABLE Restaurante (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    nombre VARCHAR(255),
+    cif VARCHAR(50)
+);
