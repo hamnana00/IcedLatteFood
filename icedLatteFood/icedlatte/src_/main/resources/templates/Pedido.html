@@ -64,6 +64,22 @@
             font-size: 1.2em;
             z-index: 1000;
         }
+        .notification {
+            background-color: #4caf50;
+            color: white;
+        }
+        .category-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 10px;
+        }
+        .category-item img {
+            width: 150px; /* Ajusta el tamaño de la imagen */
+            height: auto;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -74,10 +90,26 @@
         <h1>Elige una Categoría</h1>
         <p>Selecciona una categoría y descubre nuestro delicioso menú.</p>
         <div>
-            <button onclick="showProducts('postres')">Postres</button>
-            <button onclick="showProducts('bebidas')">Bebidas</button>
-            <button onclick="showProducts('platos')">Platos Principales</button>
-            <button onclick="showProducts('ensaladas')">Ensaladas</button>
+            <div class="category-item">
+                <img src="https://www.pequerecetas.com/wp-content/uploads/2015/05/postres-con-fresas.jpeg" alt="Postres">
+                <button onclick="showProducts('postres')">Postres</button>
+            </div>
+
+            <div class="category-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcndOf0hI2jvDbcL_NH4uvaxOlNPIGS6a2hQ&s" alt="Bebidas">
+                <button onclick="showProducts('bebidas')">Bebidas</button>
+            </div>
+
+            <div class="category-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReEmnFTPB1t-iUKY-oa3tHbu3fo9HqTS9jtoTP9hQFKeSBPSyuwmcs-4_FzFipsJk1O6k&usqp=CAU" alt="Platos Principales">
+                <button onclick="showProducts('platos')">Platos Principales</button>
+            </div>
+
+            <div class="category-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReqgOsvolpj-4-_9VorGnrnOGTWMLE2Lvf6A&s" alt="Ensaladas">
+                <button onclick="showProducts('ensaladas')">Ensaladas</button>
+            </div>
+
         </div>
     </section>
 
