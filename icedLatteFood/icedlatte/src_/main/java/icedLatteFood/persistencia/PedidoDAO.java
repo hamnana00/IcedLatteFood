@@ -2,67 +2,49 @@ package persistencia;
 
 import dominio.entidades.Pedido;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class PedidoDAO extends EntityDAO<Pedido> {
+public class PedidoDAO {
+    private GestorBaseDatos gestorBD;
 
     public PedidoDAO(GestorBaseDatos gestorBD) {
-        super(gestorBD);
+        this.gestorBD = gestorBD;
     }
 
-    @Override
-    public int insert(Pedido entity) throws SQLException {
-        String sql = "INSERT INTO pedidos (fecha, estado) VALUES (?, ?)";
-        try (PreparedStatement stmt = gestorBD.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setDate(1, new java.sql.Date(entity.getFecha().getTime())); // Convierte Date a SQL Date
-            stmt.setString(2, entity.getEstado().name());
+    public int insert(Pedido pedido) {
+        String sql = "INSERT INTO Pedido (fecha, cliente_id, restaurante_id, estado) VALUES (?, ?, ?, ?)";
+        try (Connection conn = gestorBD.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setDate(1, new java.sql.Date(pedido.getFecha().getTime()));
+            stmt.setInt(2, pedido.getCliente().getId());
+            stmt.setInt(3, pedido.getRestaurante().getId());
+            stmt.setString(4, pedido.getEstado().toString());
+
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows > 0) {
+                ResultSet generatedKeys = stmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al insertar pedido: " + e.getMessage());
+        }
+        return -1; // Retorna -1 si no se generó un ID
+    }
+
+    public void update(Pedido pedido) {
+        String sql = "UPDATE Pedido SET estado = ?, pago_id = ? WHERE id = ?";
+        try (Connection conn = gestorBD.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, pedido.getEstado().toString());
+            stmt.setInt(2, pedido.getPago().getId()); // suponiendo que Pago tiene un ID
+            stmt.setInt(3, pedido.getId());
+
             stmt.executeUpdate();
-
-            // Obtiene el ID generado
-            ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                return rs.getInt(1); // Retorna el ID del pedido insertado
-            }
-            return -1; // Si no se obtuvo un ID
-        }
-    }
-
-    @Override
-    public int update(Pedido entity) throws SQLException {
-        String sql = "UPDATE pedidos SET fecha = ?, estado = ? WHERE id = ?";
-        try (PreparedStatement stmt = gestorBD.getConnection().prepareStatement(sql)) {
-            stmt.setDate(1, new java.sql.Date(entity.getFecha().getTime()));
-            stmt.setString(2, entity.getEstado().name());
-            stmt.setInt(3, entity.getId()); // Asumiendo que Pedido tiene un método getId()
-            return stmt.executeUpdate(); // Retorna el número de filas afectadas
-        }
-    }
-
-    @Override
-    public int delete(Pedido entity) throws SQLException {
-        String sql = "DELETE FROM pedidos WHERE id = ?";
-        try (PreparedStatement stmt = gestorBD.getConnection().prepareStatement(sql)) {
-            stmt.setInt(1, entity.getId()); // Asumiendo que Pedido tiene un método getId()
-            return stmt.executeUpdate(); // Retorna el número de filas afectadas
-        }
-    }
-
-    @Override
-    public Pedido select(String id) throws SQLException {
-        String sql = "SELECT * FROM pedidos WHERE id = ?";
-        try (PreparedStatement stmt = gestorBD.getConnection().prepareStatement(sql)) {
-            stmt.setString(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                // Crea y retorna un objeto Pedido a partir del ResultSet
-                Pedido pedido = new Pedido(rs.getDate("fecha"));
-                pedido.setEstado(Pedido.Estado.valueOf(rs.getString("estado")));
-                // Aquí deberías asignar el ID al pedido
-                pedido.setId(rs.getInt("id")); // Asumiendo que Pedido tiene un método setId()
-                return pedido;
-            }
-            return null; // Retorna null si no se encontró el pedido
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar pedido: " + e.getMessage());
         }
     }
 }

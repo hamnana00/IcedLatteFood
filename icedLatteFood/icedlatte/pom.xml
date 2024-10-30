@@ -4,16 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- Configuración del proyecto y su jerarquía -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/> <!-- búsqueda del padre en el repositorio -->
     </parent>
+
+    <!-- Información básica del proyecto -->
     <groupId>icedLatteFood</groupId>
     <artifactId>icedlatte</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>war</packaging> <!-- Empaquetado como archivo WAR para despliegue en servidores -->
     <name>icedlatte</name>
     <description>Demo project for Spring Boot</description>
     <url/>
@@ -29,53 +33,59 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <tag/>
         <url/>
     </scm>
+
+    <!-- Configuración de propiedades -->
     <properties>
-        <java.version>17</java.version>
+        <java.version>17</java.version> <!-- Versión de Java utilizada en el proyecto -->
     </properties>
+
     <dependencies>
+        <!-- Dependencia para Spring Boot y Thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId> <!-- Soporte para la plantilla Thymeleaf -->
         </dependency>
 
+        <!-- Dependencia para desarrollar aplicaciones web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId> <!-- Incluye soporte para MVC y REST -->
+        </dependency>
+
+        <!-- Tomcat es el servidor web integrado de Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
+            <scope>provided</scope> <!-- Esta dependencia se proporcionará en el entorno del servidor -->
         </dependency>
+
+        <!-- Dependencia para pruebas -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <scope>test</scope> <!-- Incluye herramientas de prueba para JUnit y Mockito -->
         </dependency>
 
         <!-- Dependencias para Apache Derby -->
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
-            <version>10.15.2.0</version> <!-- Versión de Derby -->
+            <version>10.15.2.0</version> <!-- Versión de Derby utilizada para la base de datos -->
         </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbytools</artifactId>
-            <version>10.15.2.0</version> <!-- Versión de Derby Tools -->
+            <version>10.15.2.0</version> <!-- Herramientas para Derby, como la consola de administración -->
         </dependency>
         <!-- Fin de dependencias para Apache Derby -->
     </dependencies>
 
+    <!-- Configuración de plugins -->
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <artifactId>spring-boot-maven-plugin</artifactId> <!-- Plugin para empaquetar la aplicación como un archivo ejecutable -->
             </plugin>
         </plugins>
     </build>

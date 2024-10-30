@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear Pedido</title>
+</head>
+<body>
+<h1>Hacer un Pedido</h1>
+<form th:action="@{/pedidos}" method="post">
+    <label for="cliente">Cliente:</label>
+    <input type="text" id="cliente" name="cliente" required>
+
+    <label for="restaurante">Restaurante:</label>
+    <input type="text" id="restaurante" name="restaurante" required>
+
+    <label for="items">Items:</label>
+    <textarea id="items" name="items" required></textarea>
+
+    <button type="submit">Crear Pedido</button>
+</form>
+</body>
+</html>
