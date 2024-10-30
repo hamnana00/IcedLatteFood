@@ -1,21 +1,135 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
-    <title>Crear Pedido</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido en Restaurante</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; border-radius: 8px; background-color: #f7f7f7; }
+        .section { display: none; }
+        h1, h2, h3 { color: #333; }
+        button, select, input { padding: 8px 12px; margin: 8px 0; }
+        .product-list, .cart { margin-top: 20px; }
+        img { width: 100px; height: auto; margin: 5px; }
+        .cart-item, .product-item { display: flex; align-items: center; margin-bottom: 10px; }
+        .cart-item img, .product-item img { width: 50px; height: auto; margin-right: 10px; }
+        .payment-option img { width: 40px; height: auto; margin-right: 10px; }
+    </style>
 </head>
 <body>
-<h1>Hacer un Pedido</h1>
-<form th:action="@{/pedidos}" method="post">
-    <label for="cliente">Cliente:</label>
-    <input type="text" id="cliente" name="cliente" required>
+<div class="container">
+    <!-- Sección de selección de categoría -->
+    <section id="category-section" class="section" style="display: block;">
+        <h1>Elige una Categoría</h1>
+        <div>
+            <button onclick="showProducts('postres')">Postres</button>
+            <button onclick="showProducts('bebidas')">Bebidas</button>
+            <button onclick="showProducts('platos')">Platos Principales</button>
+            <button onclick="showProducts('ensaladas')">Ensaladas</button>
+        </div>
+    </section>
 
-    <label for="restaurante">Restaurante:</label>
-    <input type="text" id="restaurante" name="restaurante" required>
+    <!-- Sección de selección de productos -->
+    <section id="product-section" class="section">
+        <h2>Productos de la Categoría: <span id="selected-category"></span></h2>
+        <div class="product-list" id="product-list">
+            <!-- Productos generados dinámicamente -->
+        </div>
+        <button onclick="showSection('category-section')">Volver a Categorías</button>
+        <button onclick="showSection('checkout-section')">Siguiente</button>
+    </section>
 
-    <label for="items">Items:</label>
-    <textarea id="items" name="items" required></textarea>
+    <!-- Sección del carrito y detalles del pedido -->
+    <section id="checkout-section" class="section">
+        <h2>Carrito de Compras</h2>
+        <div id="cart"></div>
+        <p>Total: $<span id="total-price">0</span></p>
 
-    <button type="submit">Crear Pedido</button>
-</form>
+        <!-- Información del Cliente -->
+        <h2>Detalles del Cliente</h2>
+        <label>ID del Cliente:</label><input type="text" id="customer-id" required><br>
+        <label>Teléfono:</label><input type="text" id="phone" required><br>
+        <label>Dirección:</label><input type="text" id="address" required><br>
+
+        <!-- Método de Pago -->
+        <h3>Método de Pago</h3>
+        <div class="payment-option">
+            <label><input type="radio" name="payment-method" value="Tarjeta" required> Tarjeta <img src="https://example.com/tarjeta.jpg" alt="Tarjeta"></label>
+            <label><input type="radio" name="payment-method" value="Efectivo"> Efectivo <img src="https://example.com/efectivo.jpg" alt="Efectivo"></label>
+            <label><input type="radio" name="payment-method" value="PayPal"> PayPal <img src="https://example.com/paypal.jpg" alt="PayPal"></label>
+        </div>
+        <button onclick="finalizeOrder()">Finalizar Pedido</button>
+        <button onclick="showSection('product-section')">Seguir Comprando</button>
+    </section>
+</div>
+
+<script>
+    // Datos de productos con imágenes
+    const products = {
+        postres: [
+            { name: 'Tarta de Chocolate', price: 5, image: 'https://example.com/tarta.jpg' },
+            { name: 'Helado', price: 3, image: 'https://example.com/helado.jpg' }
+        ],
+        bebidas: [
+            { name: 'Café', price: 2, image: 'https://example.com/cafe.jpg' },
+            { name: 'Jugo', price: 2.5, image: 'https://example.com/jugo.jpg' }
+        ],
+        platos: [
+            { name: 'Pasta', price: 8, image: 'https://example.com/pasta.jpg' },
+            { name: 'Pizza', price: 10, image: 'https://example.com/pizza.jpg' }
+        ],
+        ensaladas: [
+            { name: 'Ensalada César', price: 6, image: 'https://example.com/cesar.jpg' },
+            { name: 'Ensalada Griega', price: 7, image: 'https://example.com/griega.jpg' }
+        ]
+    };
+    let cart = [];
+
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(section => section.style.display = 'none');
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    function showProducts(category) {
+        document.getElementById('selected-category').innerText = category;
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = '';
+        products[category].forEach((product, index) => {
+            const productItem = document.createElement('div');
+            productItem.classList.add('product-item');
+            productItem.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <p>${product.name} - $${product.price}</p>
+                <label>Cantidad: <input type="number" id="quantity-${index}" value="1" min="1"></label>
+                <button onclick="addToCart('${category}', ${index})">Añadir al Carrito</button>
+            `;
+            productList.appendChild(productItem);
+        });
+        showSection('product-section');
+    }
+
+    function addToCart(category, index) {
+        const product = products[category][index];
+        const quantity = parseInt(document.getElementById(`quantity-${index}`).value) || 1;
+        cart.push({ ...product, quantity });
+        alert(`${product.name} añadido al carrito!`);
+    }
+
+    function finalizeOrder() {
+        const cartList = document.getElementById('cart');
+        cartList.innerHTML = '';
+        let totalPrice = 0;
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `<img src="${item.image}" alt="${item.name}"> ${item.name} - $${item.price} x ${item.quantity}`;
+            cartList.appendChild(cartItem);
+            totalPrice += item.price * item.quantity;
+        });
+        document.getElementById('total-price').innerText = totalPrice;
+        showSection('checkout-section');
+    }
+</script>
 </body>
 </html>
