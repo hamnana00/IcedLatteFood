@@ -5,23 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedido en Restaurante</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; border-radius: 8px; background-color: #f7f7f7; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0; padding: 0;
+            background-color: #f3f4f6;
+            color: #2f3e46;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px; margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 { color: #495057; font-size: 2em; margin-bottom: 1rem; }
+        h2 { color: #6c757d; font-size: 1.5em; margin: 1.5rem 0 1rem; }
+        h3 { color: #495057; font-size: 1.3em; }
+        button, select, input {
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            margin: 8px 0;
+            background-color: #ff7b54;
+            color: #fff;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        button:hover { background-color: #ffa05a; }
         .section { display: none; }
-        h1, h2, h3 { color: #333; }
-        button, select, input { padding: 8px 12px; margin: 8px 0; }
         .product-list, .cart { margin-top: 20px; }
-        img { width: 100px; height: auto; margin: 5px; }
-        .cart-item, .product-item { display: flex; align-items: center; margin-bottom: 10px; }
-        .cart-item img, .product-item img { width: 50px; height: auto; margin-right: 10px; }
-        .payment-option img { width: 40px; height: auto; margin-right: 10px; }
+        img { width: 130px; height: auto; margin: 5px; border-radius: 10px; }
+        .cart-item, .product-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .cart-item img, .product-item img { width: 100px; margin-right: 10px; }
+        .payment-option img { width: 50px; height: auto; margin-right: 10px; }
+        .total-price {
+            font-size: 1.2em; font-weight: bold;
+            color: #ff7b54;
+            margin-top: 20px;
+        }
+        .notification {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1.2em;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
+
 <div class="container">
     <!-- Sección de selección de categoría -->
     <section id="category-section" class="section" style="display: block;">
         <h1>Elige una Categoría</h1>
+        <p>Selecciona una categoría y descubre nuestro delicioso menú.</p>
         <div>
             <button onclick="showProducts('postres')">Postres</button>
             <button onclick="showProducts('bebidas')">Bebidas</button>
@@ -55,33 +106,59 @@
         <!-- Método de Pago -->
         <h3>Método de Pago</h3>
         <div class="payment-option">
-            <label><input type="radio" name="payment-method" value="Tarjeta" required> Tarjeta <img src="https://example.com/tarjeta.jpg" alt="Tarjeta"></label>
-            <label><input type="radio" name="payment-method" value="Efectivo"> Efectivo <img src="https://example.com/efectivo.jpg" alt="Efectivo"></label>
-            <label><input type="radio" name="payment-method" value="PayPal"> PayPal <img src="https://example.com/paypal.jpg" alt="PayPal"></label>
+            <label><input type="radio" name="payment-method" value="Tarjeta" required> Tarjeta <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvYJvSumwD7Wfaf0aqtpdyZoC6DoZPeMhWig&s" alt="Tarjeta"></label>
+            <label><input type="radio" name="payment-method" value="Efectivo"> Efectivo <img src="https://proinda.es/wp-content/uploads/como-aplicar.jpeg" alt="Efectivo"></label>
+            <label><input type="radio" name="payment-method" value="PayPal"> PayPal <img src="https://res.cloudinary.com/helpmycash/image/upload/c_fill,w_1280,q_auto,f_auto/media/ebqn7uybzul8ydptd2pt" alt="PayPal"></label>
         </div>
         <button onclick="finalizeOrder()">Finalizar Pedido</button>
         <button onclick="showSection('product-section')">Seguir Comprando</button>
     </section>
+    <div id="notification" class="notification">Añadido al carrito con éxito</div>
+
 </div>
 
 <script>
     // Datos de productos con imágenes
     const products = {
         postres: [
-            { name: 'Tarta de Chocolate', price: 5, image: 'https://example.com/tarta.jpg' },
-            { name: 'Helado', price: 3, image: 'https://example.com/helado.jpg' }
+            { name: 'Tarta de Chocolate', price: 5, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUDT4nEL8Nklb8c_jinH7XoBWRN8kAwF3jxg&s' },
+            { name: 'Helado', price: 3, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb2jM2_UoyoSt-OXHPZngr2swIPxYbrRipFw&s' },
+            { name: 'Pávlola', price: 4, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4Xtj-dlnA3xPtXlXD0fAIK8xCyLDByryLAA&s' },
+            { name: 'El Milhojas', price: 6.99, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtjch8QWJExSFaIV2N_8M6bKsXJVAR53_Eo00GWhrT1g_5zkDXO6PkhJKuh0aU2Joemhs&usqp=CAU' },
+            { name: 'Crepe', price: 5.99, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYucxmzB9VbFeVgIj5HrxpQEMVObg14Pi2eQ&s' },
+            { name: 'Éclairs', price: 2, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYhW0oXf8rYvd_2YKxIhT7jInPooFDJyqX-A&s' },
+
         ],
         bebidas: [
-            { name: 'Café', price: 2, image: 'https://example.com/cafe.jpg' },
-            { name: 'Jugo', price: 2.5, image: 'https://example.com/jugo.jpg' }
+            { name: 'Capuccino', price: 2, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5P-E3llMRH7KIKiq0HjOeAVwlyId89ynN9g&s  ' },
+            { name: 'Agua', price: 2.5, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD9VoaMKo38DbyWl7-oiSD36jUX1VHRyq-kQ&s' },
+            { name: 'Fruit Shakes', price: 3.95, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm1Pib7nFJcTQNugA80PJdPSs_tPKBaoUiVg&s' },
+            { name: 'Cerveza', price: 1.89, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA-usyISLS65O_RplJQ6qyeRmcbodqw7OxTw&s' },
+            { name: 'Vino ', price: 4, image: 'https://services.meteored.com/img/article/una-copa-de-vino-equivale-a-una-hora-de-gimnasio-verdadero-falso-mitos-vino-1698533553768_1280.jpg' },
+            { name: 'Mojito', price: 2, image: 'https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/3279978A-FC6C-4231-A42C-DF759994C99C/Derivates/4278FB29-8E6B-4986-BF60-231C91231A01.jpg' },
+
+
+
         ],
         platos: [
-            { name: 'Pasta', price: 8, image: 'https://example.com/pasta.jpg' },
-            { name: 'Pizza', price: 10, image: 'https://example.com/pizza.jpg' }
+            { name: 'Pasta boloñesa', price: 8, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXSJNLtOjkjPJwWRxkL7fqBEECrhLStsbRNg&s' },
+            { name: 'Pizza Margarita', price: 10, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZjo9nnM4x4yqYkNG8kQmUvHpcpPr1pvlOGA&s' },
+            { name: 'Carne de res', price: 15, image: 'https://assets.unileversolutions.com/v1/803259.jpg' },
+            { name: 'Pizza 4 quesos', price: 10, image: 'https://shop.quesoperfecto.com/cdn/shop/products/4quesos1000x1500_1200x1200.png?v=1587547708' },
+            { name: 'Pasta carbonara', price: 8, image: 'https://www.pequerecetas.com/wp-content/uploads/2010/10/pasta-carbonara-espaguetis-receta.jpg' },
+            { name: 'Hamburgesa de pollo', price: 9, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMv1-dtZDzGB9d_fIO7h1K1G64huNnx-kQ7g&s' },
+            { name: 'Hamburgesa de ternera ', price: 9, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Ky0Q8r1CKYl1e1YkYPQPDKPWJn0h70XqFA&s' },
+            { name: 'Tacos', price: 6, image: 'https://www.pequerecetas.com/wp-content/uploads/2020/10/tacos-mexicanos.jpg' },
+            { name: 'Cazuela de mariscos', price: 11.99, image: 'https://www.goya.com/media/4126/cazuela-de-mariscos_spanish-style-shellfish-stew.jpg?quality=80' },
         ],
         ensaladas: [
-            { name: 'Ensalada César', price: 6, image: 'https://example.com/cesar.jpg' },
-            { name: 'Ensalada Griega', price: 7, image: 'https://example.com/griega.jpg' }
+            { name: 'Ensalada César', price: 6, image: 'https://imag.bonviveur.com/ensalada-cesar-casera.jpg' },
+            { name: 'Ensalada Griega', price: 7, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHfR5LsygjZTEQfmwTdMzE1UvNlCqWMDfIbg&s' },
+            { name: 'Ensalada de Pollo y naranja', price: 10, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaOLRCGfsFua_NS0R51xcHoYrXpUjWjuvNAA&s' },
+            { name: 'Ensalada con pasta', price: 5, image: 'https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/c095dfd2-faa7-4ec8-8a90-08e779072ec1/Derivates/1a40601f-c02a-410d-90c4-487c4804dfa7.jpg' },
+            { name: 'Ensalada de arroz', price: 8, image: 'https://comedera.com/wp-content/uploads/sites/9/2018/05/ensalada-de-arroz.jpg' },
+            { name: 'Ensalada de alubias', price: 8, image: 'https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2023/01/16/ensalada-de-alubias.jpeg' },
+
         ]
     };
     let cart = [];
@@ -101,7 +178,7 @@
             productItem.innerHTML = `
                 <img src="${product.image}" alt="${product.name}">
                 <p>${product.name} - $${product.price}</p>
-                <label>Cantidad: <input type="number" id="quantity-${index}" value="1" min="1"></label>
+                <p><input type="number" id="quantity-${index}" value="1" min="1"></label></p>
                 <button onclick="addToCart('${category}', ${index})">Añadir al Carrito</button>
             `;
             productList.appendChild(productItem);
@@ -109,14 +186,24 @@
         showSection('product-section');
     }
 
+    function showNotification() {
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 2000); // Mensaje desaparece después de 2 segundos
+    }
+
     function addToCart(category, index) {
         const product = products[category][index];
         const quantity = parseInt(document.getElementById(`quantity-${index}`).value) || 1;
         cart.push({ ...product, quantity });
-        alert(`${product.name} añadido al carrito!`);
+        showNotification(); // Llama a la función para mostrar el mensaje
+
     }
 
     function finalizeOrder() {
+
         const cartList = document.getElementById('cart');
         cartList.innerHTML = '';
         let totalPrice = 0;
