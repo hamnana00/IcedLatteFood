@@ -4,56 +4,74 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.DriverManager;
+
 
 public class GestorBaseDatos {
     private Connection connection;
 
-    public GestorBaseDatos(Connection connection) {
-        this.connection = connection;
+    public GestorBaseDatos(String dbUrl) throws SQLException { //constructor
+        this.connection = DriverManager.getConnection(dbUrl);
     }
-
-    // Método para insertar un restaurante en la base de datos
-    public void insertarRestaurante(String nombre, String cif) throws SQLException {
-        String sql = "INSERT INTO Restaurante (nombre, cif, favorito, direccion, codigopostal) VALUES ('"
-                + nombre + "', '" + cif + "', '"+favorito+"', '"+direccion+"', '"+codigopostal+"')";
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(sql);
-    }
-    public void actualizarRestaurante(String cif, String nuevoNombre) throws SQLException {
-        String sql = "UPDATE Restaurante SET nombre = '" + nuevoNombre + "' WHERE cif = '" + cif + "'";
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(sql);
-    }
-    public void eliminarRestaurante(String cif) throws SQLException {
-        String sql = "DELETE FROM Restaurante WHERE cif = '" + cif + "'";
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(sql);
-    }
-
-    // Método para seleccionar todos los restaurantes
-    public void mostrarRestaurantes() throws SQLException {
-        String sql = "SELECT * FROM Restaurante";
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(sql);
-
-        while (resultSet.next()) {
-            System.out.println("Nombre: " + resultSet.getString("nombre") + ", CIF: " + resultSet.getString("cif"));
+    private boolean conectar() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                // Reemplaza con tus credenciales y URL de conexión
+                String dbUrl = "jdbc:derby:memory:myDB;create=true"; // Cambia el URL según tu configuración
+                connection = DriverManager.getConnection(dbUrl);
+            }
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+            return false;
+     }
+        /*private boolean desconectar() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error al desconectar de la base de datos: " + e.getMessage());
+            return false;
         }
-    }
-    public void seleccionarPorCif(String cif) throws SQLException {
-        String sql = "SELECT * FROM Restaurante WHERE cif = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, cif);
-            ResultSet resultSet = statement.executeQuery();
+        }*/
 
-            if (resultSet.next()) {
-                // Crear un objeto Restaurante a partir de los datos obtenidos
-                return new Restaurante(
-                        resultSet.getString("nombre"),
-                        resultSet.getString("cif")
-                );
+        public int insert(String sql) {
+            try (Statement statement = connection.createStatement()) {
+                return statement.executeUpdate(sql);
+            } catch (SQLException e) {
+                System.err.println("Error al insertar en la base de datos: " + e.getMessage());
+                return 0;
             }
         }
-        return null; // Retorna null si no se encuentra el restaurante
+        public int update(String sql) {
+            try (Statement statement = connection.createStatement()) {
+                return statement.executeUpdate(sql);
+            } catch (SQLException e) {
+                System.err.println("Error al actualizar en la base de datos: " + e.getMessage());
+                return 0;
+            }
+        }
+        public int delete(String sql) {
+            try (Statement statement = connection.createStatement()) {
+                return statement.executeUpdate(sql);
+            } catch (SQLException e) {
+                System.err.println("Error al eliminar de la base de datos: " + e.getMessage());
+                return 0;
+            }
+        }
+        public ResultSet select(String sql) {
+            try {
+                Statement statement = connection.createStatement();
+                return statement.executeQuery(sql);
+            } catch (SQLException e) {
+                System.err.println("Error al seleccionar de la base de datos: " + e.getMessage());
+                return null;
+            }
+        }
+        /*public void close() {
+        desconectar();
+        }*/
     }
 }

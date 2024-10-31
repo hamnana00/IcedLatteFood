@@ -6,63 +6,72 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoDAO extends EntityDAO<Pedido> {
-
-    public PedidoDAO(GestorBaseDatos gestorBD) {
-        super(gestorBD);
-    }
-
-    @Override
-    public int insert(Pedido entity) throws SQLException {
-        String sql = "INSERT INTO pedidos (fecha, estado) VALUES (?, ?)";
-        try (PreparedStatement stmt = gestorBD.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setDate(1, new java.sql.Date(entity.getFecha().getTime())); // Convierte Date a SQL Date
-            stmt.setString(2, entity.getEstado().name());
-            stmt.executeUpdate();
-
-            // Obtiene el ID generado
-            ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                return rs.getInt(1); // Retorna el ID del pedido insertado
-            }
-            return -1; // Si no se obtuvo un ID
+    public boolean agregarPedido(int idCli, String nombre, String origen, int destino, double precioTotal, Time hora, int idRepar) {
+        String sql = "INSERT INTO Pedido (idCli, nombre, origen, destino, precioTotal, hora, idRepar) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idCli);
+            stmt.setString(2, nombre);
+            stmt.setString(3, origen);
+            stmt.setInt(4, destino);
+            stmt.setDouble(5, precioTotal);
+            stmt.setTime(6, hora);
+            stmt.setInt(7, idRepar);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
-
-    @Override
-    public int update(Pedido entity) throws SQLException {
-        String sql = "UPDATE pedidos SET fecha = ?, estado = ? WHERE id = ?";
-        try (PreparedStatement stmt = gestorBD.getConnection().prepareStatement(sql)) {
-            stmt.setDate(1, new java.sql.Date(entity.getFecha().getTime()));
-            stmt.setString(2, entity.getEstado().name());
-            stmt.setInt(3, entity.getId()); // Asumiendo que Pedido tiene un método getId()
-            return stmt.executeUpdate(); // Retorna el número de filas afectadas
-        }
-    }
-
-    @Override
-    public int delete(Pedido entity) throws SQLException {
-        String sql = "DELETE FROM pedidos WHERE id = ?";
-        try (PreparedStatement stmt = gestorBD.getConnection().prepareStatement(sql)) {
-            stmt.setInt(1, entity.getId()); // Asumiendo que Pedido tiene un método getId()
-            return stmt.executeUpdate(); // Retorna el número de filas afectadas
-        }
-    }
-
-    @Override
-    public Pedido select(String id) throws SQLException {
-        String sql = "SELECT * FROM pedidos WHERE id = ?";
-        try (PreparedStatement stmt = gestorBD.getConnection().prepareStatement(sql)) {
-            stmt.setString(1, id);
+    public Pedido obtenerPedido(int idPed) {
+        String sql = "SELECT * FROM Pedido WHERE idPed = ?";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idPed);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                // Crea y retorna un objeto Pedido a partir del ResultSet
-                Pedido pedido = new Pedido(rs.getDate("fecha"));
-                pedido.setEstado(Pedido.Estado.valueOf(rs.getString("estado")));
-                // Aquí deberías asignar el ID al pedido
-                pedido.setId(rs.getInt("id")); // Asumiendo que Pedido tiene un método setId()
-                return pedido;
+                return new Pedido(
+                        rs.getInt("idPed"),
+                        rs.getInt("idCli"),
+                        rs.getString("nombre"),
+                        rs.getString("origen"),
+                        rs.getInt("destino"),
+                        rs.getDouble("precioTotal"),
+                        rs.getTime("hora"),
+                        rs.getInt("idRepar")
+                );
             }
-            return null; // Retorna null si no se encontró el pedido
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public boolean actualizarPedido(int idPed, String nombre, String origen, int destino, double precioTotal, Time hora, int idRepar) {
+        String sql = "UPDATE Pedido SET nombre = ?, origen = ?, destino = ?, precioTotal = ?, hora = ?, idRepar = ? WHERE idPed = ?";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, nombre);
+            stmt.setString(2, origen);
+            stmt.setInt(3, destino);
+            stmt.setDouble(4, precioTotal);
+            stmt.setTime(5, hora);
+            stmt.setInt(6, idRepar);
+            stmt.setInt(7, idPed);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean eliminarPedido(int idPed) {
+        String sql = "DELETE FROM Pedido WHERE idPed = ?";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idPed);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

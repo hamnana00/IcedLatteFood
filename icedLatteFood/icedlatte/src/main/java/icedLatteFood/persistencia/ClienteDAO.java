@@ -12,72 +12,64 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import dominio.entidades.Cliente;
+import persistencia.DatabaseConnection
 
 public class ClienteDAO {
-
-    private Connection connection;
-
-    public ClienteDAO(Connection connection) {
-        this.connection = connection;
-    }
-
-    public boolean agregarCliente(Cliente cliente) {
-        String sql = "INSERT INTO clientes (nombre, email, direccion) VALUES (?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, cliente.getNombre());
-            stmt.setString(2, cliente.getEmail());
-            stmt.setString(3, cliente.getDireccion());
-            int rowsInserted = stmt.executeUpdate();
-            return rowsInserted > 0;
+    public boolean agregarCliente(String nombre, String apellido1, String apellido2) {
+        String sql = "INSERT INTO Cliente (nombre, apellido1, apellido2) VALUES (?, ?, ?)";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, nombre);
+            stmt.setString(2, apellido1);
+            stmt.setString(3, apellido2);
+            return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-
-    public boolean actualizarCliente(Cliente cliente) {
-        String sql = "UPDATE clientes SET nombre = ?, email = ?, direccion = ? WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, cliente.getNombre());
-            stmt.setString(2, cliente.getEmail());
-            stmt.setString(3, cliente.getDireccion());
-            stmt.setInt(4, cliente.getId());
-            int rowsUpdated = stmt.executeUpdate();
-            return rowsUpdated > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean eliminarCliente(int id) {
-        String sql = "DELETE FROM clientes WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            int rowsDeleted = stmt.executeUpdate();
-            return rowsDeleted > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public List<Cliente> obtenerTodosLosClientes() {
-        List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT * FROM clientes";
-        try (Statement stmt = connection.createStatement()) {
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                clientes.add(new Cliente(
-                        rs.getInt("id"),
+    public Cliente obtenerCliente(int idCli) {
+        String sql = "SELECT * FROM Cliente WHERE idCli = ?";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idCli);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Cliente(
+                        rs.getInt("idCli"),
                         rs.getString("nombre"),
-                        rs.getString("email"),
-                        rs.getString("direccion")
-                ));
+                        rs.getString("apellido1"),
+                        rs.getString("apellido2")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return clientes;
+        return null;
+    }
+    public boolean actualizarCliente(int idCli, String nombre, String apellido1, String apellido2) {
+        String sql = "UPDATE Cliente SET nombre = ?, apellido1 = ?, apellido2 = ? WHERE idCli = ?";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, nombre);
+            stmt.setString(2, apellido1);
+            stmt.setString(3, apellido2);
+            stmt.setInt(4, idCli);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean eliminarCliente(int idCli) {
+        String sql = "DELETE FROM Cliente WHERE idCli = ?";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idCli);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

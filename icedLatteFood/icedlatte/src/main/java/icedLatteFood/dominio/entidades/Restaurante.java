@@ -8,13 +8,15 @@ import java.util.Collection;
 public class Restaurante {
     private String nombre;
     private String cif;
+    private boolean favorito;
     private Collection<CartaMenu> menu;
     private Collection<Pedido> pedidos;
 
     // Constructor
-    public Restaurante(String nombre, String cif) {
+    public Restaurante(String nombre, String cif, boolean favorito) {
         this.nombre = nombre;
         this.cif = cif;
+        this.favorito = favorito;
         this.menu = new Menu();
     }
 
@@ -38,6 +40,10 @@ public class Restaurante {
     public void setCif(String cif) {
         this.cif = cif;
     }
+
+    public boolean isFavorito() { return favorito; }
+
+    public void setFavorito(boolean favorito) { this.favorito = favorito; }
 
     // Métodos para interactuar con el menú
     public void agregarItemMenu(ItemMenu itemMenu) {
