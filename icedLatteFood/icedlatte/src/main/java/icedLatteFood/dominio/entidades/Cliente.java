@@ -9,6 +9,12 @@ public class Cliente {
 	Collection<Restaurante> favoritos;
 	Collection<Pedido> pedidos;
 	Collection<Direccion> direcciones;
+
+    public Cliente(String nombre, String apellidos, String dni) {
+        this.nombre = nombre;
+        this.apellidos=apellidos;
+        this.dni=dni;
+    }
 	
 	public String getNombre() {
 		 return nombre;

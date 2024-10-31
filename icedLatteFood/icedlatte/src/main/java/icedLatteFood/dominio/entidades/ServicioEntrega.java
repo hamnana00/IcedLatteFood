@@ -3,13 +3,13 @@ package dominio.entidades;
 import java.time.LocalDateTime;
 
 public class ServicioEntrega {
-	Pedido pedido;
-	Direccion direccion;
-	Repartidor repartidor;
-	private DateTime fechaRecepcion;
-	private DateTime fechaEntrega;
-	
-	public ServicioEntrega(Pedido pedido, Direccion direccion, Repartidor repartidor) {
+    Pedido pedido;
+    Direccion direccion;
+    Repartidor repartidor;
+    private LocalDateTime fechaRecepcion;
+    private LocalDateTime fechaEntrega;
+
+    public ServicioEntrega(Pedido pedido, Direccion direccion, Repartidor repartidor) {
         this.pedido = pedido;
         this.direccion = direccion;
         this.repartidor = repartidor;

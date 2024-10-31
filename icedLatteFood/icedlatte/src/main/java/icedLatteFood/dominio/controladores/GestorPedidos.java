@@ -46,12 +46,13 @@ public class GestorPedidos {
         return false; // Pago fallido
     }
 
-    private ServicioEntrega crearServicioEntrega(Pedido pedido, Direccion direccion) {
-        Repartidor repartidor = // Lógica para seleccionar un repartidor, puede ser aleatorio o basado en condiciones
-                ServicioEntrega servicio = new ServicioEntrega(pedido, direccion, repartidor);
+   /* private ServicioEntrega crearServicioEntrega(Pedido pedido, Direccion direccion) {
+        Repartidor repartidor = ServicioEntrega;
+        servicio = new ServicioEntrega(pedido, direccion, repartidor);
+        // Lógica para seleccionar un repartidor, puede ser aleatorio o basado en condiciones
         servicio.registrarRecepcion(); // Registrar la recepción del servicio de entrega
         return servicio;
-    }
+    }*/
 
     public void anadirItemMenu(ItemMenu item) {
         if (pedidoEnMarcha != null) {

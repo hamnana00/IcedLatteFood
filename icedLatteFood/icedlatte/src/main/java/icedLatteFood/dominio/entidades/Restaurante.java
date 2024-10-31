@@ -2,6 +2,7 @@ package dominio.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collection;
 
 // Clase Restaurante
 public class Restaurante {
@@ -26,7 +27,7 @@ public class Restaurante {
         return cif;
     }
 
-    public Menu getMenu() {
+    public CartaMenu getMenu() {
         return menu;
     }
 

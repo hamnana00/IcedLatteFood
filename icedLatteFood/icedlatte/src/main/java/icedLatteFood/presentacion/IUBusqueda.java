@@ -2,12 +2,17 @@ package presentacion;
 import dominio.controladores.GestorClientes;
 import dominio.entidades.*;
 import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+@Controller
 public class IUBusqueda {
 
+    @Autowired
     private GestorClientes gestorClientes;  // Instancia del gestor de clientes
 
-    // Constructor que recibe el GestorClientes
     public IUBusqueda(GestorClientes gestorClientes) {
         this.gestorClientes = gestorClientes;
     }
@@ -44,6 +49,24 @@ public class IUBusqueda {
         } else {
             System.out.println("Restaurante no encontrado con ID: " + idRestaurante);
         }
+    }
+
+    // Muestra todos los restaurantes o los resultados de la búsqueda
+    @GetMapping("/restaurantes")
+    public String mostrarRestaurantes(@RequestParam(value = "zona", required = false) String zona,
+                                      @RequestParam(value = "busqueda", required = false) String busqueda,
+                                      Model model) {
+        List<Restaurante> restaurantes;
+
+        // Condición para cargar todos o hacer la búsqueda
+        if ((zona != null && !zona.isEmpty()) || (busqueda != null && !busqueda.isEmpty())) {
+            restaurantes = gestorRestaurante.buscarRestaurantes(zona, busqueda);
+        } else {
+            restaurantes = gestorRestaurante.obtenerTodosRestaurantes();
+        }
+
+        model.addAttribute("restaurantes", restaurantes);
+        return "restaurantes"; // Llama a "restaurantes.html"
     }
 
 }

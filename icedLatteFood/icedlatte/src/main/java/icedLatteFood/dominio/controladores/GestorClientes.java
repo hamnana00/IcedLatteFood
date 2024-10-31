@@ -17,17 +17,12 @@ public class GestorClientes {
 
     // Buscar restaurante por zona (código postal)
     public List<Restaurante> buscarRestaurante(CodigoPostal codigoPostal) {
-        return restauranteDAO.selectPorCodigoPostal(codigoPostal);
-    }
-
-    // Buscar restaurante por una cadena de búsqueda (en el nombre o en el menú)
-    public List<Restaurante> buscarRestaurante(String codigoPostal, String cadenaBusqueda) {
-        return restauranteDAO.selectPorCodigoPostalYTextoLibre(codigoPostal, cadenaBusqueda);
+        return restauranteDAO.selectPorCodigoPostal(String.valueOf(codigoPostal.getCodigo()));
     }
 
     //Buscar restaurante solo por cadena de búsqueda
     public List<Restaurante> buscarRestauranteCadena(String cadenaBusqueda) {
-        return restauranteDAO.selectPorTextoLibre(cadenaBusqueda);
+        return restauranteDAO.selectPorNombre(cadenaBusqueda);
     }
     // Añadir un restaurante a la lista de favoritos de un cliente
     public void favorito(Cliente cliente, Restaurante restaurante) {
