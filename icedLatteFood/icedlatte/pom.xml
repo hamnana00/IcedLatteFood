@@ -76,6 +76,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>src_.main.java.icedLatteFood.icedlatte.IcedLatteApplication</mainClass> <!-- Cambia esto -->
+                </configuration>
             </plugin>
         </plugins>
     </build>
