@@ -1,7 +1,11 @@
 package persistencia;
 
 import dominio.entidades.ServicioEntrega;
+import dominio.entidades.Pedido;
 import java.sql.*;
+import java.util.List;
+import java.sql.Connection;
+
 
 public class ServicioEntregaDAO extends EntityDAO<ServicioEntrega> {
     public boolean marcarPedidoEntregado(int idPed) {

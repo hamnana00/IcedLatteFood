@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import dominio.entidades.Cliente;
-import persistencia.DatabaseConnection
+import persistencia.DatabaseConnection;
 
 public class ClienteDAO {
     public boolean agregarCliente(String nombre, String apellido1, String apellido2) {

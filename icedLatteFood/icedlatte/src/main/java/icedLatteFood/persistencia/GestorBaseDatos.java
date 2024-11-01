@@ -24,6 +24,7 @@ public class GestorBaseDatos {
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
             return false;
+        }
      }
         /*private boolean desconectar() {
         try {
@@ -37,7 +38,7 @@ public class GestorBaseDatos {
         }
         }*/
 
-        public int insert(String sql) {
+       public int insert(String sql) {
             try (Statement statement = connection.createStatement()) {
                 return statement.executeUpdate(sql);
             } catch (SQLException e) {
@@ -73,5 +74,5 @@ public class GestorBaseDatos {
         /*public void close() {
         desconectar();
         }*/
-    }
+
 }

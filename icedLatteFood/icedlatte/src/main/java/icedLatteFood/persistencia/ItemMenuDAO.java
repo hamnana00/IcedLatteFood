@@ -3,6 +3,7 @@ package persistencia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
 import dominio.entidades.ItemMenu;
 
 public class ItemMenuDAO extends EntityDAO<ItemMenu> {

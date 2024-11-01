@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+
 
 public class RestauranteDAO extends EntityDAO<Restaurante> {
     public boolean agregarRestaurante(String nombre, String cif) {
@@ -24,6 +26,44 @@ public class RestauranteDAO extends EntityDAO<Restaurante> {
         try (Connection connection = DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Restaurante(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("cif"),
+                        rs.getBoolean("favorito")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Restaurante selectPorCodigoPostal(int codigoPostal) {
+        String sql = "SELECT * FROM Restaurante WHERE codigoPostal = ?";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, codigoPostal);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Restaurante(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("cif"),
+                        rs.getBoolean("favorito")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Restaurante selectPorNombre(int nombre) {
+        String sql = "SELECT * FROM Restaurante WHERE nombre = ?";
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, nombre);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return new Restaurante(
