@@ -1,4 +1,4 @@
-package dominio.entidades;
+package icedLatteFood.dominio.entidades;
 
 import java.time.LocalDateTime;
 

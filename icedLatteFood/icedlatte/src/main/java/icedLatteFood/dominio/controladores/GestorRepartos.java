@@ -1,8 +1,8 @@
-package dominio.controladores;
+package icedLatteFood.dominio.controladores;
 
-import dominio.entidades.ServicioEntrega;
-import dominio.entidades.Repartidor;
-import dominio.entidades.CodigoPostal;
+import icedLatteFood.dominio.entidades.ServicioEntrega;
+import icedLatteFood.dominio.entidades.Repartidor;
+import icedLatteFood.dominio.entidades.CodigoPostal;
 import java.util.List;
 
 public class GestorRepartos {

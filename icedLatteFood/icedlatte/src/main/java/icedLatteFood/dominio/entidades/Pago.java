@@ -1,15 +1,15 @@
-package dominio.entidades;
+package icedLatteFood.dominio.entidades;
 import java.util.UUID;
 import java.util.Date;
 
 public class Pago {
 
-	Pedido pedido;
+	dominio.entidades.Pedido pedido;
 	MetodoPago tipo;
 	private UUID idTransaccion;
 	private Date fechaTransaccion;
 
-	public Pago(Pedido pedido, MetodoPago tipo) {
+	public Pago(dominio.entidades.Pedido pedido, MetodoPago tipo) {
         this.pedido = pedido;
         this.tipo = tipo;
     }

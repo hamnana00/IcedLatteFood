@@ -1,9 +1,8 @@
-package dominio.entidades;
+package icedLatteFood.dominio.entidades;
 
-import java.util.*;
 public class Direccion {
     private String calle;
-    private String numero;
+    private int numero;
     private String complemento;
     private int codigoPostal;
     private String municipio;
@@ -42,7 +41,7 @@ public class Direccion {
         this.complemento = complemento;
     }
 
-    public String getCodigoPostal() {
+    public int getCodigoPostal() {
         return codigoPostal;
     }
 

@@ -1,15 +1,18 @@
-package persistencia;
+package icedLatteFood.persistencia;
+
+import icedLatteFood.dominio.entidades.Restaurante;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 // Clase genérica EntityDAO
 public abstract class EntityDAO<E> {
 
     // Instancia del gestor de base de datos
-    protected GestorBaseDatos gestorBD;
+    protected icedLatteFood.persistencia.GestorBaseDatos gestorBD;
 
     // Constructor que recibe el gestor de base de datos
-    public EntityDAO(GestorBaseDatos gestorBD) {
+    public EntityDAO(icedLatteFood.persistencia.GestorBaseDatos gestorBD) {
         this.gestorBD = gestorBD;
     }
 
@@ -20,4 +23,8 @@ public abstract class EntityDAO<E> {
     public abstract int delete(E entity);
 
     public abstract E select(String id);
+
+    public abstract List<Restaurante> selectPorCodigoPostal(String s);
+
+
 }

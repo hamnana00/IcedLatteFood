@@ -1,42 +1,42 @@
-package dominio.entidades;
+package icedLatteFood.dominio.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//Clase Menu
-public class CartaMenu{
-    private List<ItemMenu> itemMenu;
+// Clase Menu
+public class CartaMenu {
+    private List<icedLatteFood.dominio.entidades.ItemMenu> itemMenu;
 
-    //Constructor
+    // Constructor
     public CartaMenu() {
         this.itemMenu = new ArrayList<>();
     }
 
-    //Método para agregar un plato al menú
-    public void agregarPlato(ItemMenu itemMenu) {
-        platos.add(itemMenu);
-        System.out.println("Plato agregado: "+ itemMenu);
+    // Método para agregar un plato al menú
+    public void agregarPlato(icedLatteFood.dominio.entidades.ItemMenu itemMenu) {
+        this.itemMenu.add(itemMenu); // Cambié "platos" por "itemMenu"
+        System.out.println("Plato agregado: " + itemMenu);
     }
 
-    //Método para eliminar un plato del menú
+    // Método para eliminar un plato del menú
     public void eliminarItemMenu(String nombreItemMenu) {
-        for(ItemMenu itemMenu : platos) {
-            if(ItemMenu.getNombre().equalsIgnoreCase(nombreItemMenu)) {
-                platos.remove(itemMenu);
-                System.out.println("Plato eliminado: "+ itemMenu);
+        for (icedLatteFood.dominio.entidades.ItemMenu itemMenu : new ArrayList<>(this.itemMenu)) { // Usamos una copia para evitar ConcurrentModificationException
+            if (itemMenu.getNombre().equalsIgnoreCase(nombreItemMenu)) {
+                this.itemMenu.remove(itemMenu);
+                System.out.println("Plato eliminado: " + itemMenu);
                 return;
             }
         }
-        System.out.println("Plato no encontrado: "+ nombreItemMenu);
+        System.out.println("Plato no encontrado: " + nombreItemMenu);
     }
 
-    //Método para mostrar el menú
+    // Método para mostrar el menú
     public void mostrarMenu() {
         if (itemMenu.isEmpty()) {
             System.out.println("El menú está vacío.");
-        }else {
+        } else {
             System.out.println("Menú del restaurante:");
-            for (ItemMenu itemMenu: itemMenu) {
+            for (icedLatteFood.dominio.entidades.ItemMenu itemMenu : this.itemMenu) {
                 System.out.println(itemMenu);
             }
         }

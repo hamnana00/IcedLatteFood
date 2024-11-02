@@ -1,10 +1,10 @@
-    package dominio.controladores;
+    package icedLatteFood.dominio.controladores;
 
-    import dominio.entidades.Restaurante;
-    import dominio.entidades.ItemMenu;
+    import icedLatteFood.dominio.entidades.Restaurante;
+    import icedLatteFood.dominio.entidades.ItemMenu;
     import dominio.entidades.Direccion;
     import dominio.entidades.TipoItemMenu;
-    import persistencia.RestauranteDAO;
+    import icedLatteFood.persistencia.RestauranteDAO;
 
     import java.util.List;
 

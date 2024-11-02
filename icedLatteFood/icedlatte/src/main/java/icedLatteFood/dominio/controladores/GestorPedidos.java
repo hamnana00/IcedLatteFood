@@ -1,23 +1,23 @@
-package dominio.controladores;
+package icedLatteFood.dominio.controladores;
 
-import persistencia.*;
-import dominio.entidades.*;
+import icedLatteFood.persistencia.*;
+import icedLatteFood.dominio.entidades.*;
 import java.util.List;
 
 public class GestorPedidos {
 
-    private PedidoDAO pedidoDAO;
-    private ServicioEntregaDAO servicioEntregaDAO;
-    private Pedido pedidoEnMarcha;
+    private icedLatteFood.persistencia.PedidoDAO pedidoDAO;
+    private persistencia.ServicioEntregaDAO servicioEntregaDAO;
+    private icedLatteFood.dominio.entidades.Pedido pedidoEnMarcha;
 
-    public GestorPedidos(GestorBaseDatos gestorBD) {
-        this.pedidoDAO = new PedidoDAO(gestorBD);
-        this.servicioEntregaDAO = new ServicioEntregaDAO(gestorBD);
+    public GestorPedidos(icedLatteFood.persistencia.GestorBaseDatos gestorBD) {
+        this.pedidoDAO = new icedLatteFood.persistencia.PedidoDAO(gestorBD);
+        this.servicioEntregaDAO = new persistencia.ServicioEntregaDAO(gestorBD);
     }
 
-    public void realizarPedido(Cliente cliente, Restaurante restaurante, List<ItemMenu> items) {
+    public void realizarPedido(icedLatteFood.dominio.entidades.Cliente cliente, Restaurante restaurante, List<ItemMenu> items) {
         // Crear un nuevo pedido
-        Pedido nuevoPedido = new Pedido(new java.util.Date()); // Inicializa con la fecha actual
+        icedLatteFood.dominio.entidades.Pedido nuevoPedido = new icedLatteFood.dominio.entidades.Pedido(new java.util.Date()); // Inicializa con la fecha actual
         nuevoPedido.setCliente(cliente);
         nuevoPedido.setRestaurante(restaurante);
         for (ItemMenu item : items) {
@@ -34,9 +34,9 @@ public class GestorPedidos {
         }
     }
 
-    private boolean realizarPago(Pedido pedido) {
+    private boolean realizarPago(icedLatteFood.dominio.entidades.Pedido pedido) {
         // Asumimos que tenemos una clase Pago y un método para procesar el pago
-        Pago pago = new Pago(pedido, MetodoPago.TARJETA); // Suponiendo que el método de pago es tarjeta
+        icedLatteFood.dominio.entidades.Pago pago = new icedLatteFood.dominio.entidades.Pago(pedido, MetodoPago.TARJETA); // Suponiendo que el método de pago es tarjeta
         boolean resultado = pago.procesarPago();
         if (resultado) {
             // Actualizar el estado del pedido en la base de datos
@@ -71,7 +71,7 @@ public class GestorPedidos {
     }
 
     public void comenzarPedido(Restaurante restaurante) {
-        pedidoEnMarcha = new Pedido(new java.util.Date()); // Iniciar un nuevo pedido
+        pedidoEnMarcha = new icedLatteFood.dominio.entidades.Pedido(new java.util.Date()); // Iniciar un nuevo pedido
         pedidoEnMarcha.setRestaurante(restaurante);
     }
 }

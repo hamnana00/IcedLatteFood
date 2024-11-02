@@ -1,7 +1,7 @@
-package presentacion;
+package icedLatteFood.presentacion;
 
-import dominio.entidades.*;
-import dominio.controladores.GestorPedidos;
+import icedLatteFood.dominio.entidades.*;
+import icedLatteFood.dominio.controladores.GestorPedidos;
 import java.util.List;
 
 public class IUPedido {

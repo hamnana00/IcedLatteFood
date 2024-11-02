@@ -1,7 +1,4 @@
-package dominio.entidades;
-
-import java.util.ArrayList;
-import java.util.List;
+package icedLatteFood.dominio.entidades;
 
 //Clase ItemMenu
 public class ItemMenu{
@@ -9,7 +6,7 @@ public class ItemMenu{
     private double precio;
 
     //Constructor
-    public ItemMenu(String nombre, double precio) {
+    public ItemMenu(int idRest, String idItem, String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
     }

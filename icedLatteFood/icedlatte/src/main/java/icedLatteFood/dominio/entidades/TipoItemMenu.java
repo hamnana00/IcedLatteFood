@@ -1,4 +1,4 @@
-package dominio.entidades;
+package icedLatteFood.dominio.entidades;
 
 public enum TipoItemMenu {
 	COMIDA,

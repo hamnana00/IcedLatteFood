@@ -1,5 +1,6 @@
-package dominio.entidades;
+package icedLatteFood.dominio.entidades;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collection;
@@ -10,14 +11,14 @@ public class Restaurante {
     private String cif;
     private boolean favorito;
     private Collection<CartaMenu> menu;
-    private Collection<Pedido> pedidos;
+    private Collection<icedLatteFood.dominio.entidades.Pedido> pedidos;
 
     // Constructor
     public Restaurante(String nombre, String cif, boolean favorito) {
         this.nombre = nombre;
         this.cif = cif;
         this.favorito = favorito;
-        this.menu = new Menu();
+        this.menu = (Collection<CartaMenu>) new Menu();
     }
 
     // Getters y Setters
@@ -30,7 +31,7 @@ public class Restaurante {
     }
 
     public CartaMenu getMenu() {
-        return menu;
+        return (CartaMenu) menu;
     }
 
     public void setNombre(String nombre) {

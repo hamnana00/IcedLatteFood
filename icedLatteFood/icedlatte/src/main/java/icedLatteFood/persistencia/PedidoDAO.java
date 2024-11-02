@@ -1,6 +1,8 @@
-package persistencia;
+package icedLatteFood.persistencia;
 
-import dominio.entidades.Pedido;
+import icedLatteFood.dominio.entidades.Pedido;
+import icedLatteFood.persistencia.EntityDAO;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 public class PedidoDAO extends EntityDAO<Pedido> {
     public boolean agregarPedido(int idCli, String nombre, String origen, int destino, double precioTotal, Time hora, int idRepar) {
         String sql = "INSERT INTO Pedido (idCli, nombre, origen, destino, precioTotal, hora, idRepar) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection connection = DatabaseConnection.connect();
+        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, idCli);
             stmt.setString(2, nombre);
@@ -25,7 +27,7 @@ public class PedidoDAO extends EntityDAO<Pedido> {
     }
     public Pedido obtenerPedido(int idPed) {
         String sql = "SELECT * FROM Pedido WHERE idPed = ?";
-        try (Connection connection = DatabaseConnection.connect();
+        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, idPed);
             ResultSet rs = stmt.executeQuery();
@@ -48,7 +50,7 @@ public class PedidoDAO extends EntityDAO<Pedido> {
     }
     public boolean actualizarPedido(int idPed, String nombre, String origen, int destino, double precioTotal, Time hora, int idRepar) {
         String sql = "UPDATE Pedido SET nombre = ?, origen = ?, destino = ?, precioTotal = ?, hora = ?, idRepar = ? WHERE idPed = ?";
-        try (Connection connection = DatabaseConnection.connect();
+        try (Connection connection = persistencia.DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, nombre);
             stmt.setString(2, origen);
@@ -65,7 +67,7 @@ public class PedidoDAO extends EntityDAO<Pedido> {
     }
     public boolean eliminarPedido(int idPed) {
         String sql = "DELETE FROM Pedido WHERE idPed = ?";
-        try (Connection connection = DatabaseConnection.connect();
+        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, idPed);
             return stmt.executeUpdate() > 0;

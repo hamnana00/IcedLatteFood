@@ -1,7 +1,9 @@
-package presentacion;
+package icedLatteFood.presentacion;
 import dominio.controladores.GestorClientes;
-import dominio.entidades.*;
+import icedLatteFood.dominio.entidades.*;
 import java.util.*;
+
+import icedLatteFood.dominio.entidades.Restaurante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,7 @@ public class IUBusqueda {
      * @param zona CódigoPostal del área donde buscar restaurantes.
      * @return Lista de restaurantes en la zona.
      */
-    public List<Restaurante> buscar(CodigoPostal zona) {
+    public List<Restaurante> buscar(icedLatteFood.dominio.entidades.CodigoPostal zona) {
         return gestorClientes.buscarRestaurante(zona);
     }
 
@@ -32,7 +34,7 @@ public class IUBusqueda {
      * @param textoBusqueda Cadena de texto para buscar en nombre o menú.
      * @return Lista de restaurantes que coinciden con los criterios.
      */
-    public List<Restaurante> buscar(CodigoPostal zona, String textoBusqueda) {
+    public List<Restaurante> buscar(icedLatteFood.dominio.entidades.CodigoPostal zona, String textoBusqueda) {
         return gestorClientes.buscarRestaurante(zona, textoBusqueda);
     }
 

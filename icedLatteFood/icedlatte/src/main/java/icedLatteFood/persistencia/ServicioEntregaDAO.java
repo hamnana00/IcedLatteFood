@@ -1,7 +1,7 @@
-package persistencia;
+package icedLatteFood.persistencia;
 
-import dominio.entidades.ServicioEntrega;
-import dominio.entidades.Pedido;
+import icedLatteFood.dominio.entidades.ServicioEntrega;
+import icedLatteFood.dominio.entidades.Pedido;
 import java.sql.*;
 import java.util.List;
 import java.sql.Connection;

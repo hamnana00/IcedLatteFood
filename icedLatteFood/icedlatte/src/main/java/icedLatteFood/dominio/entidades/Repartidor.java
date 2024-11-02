@@ -1,11 +1,11 @@
-package dominio.entidades;
+package icedLatteFood.dominio.entidades;
 
 import java.util.*;
 
 public class Repartidor {
 
-    Collection<ServicioEntrega> servicios;
-    Collection<CodigoPostal> zonas;
+    Collection<dominio.entidades.ServicioEntrega> servicios;
+    Collection<icedLatteFood.dominio.entidades.CodigoPostal> zonas;
     private String nombre;
     private String apellidos;
     private String nif;
@@ -17,5 +17,6 @@ public class Repartidor {
         this.nif = nif;
         this.eficiencia = eficiencia;
     }
+
 
 }

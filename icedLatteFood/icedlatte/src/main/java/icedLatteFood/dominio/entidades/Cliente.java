@@ -1,4 +1,4 @@
-package dominio.entidades;
+package icedLatteFood.dominio.entidades;
 
 import java.util.Collection;
 //
@@ -7,8 +7,8 @@ public class Cliente {
 	private String apellidos;
 	private String dni;
 	Collection<Restaurante> favoritos;
-	Collection<Pedido> pedidos;
-	Collection<Direccion> direcciones;
+	Collection<dominio.entidades.Pedido> pedidos;
+	Collection<dominio.entidades.Direccion> direcciones;
 
     public Cliente(String nombre, String apellidos, String dni) {
         this.nombre = nombre;
@@ -40,16 +40,16 @@ public class Cliente {
     public void setFavoritos(Collection<Restaurante> favoritos) {
         this.favoritos = favoritos;
     }
-    public Collection<Pedido> getPedidos() {
+    public Collection<dominio.entidades.Pedido> getPedidos() {
         return pedidos;
     }
-    public void setPedidos(Collection<Pedido> pedidos) {
+    public void setPedidos(Collection<dominio.entidades.Pedido> pedidos) {
         this.pedidos = pedidos;
     }
-    public Collection<Direccion> getDirecciones() {
+    public Collection<dominio.entidades.Direccion> getDirecciones() {
         return direcciones;
     }
-    public void setDirecciones(Collection<Direccion> direcciones) {
+    public void setDirecciones(Collection<dominio.entidades.Direccion> direcciones) {
         this.direcciones = direcciones;
     }
     
@@ -58,15 +58,15 @@ public class Cliente {
         this.favoritos.add(restaurante);
     } //anadir restaurante favorito a coleccion
 
-    public void realizarPedido(Pedido pedido) {
+    public void realizarPedido(dominio.entidades.Pedido pedido) {
         this.pedidos.add(pedido);
     }
 
-    public void anadirDireccion(Direccion direccion) {
+    public void anadirDireccion(dominio.entidades.Direccion direccion) {
         this.direcciones.add(direccion);
     }//anadir direccion
 
-    public Collection<Pedido> verPedidos() {
+    public Collection<dominio.entidades.Pedido> verPedidos() {
         return this.pedidos;
     }//ver todos los pedidos
 }
