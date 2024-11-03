@@ -1,7 +1,10 @@
 package dominio.controladores;
 
 import java.util.*;
+
+import icedLatteFood.dominio.entidades.CodigoPostal;
 import icedLatteFood.dominio.entidades.Direccion;
+import icedLatteFood.dominio.entidades.Restaurante;
 
 public class GestorClientes {
 
@@ -15,7 +18,7 @@ public class GestorClientes {
     }
 
     // Buscar restaurante por zona (código postal)
-    public List<icedLatteFood.dominio.entidades.Restaurante> buscarRestaurante(icedLatteFood.dominio.entidades.CodigoPostal codigoPostal) {
+    public List<icedLatteFood.dominio.entidades.Restaurante> buscarRestaurante(CodigoPostal codigoPostal, String textoBusqueda) {
         return restauranteDAO.selectPorCodigoPostal(String.valueOf(codigoPostal.getCodigo()));
     }
 
@@ -34,10 +37,21 @@ public class GestorClientes {
 
     // Registrar un nuevo cliente
     public icedLatteFood.dominio.entidades.Cliente registrarCliente(String nombre, String apellido, Direccion direccion) {
-        icedLatteFood.dominio.entidades.Cliente cliente = new icedLatteFood.dominio.entidades.Cliente(nombre, apellido, null); // Se crea el cliente con nombre y apellido
+        // Crear un nuevo cliente temporal sin ID
+        icedLatteFood.dominio.entidades.Cliente cliente = new icedLatteFood.dominio.entidades.Cliente(0, nombre, apellido, null); // ID temporal
         cliente.anadirDireccion(direccion);  // Se añade la dirección al cliente
-        return cliente;  // Devuelve el cliente registrado (en un caso real, probablemente guardarías al cliente en la base de datos)
+
+        // Guardar el cliente en la base de datos y obtener el ID generado
+        int idGenerado = clienteDAO.insert(cliente); // Suponiendo que insert devuelve el ID del nuevo cliente
+        if (idGenerado > 0) {
+            cliente.setId(idGenerado); // Asignar el ID generado al cliente
+        } else {
+            System.out.println("Error al registrar el cliente.");
+        }
+
+        return cliente;  // Devuelve el cliente registrado
     }
+
 
     // Alta de una nueva dirección para un cliente
     public icedLatteFood.dominio.entidades.Direccion altaDireccion(String calle, String numero, String complemento, String codigoPostal, String municipio) {
@@ -50,4 +64,24 @@ public class GestorClientes {
             return null;  // Se podría lanzar una excepción o manejar de otra forma
         }
     }
+
+    // Clase GestorClientes
+    public Restaurante obtenerRestaurantePorId(String idRestaurante) {
+        // Comprobar que el ID no sea nulo o vacío
+        if (idRestaurante == null || idRestaurante.isEmpty()) {
+            throw new IllegalArgumentException("El ID del restaurante no puede ser nulo o vacío");
+        }
+
+        // Usar el DAO para obtener el restaurante
+        Restaurante restaurante = restauranteDAO.selectPorId(idRestaurante);
+
+        // Verificar si se encontró el restaurante
+        if (restaurante == null) {
+            System.out.println("No se encontró el restaurante con ID: " + idRestaurante);
+            // Aquí podrías lanzar una excepción o manejar el caso de otra forma
+        }
+
+        return restaurante;  // Retorna el restaurante encontrado (o null si no se encontró)
+    }
+
 }

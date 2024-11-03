@@ -1,36 +1,38 @@
 package icedLatteFood.dominio.entidades;
+
 import java.util.UUID;
 import java.util.Date;
+import icedLatteFood.dominio.entidades.EstadoPedido;
 
 public class Pago {
 
-	dominio.entidades.Pedido pedido;
-	MetodoPago tipo;
-	private UUID idTransaccion;
-	private Date fechaTransaccion;
+    icedLatteFood.dominio.entidades.Pedido pedido;
+    MetodoPago tipo;
+    private UUID idTransaccion;
+    private Date fechaTransaccion;
 
-	public Pago(dominio.entidades.Pedido pedido, MetodoPago tipo) {
+    public Pago(icedLatteFood.dominio.entidades.Pedido pedido, MetodoPago tipo) {
         this.pedido = pedido;
         this.tipo = tipo;
     }
-	
-	public UUID getIdTransaccion() {
+
+    public UUID getIdTransaccion() {
         return idTransaccion;
     }
     public Date getFechaTransaccion() {
         return fechaTransaccion;
     }
-	
-	public boolean procesarPago() {
+
+    public boolean procesarPago() {
         if (tipo == null) {
-            System.out.println("Metodo de pago no seleccionado");
+            System.out.println("Método de pago no seleccionado");
             return false;
         }
-        
-        //llamar a api
-        this.idTransaccion = UUID.randomUUID(); // Generr id para transaccion
+
+        // Llamar a API
+        this.idTransaccion = UUID.randomUUID(); // Generar ID para transacción
         this.fechaTransaccion = new Date(); // Registra la fecha y hora
-        pedido.setEstado(Pedido.Estado.PAGADO); // Actualiza el estado del pedido a PAGADO
+        pedido.setEstado(EstadoPedido.PAGADO); // Actualiza el estado del pedido a PAGADO
 
         // Imprimir o registrar detalles del pago
         System.out.println("Pago procesado con éxito. ID de transacción: " + idTransaccion);

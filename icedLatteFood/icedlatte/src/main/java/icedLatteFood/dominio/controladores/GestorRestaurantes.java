@@ -2,8 +2,8 @@
 
     import icedLatteFood.dominio.entidades.Restaurante;
     import icedLatteFood.dominio.entidades.ItemMenu;
-    import dominio.entidades.Direccion;
-    import dominio.entidades.TipoItemMenu;
+    import icedLatteFood.dominio.entidades.Direccion;
+    import icedLatteFood.dominio.entidades.TipoItemMenu;
     import icedLatteFood.persistencia.RestauranteDAO;
 
     import java.util.List;
@@ -37,9 +37,9 @@
         }
 
         // Registrar un nuevo restaurante
-        public Restaurante registrarRestaurante(String nombre, String cif, Direccion direccion) {
+        public Restaurante registrarRestaurante(String nombre, String cif, boolean favorito, Direccion direccion) {
             // Crear una nueva instancia de Restaurante con los datos proporcionados
-            Restaurante nuevoRestaurante = new Restaurante(nombre, cif, direccion);
+            Restaurante nuevoRestaurante = new Restaurante(nombre, cif, favorito, direccion);
             // Aquí podrías llamar al DAO para guardar el nuevo restaurante en la base de datos
             // restauranteDAO.insert(nuevoRestaurante);
             return nuevoRestaurante;
@@ -48,14 +48,25 @@
         // Funcionalidad para editar la carta del restaurante
         public void editarCarta(Restaurante restaurante, List<ItemMenu> items) {
             // Se reemplaza el menú actual del restaurante con los nuevos items
-            restaurante.getMenu().setItems(items);
+            restaurante.getCartaMenu().setItems(items);
             // También podrías actualizar el menú en la base de datos usando el DAO
             // menuDAO.update(restaurante.getMenu());
         }
 
-        // Funcionalidad para crear un nuevo item del menú
-        public ItemMenu crearItem(String nombre, double precio, TipoItemMenu tipo) {
-            // Crear un nuevo objeto de tipo ItemMenu
-            return new ItemMenu(nombre, precio, tipo);
+        // Crear un nuevo ItemMenu y añadirlo al restaurante
+        public void crearItem(Restaurante restaurante, String nombre, double precio) {
+            // Validar que el restaurante no sea nulo
+            if (restaurante == null) {
+                throw new IllegalArgumentException("El restaurante no puede ser nulo");
+            }
+
+            // Crear una nueva instancia de ItemMenu
+            ItemMenu nuevoItem = new ItemMenu(nombre, precio);
+
+            // Añadir el nuevo ítem al menú del restaurante
+            restaurante.getCartaMenu().addItem(nuevoItem);  // Asumiendo que getMenu() devuelve un objeto que tiene un método addItem
+
+            // Si deseas, aquí puedes agregar lógica para guardar el nuevo ítem en la base de datos, si es necesario.
+            // itemMenuDAO.insert(nuevoItem);
         }
     }

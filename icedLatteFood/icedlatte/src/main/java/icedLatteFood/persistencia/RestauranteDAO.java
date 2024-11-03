@@ -1,40 +1,40 @@
 package icedLatteFood.persistencia;
 
 import icedLatteFood.dominio.entidades.Restaurante;
+import icedLatteFood.dominio.entidades.Direccion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
 
-    public RestauranteDAO(icedLatteFood.persistencia.GestorBaseDatos gestorBD) {
-        super(gestorBD); // Asegúrate de llamar al constructor de la clase base
+    public RestauranteDAO(GestorBaseDatos gestorBD) {
+        super(gestorBD);
     }
 
-    public boolean agregarRestaurante(String nombre, String cif) {
-        String sql = "INSERT INTO Restaurante (nombre, cif) VALUES (?, ?)";
-        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, nombre);
-            stmt.setString(2, cif);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
+    // Agregar restaurante con nombre, cif y dirección
     public Restaurante obtenerRestaurante(int id) {
         String sql = "SELECT * FROM Restaurante WHERE id = ?";
-        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
+        try (Connection connection = DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
+                // Crear el objeto Direccion
+                Direccion direccion = new Direccion(
+                        rs.getString("calle"),
+                        rs.getInt("numero"),
+                        rs.getString("complemento"),
+                        rs.getInt("codigoPostal"),
+                        rs.getString("municipio")
+                );
+                // Convertir "favorito" manualmente
+                boolean favorito = rs.getInt("favorito") == 1; // Cambia aquí
                 return new Restaurante(
                         rs.getString("nombre"),
                         rs.getString("cif"),
-                        rs.getBoolean("favorito")
+                        favorito,
+                        direccion
                 );
             }
         } catch (SQLException e) {
@@ -42,58 +42,30 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
         }
         return null;
     }
-
+    // Método para buscar restaurantes por código postal
     public List<Restaurante> selectPorCodigoPostal(int codigoPostal) {
         List<Restaurante> restaurantes = new ArrayList<>();
         String sql = "SELECT * FROM Restaurante WHERE codigoPostal = ?";
-        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
+        try (Connection connection = DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, codigoPostal);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                // Crear el objeto Direccion
+                Direccion direccion = new Direccion(
+                        rs.getString("calle"),
+                        rs.getInt("numero"),
+                        rs.getString("complemento"),
+                        rs.getInt("codigoPostal"),
+                        rs.getString("municipio")
+                );
+                // Convertir "favorito" manualmente
+                boolean favorito = rs.getInt("favorito") == 1; // Cambia aquí
                 restaurantes.add(new Restaurante(
                         rs.getString("nombre"),
                         rs.getString("cif"),
-                        rs.getBoolean("favorito")
-                ));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return restaurantes; // Cambié a retornar una lista
-    }
-
-    public List<Restaurante> selectPorNombre(String nombre) {
-        List<Restaurante> restaurantes = new ArrayList<>();
-        String sql = "SELECT * FROM Restaurante WHERE nombre LIKE ?";
-        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, "%" + nombre + "%");
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                restaurantes.add(new Restaurante(
-                        rs.getString("nombre"),
-                        rs.getString("cif"),
-                        rs.getBoolean("favorito")
-                ));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return restaurantes; // Cambié a retornar una lista
-    }
-
-    public List<Restaurante> obtenerTodosLosRestaurantes() {
-        List<Restaurante> restaurantes = new ArrayList<>();
-        String sql = "SELECT * FROM Restaurante";
-        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
-             Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                restaurantes.add(new Restaurante(
-                        rs.getString("nombre"),
-                        rs.getString("cif"),
-                        rs.getBoolean("favorito")
+                        favorito,
+                        direccion
                 ));
             }
         } catch (SQLException e) {
@@ -102,45 +74,142 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
         return restaurantes;
     }
 
-    public boolean actualizarRestaurante(int id, String nombre, String cif, boolean favorito) {
-        String sql = "UPDATE Restaurante SET nombre = ?, cif = ?, favorito = ? WHERE id = ?";
-        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, nombre);
-            stmt.setString(2, cif);
-            stmt.setBoolean(3, favorito);
-            stmt.setInt(4, id);
-            return stmt.executeUpdate() > 0;
+    // Seleccionar todos los restaurantes
+    public List<Restaurante> selectAll() {
+        List<Restaurante> restaurantes = new ArrayList<>();
+        String sql = "SELECT * FROM Restaurante";
+        try (Connection connection = DatabaseConnection.connect();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                Direccion direccion = new Direccion(
+                        rs.getString("calle"),
+                        rs.getInt("numero"),
+                        rs.getString("complemento"),
+                        rs.getInt("codigoPostal"),
+                        rs.getString("municipio")
+                );
+                restaurantes.add(new Restaurante(
+                        rs.getString("nombre"),
+                        rs.getString("cif"),
+                        rs.getBoolean("favorito"),
+                        direccion
+                ));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return restaurantes;
     }
 
-    public boolean eliminarRestaurante(int id) {
-        String sql = "DELETE FROM Restaurante WHERE id = ?";
-        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
+    public List<Restaurante> selectPorCodigoPostalYTextoLibre(String codigoPostal, String texto) {
+        List<Restaurante> restaurantes = new ArrayList<>();
+
+        // Consulta SQL que busca restaurantes por código postal y texto en nombre o cif
+        String sql = "SELECT * FROM Restaurante WHERE codigoPostal = ? AND (nombre LIKE ? OR cif LIKE ?)";
+
+        try (Connection connection = DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            return stmt.executeUpdate() > 0;
+
+            // Configuración de los parámetros para la consulta
+            stmt.setString(1, codigoPostal); // Código postal exacto
+            stmt.setString(2, "%" + texto + "%"); // Búsqueda parcial en el nombre
+            stmt.setString(3, "%" + texto + "%"); // Búsqueda parcial en el cif
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                // Crear el objeto Direccion
+                Direccion direccion = new Direccion(
+                        rs.getString("calle"),
+                        rs.getInt("numero"),
+                        rs.getString("complemento"),
+                        rs.getInt("codigoPostal"),
+                        rs.getString("municipio")
+                );
+
+                // Convertir "favorito" manualmente (asumiendo que es un entero)
+                boolean favorito = rs.getInt("favorito") == 1;
+
+                // Agregar el restaurante a la lista
+                restaurantes.add(new Restaurante(
+                        rs.getString("nombre"),
+                        rs.getString("cif"),
+                        favorito,
+                        direccion
+                ));
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            e.printStackTrace(); // Manejo de excepciones
         }
+
+        return restaurantes; // Retorna la lista de restaurantes encontrados
     }
 
-    public boolean marcarFavorito(int id, boolean favorito) {
-        String sql = "UPDATE Restaurante SET favorito = ? WHERE id = ?";
-        try (Connection connection = icedLatteFood.persistencia.DatabaseConnection.connect();
+
+    public Restaurante selectPorId(String idRestaurante) {
+        String sql = "SELECT * FROM Restaurante WHERE id = ?";
+        try (Connection connection = DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setBoolean(1, favorito);
-            stmt.setInt(2, id);
-            return stmt.executeUpdate() > 0;
+            stmt.setString(1, idRestaurante);  // Asignar el ID a la consulta
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                // Crear el objeto Direccion
+                Direccion direccion = new Direccion(
+                        rs.getString("calle"),
+                        rs.getInt("numero"),
+                        rs.getString("complemento"),
+                        rs.getInt("codigoPostal"),
+                        rs.getString("municipio")
+                );
+                // Convertir "favorito" manualmente
+                boolean favorito = rs.getInt("favorito") == 1; // Cambia aquí
+                return new Restaurante(
+                        rs.getString("nombre"),
+                        rs.getString("cif"),
+                        favorito,
+                        direccion
+                );
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            e.printStackTrace(); // Manejo de excepciones
         }
+        return null; // Retorna null si no se encontró el restaurante
     }
 
+    public List<Restaurante> selectPorNombre(String cadenaBusqueda) {
+        List<Restaurante> restaurantes = new ArrayList<>();
+        String sql = "SELECT * FROM Restaurante WHERE nombre LIKE ?"; // Consulta SQL
+
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, "%" + cadenaBusqueda + "%"); // Usar LIKE para coincidencias parciales
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                // Crear el objeto Direccion
+                Direccion direccion = new Direccion(
+                        rs.getString("calle"),
+                        rs.getInt("numero"),
+                        rs.getString("complemento"),
+                        rs.getInt("codigoPostal"),
+                        rs.getString("municipio")
+                );
+
+                // Convertir "favorito" manualmente
+                boolean favorito = rs.getInt("favorito") == 1; // Cambia aquí
+                // Agregar el restaurante a la lista
+                restaurantes.add(new Restaurante(
+                        rs.getString("nombre"),
+                        rs.getString("cif"),
+                        favorito,
+                        direccion
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Manejo de excepciones
+        }
+        return restaurantes; // Retorna la lista de restaurantes encontrados
+    }
 
 }

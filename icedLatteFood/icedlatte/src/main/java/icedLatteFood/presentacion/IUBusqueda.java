@@ -1,8 +1,9 @@
 package icedLatteFood.presentacion;
 import dominio.controladores.GestorClientes;
-import icedLatteFood.dominio.entidades.*;
+
 import java.util.*;
 
+import icedLatteFood.dominio.entidades.CodigoPostal;
 import icedLatteFood.dominio.entidades.Restaurante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class IUBusqueda {
      * @return Lista de restaurantes en la zona.
      */
     public List<Restaurante> buscar(icedLatteFood.dominio.entidades.CodigoPostal zona) {
-        return gestorClientes.buscarRestaurante(zona);
+        return gestorClientes.buscarRestaurante(zona, textoBusqueda);
     }
 
     /**
@@ -62,7 +63,7 @@ public class IUBusqueda {
 
         // Condición para cargar todos o hacer la búsqueda
         if ((zona != null && !zona.isEmpty()) || (busqueda != null && !busqueda.isEmpty())) {
-            restaurantes = gestorRestaurante.buscarRestaurantes(zona, busqueda);
+            restaurantes = gestorClientes.buscarRestaurante(CodigoPostal.valueOf(zona), busqueda);
         } else {
             restaurantes = gestorRestaurante.obtenerTodosRestaurantes();
         }

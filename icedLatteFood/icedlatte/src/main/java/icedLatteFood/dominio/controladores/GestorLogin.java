@@ -1,6 +1,6 @@
 package icedLatteFood.dominio.controladores;
 
-import dominio.entidades.Usuario;
+import icedLatteFood.dominio.entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 

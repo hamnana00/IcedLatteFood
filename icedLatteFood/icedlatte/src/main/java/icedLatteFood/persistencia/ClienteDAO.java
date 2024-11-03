@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import icedLatteFood.dominio.entidades.Direccion;
 import icedLatteFood.dominio.entidades.Restaurante;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,61 +17,36 @@ import icedLatteFood.dominio.entidades.Cliente;
 import icedLatteFood.persistencia.DatabaseConnection;
 
 public class ClienteDAO {
-    public boolean agregarCliente(String nombre, String apellido1, String apellido2) {
-        String sql = "INSERT INTO Cliente (nombre, apellido1, apellido2) VALUES (?, ?, ?)";
-        try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, nombre);
-            stmt.setString(2, apellido1);
-            stmt.setString(3, apellido2);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+    private Connection connection;
+
+    // Constructor que recibe la conexión a la base de datos
+    public ClienteDAO(Connection connection) {
+        this.connection = connection;
     }
-    public Cliente obtenerCliente(int idCli) {
-        String sql = "SELECT * FROM Cliente WHERE idCli = ?";
-        try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, idCli);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new Cliente(
-                        rs.getInt("idCli"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido1"),
-                        rs.getString("apellido2")
-                );
+
+    // Método para insertar un cliente
+    public int insert(Cliente cliente) {
+        String sql = "INSERT INTO clientes (nombre, apellidos, dni) VALUES (?, ?, ?)"; // Asegúrate de que los nombres de las columnas coincidan con tu esquema
+        int idGenerado = -1;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            stmt.setString(1, cliente.getNombre());
+            stmt.setString(2, cliente.getApellidos());
+            stmt.setString(3, cliente.getDni()); // Asumimos que tienes un campo para el DNI
+
+            // Ejecutar la inserción
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        idGenerado = generatedKeys.getInt(1); // Obtener el ID generado
+                    }
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error al insertar el cliente: " + e.getMessage());
         }
-        return null;
-    }
-    public boolean actualizarCliente(int idCli, String nombre, String apellido1, String apellido2) {
-        String sql = "UPDATE Cliente SET nombre = ?, apellido1 = ?, apellido2 = ? WHERE idCli = ?";
-        try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, nombre);
-            stmt.setString(2, apellido1);
-            stmt.setString(3, apellido2);
-            stmt.setInt(4, idCli);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    public boolean eliminarCliente(int idCli) {
-        String sql = "DELETE FROM Cliente WHERE idCli = ?";
-        try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, idCli);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+
+        return idGenerado; // Retornar el ID generado o -1 si hubo un error
     }
 }

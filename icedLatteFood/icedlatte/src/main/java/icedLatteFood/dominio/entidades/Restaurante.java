@@ -1,24 +1,20 @@
 package icedLatteFood.dominio.entidades;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collection;
-
 // Clase Restaurante
 public class Restaurante {
     private String nombre;
     private String cif;
-    private boolean favorito;
-    private Collection<CartaMenu> menu;
-    private Collection<icedLatteFood.dominio.entidades.Pedido> pedidos;
+    private boolean favorito;  // Atributo para saber si el restaurante es favorito
+    private Direccion direccion; // Atributo para la dirección del restaurante
+    private CartaMenu cartaMenu;  // Ahora es un objeto CartaMenu
 
     // Constructor
-    public Restaurante(String nombre, String cif, boolean favorito) {
+    public Restaurante(String nombre, String cif, boolean favorito, Direccion direccion) {
         this.nombre = nombre;
         this.cif = cif;
-        this.favorito = favorito;
-        this.menu = (Collection<CartaMenu>) new Menu();
+        this.favorito = favorito; // Ahora inicializamos favorito
+        this.direccion = direccion;
+        this.cartaMenu = new CartaMenu(); // Inicializar cartaMenu aquí
     }
 
     // Getters y Setters
@@ -26,36 +22,48 @@ public class Restaurante {
         return nombre;
     }
 
-    public String getCif() {
-        return cif;
-    }
-
-    public CartaMenu getMenu() {
-        return (CartaMenu) menu;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getCif() {
+        return cif;
     }
 
     public void setCif(String cif) {
         this.cif = cif;
     }
 
-    public boolean isFavorito() { return favorito; }
+    public boolean isFavorito() {
+        return favorito;
+    }
 
-    public void setFavorito(boolean favorito) { this.favorito = favorito; }
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
+    }
 
-    // Métodos para interactuar con el menú
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
+    public CartaMenu getCartaMenu() {
+        return cartaMenu;
+    }
+
+    // Métodos para interactuar con la carta de menú
     public void agregarItemMenu(ItemMenu itemMenu) {
-        menu.agregarItemMenu(itemMenu);
+        cartaMenu.agregarItemMenu(itemMenu);
     }
 
     public void eliminarItemMenu(String nombreItem) {
-        menu.eliminarItemMenu(nombreItem);
+        cartaMenu.eliminarItemMenu(nombreItem);
     }
 
     public void mostrarMenu() {
-        menu.mostrarMenu();
+        cartaMenu.mostrarMenu();
     }
 }

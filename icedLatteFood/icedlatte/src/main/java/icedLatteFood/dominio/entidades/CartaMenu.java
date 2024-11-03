@@ -13,7 +13,7 @@ public class CartaMenu {
     }
 
     // Método para agregar un plato al menú
-    public void agregarPlato(icedLatteFood.dominio.entidades.ItemMenu itemMenu) {
+    public void agregarItemMenu(icedLatteFood.dominio.entidades.ItemMenu itemMenu) {
         this.itemMenu.add(itemMenu); // Cambié "platos" por "itemMenu"
         System.out.println("Plato agregado: " + itemMenu);
     }
@@ -40,5 +40,11 @@ public class CartaMenu {
                 System.out.println(itemMenu);
             }
         }
+    }
+
+    public void setItems(List<ItemMenu> items) {
+    }
+
+    public void addItem(ItemMenu nuevoItem) {
     }
 }

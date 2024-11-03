@@ -1,11 +1,8 @@
 package icedLatteFood.persistencia;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.Connection;
 import icedLatteFood.dominio.entidades.ItemMenu;
-import icedLatteFood.persistencia.GestorBaseDatos;
 
 public abstract class ItemMenuDAO extends EntityDAO<ItemMenu> {
 
@@ -37,9 +34,7 @@ public abstract class ItemMenuDAO extends EntityDAO<ItemMenu> {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return new ItemMenu(
-                        rs.getInt("idRest"),
                         rs.getString("idItem"),
-                        rs.getString("nombre"),
                         rs.getDouble("precio")
                 );
             }

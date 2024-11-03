@@ -17,40 +17,57 @@ public class ServicioEntrega {
         this.fechaEntrega = null;   // Inicialmente no se ha registrado la entrega
     }
 
-	public Pedido getPedido() {
+    public Pedido getPedido() {
         return pedido;
     }
+
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
     public Direccion getDireccion() {
-        return direccion;
+        return direccion; // Cambié a devolver el objeto Direccion
     }
+
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
+
     public Repartidor getRepartidor() {
         return repartidor;
     }
+
     public void setRepartidor(Repartidor repartidor) {
         this.repartidor = repartidor;
     }
+
     public LocalDateTime getFechaRecepcion() {
         return fechaRecepcion;
     }
+
     public LocalDateTime getFechaEntrega() {
         return fechaEntrega;
     }
-    
-    //otros metodos
+
+    // Otros métodos
     public void registrarRecepcion() {
         this.fechaRecepcion = LocalDateTime.now();
     }
+
     public void registrarEntrega() {
         this.fechaEntrega = LocalDateTime.now();
     }
+
     public boolean entregaCompletada() {
         return fechaEntrega != null;
     }
-   
+
+    // Método para obtener el ID del repartidor
+    public int getRepartidorId() {
+        if (repartidor != null) { // Verifica que el repartidor no sea nulo
+            return repartidor.getId(); // Retorna el ID del repartidor
+        } else {
+            throw new IllegalStateException("No hay repartidor asociado al servicio de entrega."); // Manejo de error si no hay repartidor
+        }
+    }
 }

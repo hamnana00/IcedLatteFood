@@ -6,13 +6,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.DriverManager;
 
-
 public class GestorBaseDatos {
-    private Connection connection;
+    private Connection connection; // Variable que almacena la conexión a la base de datos
 
-    public GestorBaseDatos(String dbUrl) throws SQLException { //constructor
-        this.connection = DriverManager.getConnection(dbUrl);
+    // Constructor que inicializa la conexión a la base de datos
+    public GestorBaseDatos(String dbUrl) throws SQLException {
+        this.connection = DriverManager.getConnection(dbUrl); // Establece la conexión utilizando el URL proporcionado
     }
+
+    // Método para conectar a la base de datos (opcional si ya se conecta en el constructor)
     private boolean conectar() {
         try {
             if (connection == null || connection.isClosed()) {
@@ -25,54 +27,56 @@ public class GestorBaseDatos {
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
             return false;
         }
-     }
-        /*private boolean desconectar() {
-        try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-            return true;
+    }
+
+    // Método para insertar un registro en la base de datos
+    public int insert(String sql) {
+        try (Statement statement = connection.createStatement()) {
+            return statement.executeUpdate(sql);
         } catch (SQLException e) {
-            System.err.println("Error al desconectar de la base de datos: " + e.getMessage());
-            return false;
+            System.err.println("Error al insertar en la base de datos: " + e.getMessage());
+            return 0;
         }
-        }*/
+    }
 
-       public int insert(String sql) {
-            try (Statement statement = connection.createStatement()) {
-                return statement.executeUpdate(sql);
-            } catch (SQLException e) {
-                System.err.println("Error al insertar en la base de datos: " + e.getMessage());
-                return 0;
-            }
+    // Método para actualizar un registro en la base de datos
+    public int update(String sql) {
+        try (Statement statement = connection.createStatement()) {
+            return statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar en la base de datos: " + e.getMessage());
+            return 0;
         }
-        public int update(String sql) {
-            try (Statement statement = connection.createStatement()) {
-                return statement.executeUpdate(sql);
-            } catch (SQLException e) {
-                System.err.println("Error al actualizar en la base de datos: " + e.getMessage());
-                return 0;
-            }
+    }
+
+    // Método para eliminar un registro en la base de datos
+    public int delete(String sql) {
+        try (Statement statement = connection.createStatement()) {
+            return statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar de la base de datos: " + e.getMessage());
+            return 0;
         }
-        public int delete(String sql) {
-            try (Statement statement = connection.createStatement()) {
-                return statement.executeUpdate(sql);
-            } catch (SQLException e) {
-                System.err.println("Error al eliminar de la base de datos: " + e.getMessage());
-                return 0;
-            }
+    }
+
+    // Método para seleccionar registros de la base de datos
+    public ResultSet select(String sql) {
+        try {
+            Statement statement = connection.createStatement();
+            return statement.executeQuery(sql);
+        } catch (SQLException e) {
+            System.err.println("Error al seleccionar de la base de datos: " + e.getMessage());
+            return null;
         }
-        public ResultSet select(String sql) {
-            try {
-                Statement statement = connection.createStatement();
-                return statement.executeQuery(sql);
-            } catch (SQLException e) {
-                System.err.println("Error al seleccionar de la base de datos: " + e.getMessage());
-                return null;
-            }
-        }
-        /*public void close() {
+    }
+
+    // Método para obtener la conexión a la base de datos
+    public Connection connect() {
+        return connection; // Retorna la conexión establecida
+    }
+
+    // Método opcional para cerrar la conexión a la base de datos
+    /*public void close() {
         desconectar();
-        }*/
-
+    }*/
 }
