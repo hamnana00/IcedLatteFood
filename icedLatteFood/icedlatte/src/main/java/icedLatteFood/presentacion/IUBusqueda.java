@@ -1,10 +1,10 @@
 package icedLatteFood.presentacion;
+
 import dominio.controladores.GestorClientes;
-
 import java.util.*;
-
 import icedLatteFood.dominio.entidades.CodigoPostal;
 import icedLatteFood.dominio.entidades.Restaurante;
+import icedLatteFood.dominio.entidades.Cliente; // Importar la clase Cliente
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,13 +20,14 @@ public class IUBusqueda {
         this.gestorClientes = gestorClientes;
     }
 
-    /**
-     * Búsqueda de restaurantes por código postal.
-     * @param zona CódigoPostal del área donde buscar restaurantes.
-     * @return Lista de restaurantes en la zona.
-     */
-    public List<Restaurante> buscar(icedLatteFood.dominio.entidades.CodigoPostal zona) {
-        return gestorClientes.buscarRestaurante(zona, textoBusqueda);
+    // Método auxiliar para encontrar el CodigoPostal basado en un número
+    private CodigoPostal obtenerCodigoPostalPorNumero(int numero) {
+        for (CodigoPostal cp : CodigoPostal.values()) {
+            if (cp.getCodigo() == numero) {
+                return cp;
+            }
+        }
+        return null; // Devuelve null si no se encuentra
     }
 
     /**
@@ -35,7 +36,7 @@ public class IUBusqueda {
      * @param textoBusqueda Cadena de texto para buscar en nombre o menú.
      * @return Lista de restaurantes que coinciden con los criterios.
      */
-    public List<Restaurante> buscar(icedLatteFood.dominio.entidades.CodigoPostal zona, String textoBusqueda) {
+    public List<Restaurante> buscar(CodigoPostal zona, String textoBusqueda) {
         return gestorClientes.buscarRestaurante(zona, textoBusqueda);
     }
 
@@ -44,13 +45,13 @@ public class IUBusqueda {
      * @param cliente Cliente que desea marcar el restaurante.
      * @param idRestaurante ID del restaurante a marcar como favorito.
      */
-    public void marcarFavorito(String idRestaurante) {
+    public void marcarFavorito(Cliente cliente, String idRestaurante) {
         // Primero buscamos el restaurante en el sistema (puedes agregar el método en GestorClientes)
         Restaurante restaurante = gestorClientes.obtenerRestaurantePorId(idRestaurante);
-        if (restaurante != null) {
+        if (restaurante != null && cliente != null) {
             gestorClientes.favorito(cliente, restaurante);
         } else {
-            System.out.println("Restaurante no encontrado con ID: " + idRestaurante);
+            System.out.println("Cliente o Restaurante no encontrado.");
         }
     }
 
@@ -63,13 +64,15 @@ public class IUBusqueda {
 
         // Condición para cargar todos o hacer la búsqueda
         if ((zona != null && !zona.isEmpty()) || (busqueda != null && !busqueda.isEmpty())) {
-            restaurantes = gestorClientes.buscarRestaurante(CodigoPostal.valueOf(zona), busqueda);
+            // Convertir la zona a un número y buscar el CodigoPostal correspondiente
+            CodigoPostal codigoPostal = zona != null ? obtenerCodigoPostalPorNumero(Integer.parseInt(zona)) : null;
+            restaurantes = gestorClientes.buscarRestaurante(codigoPostal, busqueda);
         } else {
-            restaurantes = gestorRestaurante.obtenerTodosRestaurantes();
+            // Si no tienes gestorRestaurante, usa gestorClientes u otro método para obtener todos los restaurantes
+            restaurantes = gestorClientes.buscarRestauranteCadena(""); // Método para obtener todos
         }
 
         model.addAttribute("restaurantes", restaurantes);
         return "restaurantes"; // Llama a "restaurantes.html"
     }
-
 }

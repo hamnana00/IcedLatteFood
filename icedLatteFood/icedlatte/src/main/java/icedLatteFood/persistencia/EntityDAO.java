@@ -2,7 +2,6 @@ package icedLatteFood.persistencia;
 
 import icedLatteFood.dominio.entidades.Restaurante;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 // Clase genérica EntityDAO

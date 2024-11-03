@@ -20,31 +20,24 @@ public class GestorPedidos {
         this.servicioEntregaDAO = new ServicioEntregaDAO(gestorBD);
     }
 
-    // Agregar el método de pago como parámetro
+    // Método para realizar un pedido
     public void realizarPedido(Cliente cliente, Restaurante restaurante, List<ItemMenu> items, MetodoPago metodoPago) {
-        // Crear un nuevo pedido
-        Pedido nuevoPedido = new Pedido(0, cliente.getId(), cliente.getNombre(), restaurante.getNombre(),
-                0, 0.0, new Date(), 0); // Asigna valores válidos para la creación
-
-        // Establecer el cliente y el restaurante del pedido
+        Pedido nuevoPedido = new Pedido(0, cliente.getId(), cliente.getNombre(), restaurante.getNombre(), 0, 0.0, new Date(), 0);
         nuevoPedido.setCliente(cliente);
         nuevoPedido.setRestaurante(restaurante);
 
-        // Agregar los items al pedido
         for (ItemMenu item : items) {
-            nuevoPedido.addItem(item); // Agregar los items al pedido
+            nuevoPedido.addItem(item);
         }
 
-        // Calcular el precio total del pedido
-        nuevoPedido.setPrecioTotal(nuevoPedido.getPrecioTotal());
+        nuevoPedido.setPrecioTotal(nuevoPedido.getPrecioTotal()); // Esto ahora debe calcular correctamente el total
 
-        // Insertar el pedido en la base de datos
+        // Usar el DAO para insertar el nuevo pedido
         int pedidoId = pedidoDAO.insert(nuevoPedido);
         if (pedidoId > 0) {
-            nuevoPedido.setId(pedidoId); // Asignar el ID generado
-            this.pedidoEnMarcha = nuevoPedido; // Guardar el pedido en marcha
+            nuevoPedido.setId(pedidoId); // Asigna el ID del pedido después de la inserción
+            this.pedidoEnMarcha = nuevoPedido;
 
-            // Realizar el pago
             if (!realizarPago(nuevoPedido, metodoPago)) {
                 System.out.println("Error al procesar el pago.");
             }
@@ -53,22 +46,21 @@ public class GestorPedidos {
         }
     }
 
-    private boolean realizarPago(Pedido pedido, MetodoPago metodoPago) {
-        // Crear el objeto Pago con el método de pago seleccionado
+    public boolean realizarPago(Pedido pedido, MetodoPago metodoPago) {
         Pago pago = new Pago(pedido, metodoPago);
-        boolean resultado = pago.procesarPago(); // Procesar el pago
+        boolean resultado = pago.procesarPago();
 
         if (resultado) {
-            // Actualizar el estado del pedido en la base de datos
-            pedidoDAO.update(pedido); // Actualiza el estado a PAGADO
-            return true; // Pago exitoso
+            pedido.setEstado(EstadoPedido.PAGADO);
+            pedidoDAO.update(pedido);
+            return true;
         }
-        return false; // Pago fallido
+        return false;
     }
 
     public void anadirItemMenu(ItemMenu item) {
         if (pedidoEnMarcha != null) {
-            pedidoEnMarcha.addItem(item); // Añadir item al pedido en marcha
+            pedidoEnMarcha.addItem(item);
         } else {
             System.out.println("No hay un pedido en marcha.");
         }
@@ -76,7 +68,7 @@ public class GestorPedidos {
 
     public void eliminarItemMenu(ItemMenu item) {
         if (pedidoEnMarcha != null) {
-            pedidoEnMarcha.removeItem(item); // Eliminar item del pedido en marcha
+            pedidoEnMarcha.removeItem(item);
         } else {
             System.out.println("No hay un pedido en marcha.");
         }
@@ -84,24 +76,83 @@ public class GestorPedidos {
 
     public void comenzarPedido(ResultSet rs, Restaurante restaurante) {
         try {
-            if (rs.next()) { // Verifica si hay al menos un registro en el ResultSet
+            if (rs.next()) {
                 pedidoEnMarcha = new Pedido(
-                        rs.getInt("idPed"),         // ID del pedido
-                        rs.getInt("idCli"),         // ID del cliente
-                        rs.getString("nombre"),      // Nombre del cliente
-                        rs.getString("origen"),      // Origen del pedido
-                        rs.getInt("destino"),        // Destino del pedido
-                        rs.getDouble("precioTotal"), // Precio total del pedido
-                        new Date(),                  // Fecha actual o la fecha del ResultSet si corresponde
-                        rs.getInt("idRepar")        // ID del repartidor
-                ); // Inicializa un nuevo pedido
+                        rs.getInt("idPed"),
+                        rs.getInt("idCli"),
+                        rs.getString("nombre"),
+                        rs.getString("origen"),
+                        rs.getInt("destino"),
+                        rs.getDouble("precioTotal"),
+                        new Date(),
+                        rs.getInt("idRepar")
+                );
 
-                pedidoEnMarcha.setRestaurante(restaurante); // Asigna el restaurante al pedido
+                pedidoEnMarcha.setRestaurante(restaurante);
             } else {
                 System.out.println("No hay datos en el ResultSet.");
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Maneja cualquier excepción que pueda ocurrir
+            e.printStackTrace();
         }
     }
+
+    // Método para finalizar un pedido
+    public void finalizarPedido(Pedido pedido) {
+        if (pedido.getEstado() == EstadoPedido.PAGADO) {
+            // Crear el servicio de entrega
+            Direccion direccionCliente = pedido.getCliente().getDireccion();
+            Repartidor repartidor = asignarRepartidor(); // Método para asignar un repartidor
+            ServicioEntrega servicioEntrega = new ServicioEntrega(pedido, direccionCliente, repartidor);
+
+            // Registrar el servicio de entrega en la base de datos
+            int success = servicioEntregaDAO.insert(servicioEntrega); // Cambiado a boolean
+            if (success > 0)  {
+                pedido.setEntrega(servicioEntrega);
+                pedido.setEstado(EstadoPedido.RECOGIDO); // Cambiar el estado a RECOGIDO
+
+                // Actualizar el pedido en la base de datos
+                pedidoDAO.update(pedido);
+                System.out.println("El pedido ha sido finalizado y está listo para ser recogido.");
+            } else {
+                System.out.println("Error al registrar el servicio de entrega.");
+            }
+        } else {
+            System.out.println("El pedido no puede finalizarse porque no está pagado.");
+        }
+    }
+
+
+    private Repartidor asignarRepartidor() {
+        // Proporcionar valores de ejemplo para todos los parámetros del constructor
+        String nombre = "Nombre Repartidor";
+        String apellidos = "Apellidos Repartidor";
+        String nif = "12345678A"; // Asumiendo un NIF ficticio
+        int eficiencia = 85; // Por ejemplo, 85% de eficiencia
+
+        // Crear el repartidor con los parámetros correctos
+        return new Repartidor(nombre, apellidos, nif, eficiencia);
+    }
+
+
+    public Pedido getPedidoEnMarcha() {
+        return pedidoEnMarcha;
+    }
+
+    public void crearServicioEntrega(Pedido pedido, Direccion direccionCliente) {
+        Repartidor repartidor = asignarRepartidor(); // Asignar un repartidor
+        ServicioEntrega servicioEntrega = new ServicioEntrega(pedido, direccionCliente, repartidor);
+
+        // Registrar el servicio de entrega en la base de datos
+        int success = servicioEntregaDAO.insert(servicioEntrega);
+        if (success > 0)  {
+            pedido.setEntrega(servicioEntrega); // Solo asigna si se insertó correctamente
+            System.out.println("El servicio de entrega se ha registrado correctamente.");
+        } else {
+            System.out.println("Error al registrar el servicio de entrega.");
+        }
+    }
+
+
+
 }

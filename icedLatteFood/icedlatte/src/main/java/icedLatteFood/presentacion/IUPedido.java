@@ -16,48 +16,66 @@ public class IUPedido {
     /**
      * Añade un item al pedido en marcha.
      *
-     * @param pedido El pedido actual al cual se añadirá el item.
      * @param item El item de menú que se añadirá al pedido.
      */
-    public void anadirItemMenu(Pedido pedido, ItemMenu item) {
-        pedido.addItem(item); // Agrega el item al pedido
-        gestorPedidos.anadirItemMenu(item); // Actualiza en la capa lógica
+    public void anadirItemMenu(ItemMenu item) {
+        Pedido pedidoEnMarcha = gestorPedidos.getPedidoEnMarcha();
+        if (pedidoEnMarcha != null) {
+            pedidoEnMarcha.addItem(item); // Agrega el item al pedido en marcha
+            gestorPedidos.anadirItemMenu(item); // Actualiza en la capa lógica
+        } else {
+            System.out.println("No hay un pedido en marcha para agregar un item.");
+        }
     }
 
     /**
      * Elimina un item del pedido en marcha.
      *
-     * @param pedido El pedido actual del cual se eliminará el item.
      * @param item El item de menú que se eliminará del pedido.
      */
-    public void eliminarItemMenu(Pedido pedido, ItemMenu item) {
-        pedido.deleteItem(item); // Elimina el item del pedido
-        gestorPedidos.eliminarItemMenu(item); // Actualiza en la capa lógica
+    public void eliminarItemMenu(ItemMenu item) {
+        Pedido pedidoEnMarcha = gestorPedidos.getPedidoEnMarcha();
+        if (pedidoEnMarcha != null) {
+            pedidoEnMarcha.removeItem(item); // Elimina el item del pedido en marcha
+            gestorPedidos.eliminarItemMenu(item); // Actualiza en la capa lógica
+        } else {
+            System.out.println("No hay un pedido en marcha para eliminar un item.");
+        }
     }
 
     /**
      * Comienza un nuevo pedido para el restaurante especificado.
      *
-     * @param idRestaurante El ID del restaurante para el cual se inicia el pedido.
+     * @param nombreRestaurante El nombre del restaurante.
+     * @param cif El CIF (Código de Identificación Fiscal) del restaurante.
+     * @param favorito Indica si el restaurante es favorito.
+     * @param direccion La dirección del restaurante.
      * @return Un nuevo objeto Pedido en marcha.
      */
-    public Pedido comenzarPedido(String idRestaurante) {
-        Restaurante restaurante = new Restaurante(idRestaurante, "Nombre del Restaurante"); // Esto es un ejemplo; ajusta con datos reales.
-        gestorPedidos.comenzarPedido(restaurante);
-        return gestorPedidos.getPedidoEnMarcha(); // Retorna el pedido en curso
+    public Pedido comenzarPedido(String nombreRestaurante, String cif, boolean favorito, Direccion direccion) {
+        // Crea el objeto Restaurante con el constructor actualizado
+        Restaurante restaurante = new Restaurante(nombreRestaurante, cif, favorito, direccion);
+
+        // Llama a la capa de lógica para comenzar el pedido
+        gestorPedidos.comenzarPedido(null, restaurante);
+
+        // Retorna el pedido en curso
+        return gestorPedidos.getPedidoEnMarcha();
     }
+
+
 
     /**
      * Finaliza el pedido y procesa los elementos necesarios, como el pago.
      *
-     * @param pedido El pedido que se desea finalizar.
      * @return true si el pedido finaliza con éxito, false en caso contrario.
      */
-    public boolean finalizarPedido(Pedido pedido) {
-        if (realizarPago(pedido)) {
-            pedido.setEstado(EstadoPedido.PAGADO); // Marca el pedido como pagado
-            gestorPedidos.finalizarPedido(pedido); // Actualiza en la base de datos
-            generarServicioEntrega(pedido); // Genera el servicio de entrega
+    public boolean finalizarPedido(MetodoPago metodoPago) {
+        Pedido pedidoEnMarcha = gestorPedidos.getPedidoEnMarcha(); // Obtiene el pedido en marcha
+        if (pedidoEnMarcha != null && realizarPago(pedidoEnMarcha, metodoPago)) { // Realiza el pago
+            pedidoEnMarcha.setEstado(EstadoPedido.PAGADO); // Marca el pedido como pagado
+            gestorPedidos.finalizarPedido(pedidoEnMarcha); // Finaliza el pedido
+            generarServicioEntrega(pedidoEnMarcha); // Genera el servicio de entrega
             return true;
         }
         return false; // No se pudo finalizar
@@ -69,19 +87,22 @@ public class IUPedido {
      * @param pedido El pedido para el cual se realiza el pago.
      * @return true si el pago fue exitoso, false en caso contrario.
      */
-    private boolean realizarPago(Pedido pedido) {
-        return gestorPedidos.realizarPago(pedido); // Llama a la capa lógica para procesar el pago
+    // Método para realizar el pago del pedido
+    private boolean realizarPago(Pedido pedido, MetodoPago metodoPago) {
+        return gestorPedidos.realizarPago(pedido, metodoPago); // Llama a la capa lógica para procesar el pago
     }
 
     /**
      * Genera un servicio de entrega para el pedido especificado.
      *
      * @param pedido El pedido para el cual se generará el servicio de entrega.
-     * @return El servicio de entrega generado.
      */
-    private ServicioEntrega generarServicioEntrega(Pedido pedido) {
-        Direccion direccionCliente = pedido.getCliente().getDireccion();
-        ServicioEntrega servicioEntrega = gestorPedidos.crearServicioEntrega(pedido, direccionCliente);
-        return servicioEntrega;
+    private void generarServicioEntrega(Pedido pedido) {
+        if (pedido != null) {
+            Direccion direccionCliente = pedido.getCliente().getDireccion();
+            gestorPedidos.crearServicioEntrega(pedido, direccionCliente);
+        } else {
+            System.out.println("No se pudo generar el servicio de entrega porque el pedido es nulo.");
+        }
     }
 }
