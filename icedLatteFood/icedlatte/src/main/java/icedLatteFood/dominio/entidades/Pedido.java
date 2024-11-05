@@ -3,16 +3,32 @@ package icedLatteFood.dominio.entidades;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int pedidoId; // Atributo para almacenar el ID del pedido
+    @Column
     private Cliente cliente; // Cliente que realiza el pedido
+    @Column
     private Restaurante restaurante; // Restaurante donde se realiza el pedido
+    @Column
     private ServicioEntrega entrega; // Servicio de entrega asociado al pedido
+    @Column
     private Date fecha; // Fecha en que se realizó el pedido
+    @Column
     private List<ItemMenu> items; // Lista de items del menú en el pedido
+    @Column
     private EstadoPedido estado; // Estado actual del pedido
+    @Column
     private Pago pago; // Información sobre el pago realizado para el pedido
+    @Column
     private double precioTotal; // Atributo para almacenar el precio total del pedido
 
     // Constructor que inicializa la fecha del pedido y crea la lista de items

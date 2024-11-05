@@ -10,12 +10,30 @@ import jakarta.persistence.Id;
 
 @Entity
 public class CartaMenu {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idCarta
+    @Column
+    private Restaurante retaurante
     @Column
     private List<icedLatteFood.dominio.entidades.ItemMenu> itemMenu;
+
 
     // Constructor
     public CartaMenu() {
         this.itemMenu = new ArrayList<>();
+    }
+
+    public Long getIdCarta() { return idCarta; }
+    public void setIdCarta(Long idCarta) { this.idCarta = idCarta; }
+
+    public Restaurante getRetaurante() {
+        return retaurante;
+    }
+
+    public void setRetaurante(Restaurante retaurante) {
+        this.retaurante = retaurante;
     }
 
     // Método para agregar un plato al menú

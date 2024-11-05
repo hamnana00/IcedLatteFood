@@ -1,12 +1,23 @@
 package icedLatteFood.dominio.entidades;
 
 import java.time.LocalDateTime;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class ServicioEntrega {
+    @Column
     Pedido pedido;
+    @Column
     Direccion direccion;
+    @Column
     Repartidor repartidor;
+    @Column
     private LocalDateTime fechaRecepcion;
+    @Column
     private LocalDateTime fechaEntrega;
 
     public ServicioEntrega(Pedido pedido, Direccion direccion, Repartidor repartidor) {

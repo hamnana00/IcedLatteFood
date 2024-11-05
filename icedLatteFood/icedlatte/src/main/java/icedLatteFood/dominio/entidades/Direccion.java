@@ -1,10 +1,22 @@
 package icedLatteFood.dominio.entidades;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Direccion {
+    @Column
     private String calle;
+    @Column
     private int numero;
+    @Column
     private String complemento;
+    @Column
     private int codigoPostal;
+    @Column
     private String municipio;
 
     // Constructor
