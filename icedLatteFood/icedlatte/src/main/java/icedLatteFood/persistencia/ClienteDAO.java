@@ -7,9 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import icedLatteFood.dominio.entidades.Direccion;
 import icedLatteFood.dominio.entidades.Restaurante;
 import java.sql.ResultSet;
@@ -19,8 +16,7 @@ import java.util.List;
 import icedLatteFood.dominio.entidades.Cliente;
 import icedLatteFood.persistencia.DatabaseConnection;
 
-@Repository
-public interface ClienteDAO extends JpaRepository <Cliente,Long> {
+public class ClienteDAO { //extender a crudRepository <nombre, log>
     private Connection connection;
 
     // Constructor que recibe la conexión a la base de datos
