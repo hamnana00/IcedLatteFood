@@ -1,5 +1,3 @@
-package icedLatteFood.presentacion;
-
 import icedLatteFood.dominio.entidades.*;
 import icedLatteFood.dominio.controladores.GestorPedidos;
 import java.util.List;
@@ -52,9 +50,9 @@ public class IUPedido {
      * @param direccion La dirección del restaurante.
      * @return Un nuevo objeto Pedido en marcha.
      */
-    public Pedido comenzarPedido(String nombreRestaurante, String cif, boolean favorito, Direccion direccion) {
+    public Pedido comenzarPedido(String pass, String nombreRestaurante, String cif, boolean favorito, Direccion direccion) {
         // Crea el objeto Restaurante con el constructor actualizado
-        Restaurante restaurante = new Restaurante(nombreRestaurante, cif, favorito, direccion);
+        Restaurante restaurante = new Restaurante(pass, nombreRestaurante, cif, favorito, direccion);
 
         // Llama a la capa de lógica para comenzar el pedido
         gestorPedidos.comenzarPedido(null, restaurante);
