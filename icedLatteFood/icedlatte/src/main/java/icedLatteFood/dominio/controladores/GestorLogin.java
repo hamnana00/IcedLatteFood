@@ -15,9 +15,8 @@ public class GestorLogin {
     }
 
     // Método para registrar un nuevo usuario
-    public void registrarUsuario(String id, String pass) {
-        Usuario nuevoUsuario = new Usuario();
-        nuevoUsuario.setIdUsuario(id);
+    public void registrarUsuario(String pass) {
+        Usuario nuevoUsuario = new Usuario(pass);
         nuevoUsuario.setPass(pass);
         usuarios.add(nuevoUsuario);
     }

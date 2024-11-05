@@ -16,7 +16,7 @@ import java.util.List;
 import icedLatteFood.dominio.entidades.Cliente;
 import icedLatteFood.persistencia.DatabaseConnection;
 
-public class ClienteDAO {
+public class ClienteDAO { //extender a crudRepository <nombre, log>
     private Connection connection;
 
     // Constructor que recibe la conexión a la base de datos

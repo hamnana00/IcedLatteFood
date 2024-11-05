@@ -107,7 +107,7 @@ public class ServicioEntregaDAO extends EntityDAO<ServicioEntrega> {
             while (rs.next()) {
                 pedidosPendientes.add(new Pedido(
                         rs.getInt("idPed"),
-                        rs.getInt("idCli"),
+                        rs.getString("idCli"),
                         rs.getString("nombre"),
                         rs.getString("origen"),
                         rs.getInt("destino"),

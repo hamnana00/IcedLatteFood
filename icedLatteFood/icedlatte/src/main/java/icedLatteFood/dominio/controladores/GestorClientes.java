@@ -2,9 +2,16 @@ package dominio.controladores;
 
 import java.util.*;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import icedLatteFood.dominio.entidades.CodigoPostal;
 import icedLatteFood.dominio.entidades.Direccion;
 import icedLatteFood.dominio.entidades.Restaurante;
+import icedLatteFood.dominio.entidades.Cliente;
+
 
 public class GestorClientes {
 
@@ -36,15 +43,15 @@ public class GestorClientes {
     }
 
     // Registrar un nuevo cliente
-    public icedLatteFood.dominio.entidades.Cliente registrarCliente(String nombre, String apellido, Direccion direccion) {
+    public icedLatteFood.dominio.entidades.Cliente registrarCliente(String pass, String nombre, String apellido, Direccion direccion) {
         // Crear un nuevo cliente temporal sin ID
-        icedLatteFood.dominio.entidades.Cliente cliente = new icedLatteFood.dominio.entidades.Cliente(0, nombre, apellido, null); // ID temporal
+        icedLatteFood.dominio.entidades.Cliente cliente = new icedLatteFood.dominio.entidades.Cliente(pass, nombre, apellido, null); // ID temporal
         cliente.anadirDireccion(direccion);  // Se añade la dirección al cliente
 
         // Guardar el cliente en la base de datos y obtener el ID generado
-        int idGenerado = clienteDAO.insert(cliente); // Suponiendo que insert devuelve el ID del nuevo cliente
+        int idGenerado = clienteDAO.insert(cliente); // Suponiendo que insert devuelve el ID del nuevo cliente como int
         if (idGenerado > 0) {
-            cliente.setId(idGenerado); // Asignar el ID generado al cliente
+            cliente.setIdUsuario(String.valueOf(idGenerado));// Asignar el ID generado al cliente
         } else {
             System.out.println("Error al registrar el cliente.");
         }

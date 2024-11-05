@@ -1,15 +1,30 @@
 package icedLatteFood.dominio.entidades;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 // Clase Restaurante
-public class Restaurante {
+@Entity
+public class Restaurante extends Usuario{
+    @Column
     private String nombre;
+    @Column
     private String cif;
+    @Column
     private boolean favorito;  // Atributo para saber si el restaurante es favorito
+    @Column
     private Direccion direccion; // Atributo para la dirección del restaurante
-    private CartaMenu cartaMenu;  // Ahora es un objeto CartaMenu
+    @OneToMany
+    private CartaMenu cartaMenu;
+    //@OneToMany
+    //private List<Pedido> pedidos;
 
     // Constructor
-    public Restaurante(String nombre, String cif, boolean favorito, Direccion direccion) {
+    public Restaurante(String pass, String nombre, String cif, boolean favorito, Direccion direccion) {
+        super(pass);
         this.nombre = nombre;
         this.cif = cif;
         this.favorito = favorito; // Ahora inicializamos favorito
@@ -66,4 +81,13 @@ public class Restaurante {
     public void mostrarMenu() {
         cartaMenu.mostrarMenu();
     }
+
+    public void modificarMenu(CartaMenu cartaMenu) {
+        this.cartaMenu = cartaMenu;
+    }
+    /*public void mostrarPedidos() {
+        for (Pedido pedido : pedidos) {
+            System.out.println(pedido);
+        }
+    }*/
 }

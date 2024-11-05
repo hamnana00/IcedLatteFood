@@ -1,5 +1,10 @@
 package icedLatteFood.dominio.controladores;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import icedLatteFood.dominio.entidades.Restaurante;
 import icedLatteFood.dominio.entidades.ItemMenu;
 import icedLatteFood.dominio.entidades.Direccion;
@@ -27,7 +32,7 @@ public class GestorRestaurantes {
     }
 
     // Buscar restaurante por código postal o texto
-    public List<Restaurante> buscarRestaurantes(String codigoPostal, String texto) {
+    /*public List<Restaurante> buscarRestaurantes(String codigoPostal, String texto) {
         if (codigoPostal != null && !codigoPostal.isEmpty() && texto != null && !texto.isEmpty()) {
             return restauranteDAO.selectPorCodigoPostalYTextoLibre(codigoPostal, texto);
         } else if (codigoPostal != null && !codigoPostal.isEmpty()) {
@@ -35,17 +40,12 @@ public class GestorRestaurantes {
         } else {
             return restauranteDAO.selectAll();
         }
-    }
-
-    // Seleccionar todos sin filtro
-    public List<Restaurante> obtenerRestaurantes() {
-        return restauranteDAO.selectAll();
-    }
+    }*/
 
     // Registrar un nuevo restaurante
-    public Restaurante registrarRestaurante(String nombre, String cif, boolean favorito, Direccion direccion) {
+    public Restaurante registrarRestaurante(String pass, String nombre, String cif, boolean favorito, Direccion direccion) {
         // Crear una nueva instancia de Restaurante con los datos proporcionados
-        Restaurante nuevoRestaurante = new Restaurante(nombre, cif, favorito, direccion);
+        Restaurante nuevoRestaurante = new Restaurante(pass, nombre, cif, favorito, direccion);
         // Aquí podrías llamar al DAO para guardar el nuevo restaurante en la base de datos
         // restauranteDAO.insert(nuevoRestaurante);
         return nuevoRestaurante;
