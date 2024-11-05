@@ -10,11 +10,18 @@ import icedLatteFood.dominio.entidades.ItemMenu;
 import icedLatteFood.dominio.entidades.Direccion;
 import icedLatteFood.dominio.entidades.TipoItemMenu;
 import icedLatteFood.persistencia.RestauranteDAO;
+import icedLatteFood.servicios.DataBaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RestController
 public class GestorRestaurantes {
 
+    @Autowired
+    private DataBaseService dataBaseService;
     private RestauranteDAO restauranteDAO;
 
     public GestorRestaurantes(RestauranteDAO restauranteDAO) {
@@ -74,5 +81,10 @@ public class GestorRestaurantes {
 
         // Si deseas, aquí puedes agregar lógica para guardar el nuevo ítem en la base de datos, si es necesario.
         // itemMenuDAO.insert(nuevoItem);
+    }
+    @GetMapping("/test-connection-restaurantes")
+    public String testConnection() {
+        dataBaseService.testConnection();
+        return "Connection tested!";
     }
 }

@@ -3,7 +3,10 @@ package icedLatteFood.persistencia;
 import java.sql.*;
 import java.sql.Connection;
 import icedLatteFood.dominio.entidades.ItemMenu;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public abstract class ItemMenuDAO extends EntityDAO<ItemMenu> {
 
 

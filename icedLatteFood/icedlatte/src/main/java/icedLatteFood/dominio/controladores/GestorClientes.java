@@ -11,13 +11,24 @@ import icedLatteFood.dominio.entidades.CodigoPostal;
 import icedLatteFood.dominio.entidades.Direccion;
 import icedLatteFood.dominio.entidades.Restaurante;
 import icedLatteFood.dominio.entidades.Cliente;
+import icedLatteFood.servicios.DataBaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import icedLatteFood.persistencia.ClienteDAO;
 
-
+@Controller
 public class GestorClientes {
+
+    @Autowired
+    private DataBaseService dataBaseService;
 
     private icedLatteFood.persistencia.RestauranteDAO restauranteDAO;
     private icedLatteFood.persistencia.ClienteDAO clienteDAO;
 
+    //@Autowired
+    //private ClienteDAO clienteDAO;
     // Constructor que recibe el DAO de restaurantes
     public GestorClientes(icedLatteFood.persistencia.RestauranteDAO restauranteDAO, icedLatteFood.persistencia.ClienteDAO clienteDAO) {
         this.restauranteDAO = restauranteDAO;
@@ -26,7 +37,7 @@ public class GestorClientes {
 
     // Buscar restaurante por zona (código postal)
     public List<icedLatteFood.dominio.entidades.Restaurante> buscarRestaurante(CodigoPostal codigoPostal, String textoBusqueda) {
-        return restauranteDAO.selectPorCodigoPostal(String.valueOf(codigoPostal.getCodigo()));
+        return restauranteDAO.selectPorCodigoPostal(codigoPostal.getCodigo());
     }
 
     //Buscar restaurante solo por cadena de búsqueda

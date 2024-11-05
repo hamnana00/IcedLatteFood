@@ -5,12 +5,15 @@ import icedLatteFood.dominio.entidades.Direccion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
+@Repository
+public interface RestauranteDAO extends JpaRepository<Restaurante, String>{
 
-    public RestauranteDAO(GestorBaseDatos gestorBD) {
+    /*public RestauranteDAO(GestorBaseDatos gestorBD) {
         super(gestorBD);
-    }
+    }*/
 
     // Agregar restaurante con nombre, cif y dirección
     public Restaurante obtenerRestaurante(int id) {
@@ -218,5 +221,4 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
         }
         return restaurantes; // Retorna la lista de restaurantes encontrados
     }
-
 }

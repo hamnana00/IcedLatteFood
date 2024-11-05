@@ -16,7 +16,13 @@ import java.util.List;
 import icedLatteFood.dominio.entidades.Cliente;
 import icedLatteFood.persistencia.DatabaseConnection;
 
-public class ClienteDAO { //extender a crudRepository <nombre, log>
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+//@Repository
+//public class ClienteDAO extends JpaRepository<Usuario, String> { //extender a crudRepository <nombre, log>
+public class ClienteDAO {//extends JpaRepository<Usuario, String> {
+
     private Connection connection;
 
     // Constructor que recibe la conexión a la base de datos

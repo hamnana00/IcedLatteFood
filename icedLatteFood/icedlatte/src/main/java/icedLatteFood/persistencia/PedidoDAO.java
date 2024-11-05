@@ -6,14 +6,17 @@ import icedLatteFood.dominio.entidades.Restaurante;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 // Clase que maneja las operaciones de base de datos para la entidad Pedido
-public class PedidoDAO extends EntityDAO<Pedido> {
+public interface PedidoDAO extends JpaRepository<Pedido, Integer> {
 
     // Constructor que recibe el gestor de base de datos
-    public PedidoDAO(GestorBaseDatos gestorBD) {
+    /*public PedidoDAO(GestorBaseDatos gestorBD) {
         super(gestorBD); // Llama al constructor de la clase padre
-    }
+    }*/
 
     // Método para agregar un nuevo pedido
     public boolean agregarPedido(Pedido pedido) {
