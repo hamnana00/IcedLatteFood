@@ -1,78 +1,93 @@
 package icedLatteFood.dominio.entidades;
 
-import java.util.*;
-
-public class Repartidor {
-    private static int idCounter = 0; // Contador estático para generar IDs únicos
-    private int id; // ID del repartidor
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+// Clase Restaurante
+@Entity
+public class Restaurante extends Usuario{
+    @Column
     private String nombre;
-    private String apellidos;
-    private String nif;
-    private int eficiencia;
-
-    // Colecciones para servicios y zonas
-    Collection<ServicioEntrega> servicios;
-    Collection<CodigoPostal> zonas;
+    @Column
+    private String cif;
+    @Column
+    private boolean favorito;  // Atributo para saber si el restaurante es favorito
+    @Column
+    private Direccion direccion; // Atributo para la dirección del restaurante
+    @OneToMany
+    private CartaMenu cartaMenu;
+    //@OneToMany
+    //private List<Pedido> pedidos;
 
     // Constructor
-    public Repartidor(String nombre, String apellidos, String nif, int eficiencia) {
-        this.id = ++idCounter; // Asigna un ID único al repartidor
+    public Restaurante(String pass, String nombre, String cif, boolean favorito, Direccion direccion) {
+        super(pass);
         this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.nif = nif;
-        this.eficiencia = eficiencia;
-        this.servicios = new ArrayList<>(); // Inicializa la colección de servicios
-        this.zonas = new ArrayList<>(); // Inicializa la colección de zonas
+        this.cif = cif;
+        this.favorito = favorito; // Ahora inicializamos favorito
+        this.direccion = direccion;
+        this.cartaMenu = new CartaMenu(); // Inicializar cartaMenu aquí
     }
 
-    // Método para obtener el ID del repartidor
-    public int getId() {
-        return id; // Retorna el ID del repartidor
-    }
-
-    // Métodos adicionales para obtener información del repartidor
+    // Getters y Setters
     public String getNombre() {
         return nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getNif() {
-        return nif;
+    public String getCif() {
+        return cif;
     }
 
-    public int getEficiencia() {
-        return eficiencia;
+    public void setCif(String cif) {
+        this.cif = cif;
     }
 
-    public Collection<ServicioEntrega> getServicios() {
-        return servicios; // Devuelve la colección de servicios
+    public boolean isFavorito() {
+        return favorito;
     }
 
-    public void addServicio(ServicioEntrega servicio) {
-        if (servicio != null) {
-            servicios.add(servicio); // Añade un servicio a la colección
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
+    }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
+    public CartaMenu getCartaMenu() {
+        return cartaMenu;
+    }
+
+    // Métodos para interactuar con la carta de menú
+    public void agregarItemMenu(ItemMenu itemMenu) {
+        cartaMenu.agregarItemMenu(itemMenu);
+    }
+
+    public void eliminarItemMenu(String nombreItem) {
+        cartaMenu.eliminarItemMenu(nombreItem);
+    }
+
+    public void mostrarMenu() {
+        cartaMenu.mostrarMenu();
+    }
+
+    public void modificarMenu(CartaMenu cartaMenu) {
+        this.cartaMenu = cartaMenu;
+    }
+    /*public void mostrarPedidos() {
+        for (Pedido pedido : pedidos) {
+            System.out.println(pedido);
         }
-    }
-
-    public Collection<CodigoPostal> getZonas() {
-        return zonas; // Devuelve la colección de zonas
-    }
-
-    public void addZona(CodigoPostal zona) {
-        if (zona != null) {
-            zonas.add(zona); // Añade una zona a la colección
-        }
-    }
-
-    public void setZonas(List<CodigoPostal> zonas) {
-        if (zonas != null) {
-            this.zonas.clear(); // Limpiamos las zonas actuales
-            this.zonas.addAll(zonas); // Añadimos las nuevas zonas
-        } else {
-            throw new IllegalArgumentException("La lista de zonas no puede ser nula");
-        }
-    }
+    }*/
 }
