@@ -21,7 +21,7 @@ public class PedidoDAO extends EntityDAO<Pedido> {
         try (Connection connection = gestorBD.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             // Establecer los parámetros del PreparedStatement desde el objeto Pedido
-            stmt.setInt(1, pedido.getCliente().getId()); // Asumiendo que Pedido tiene un método getCliente()
+            stmt.setString(1, pedido.getCliente().getIdUsuario()); // Asumiendo que Pedido tiene un método getCliente()
             stmt.setString(2, pedido.getNombre()); // Método getNombre() en Pedido
             stmt.setString(3, pedido.getOrigen()); // Método getOrigen() en Pedido
             stmt.setInt(4, Integer.parseInt(pedido.getDestino())); // Método getDestino() en Pedido
@@ -47,7 +47,7 @@ public class PedidoDAO extends EntityDAO<Pedido> {
                 // Asegúrate de que los nombres de las columnas coincidan con tu base de datos
                 return new Pedido(
                         rs.getInt("idPed"),
-                        rs.getInt("idCli"),
+                        rs.getString("idCli"),
                         rs.getString("nombre"),
                         rs.getString("origen"),
                         rs.getInt("destino"),
