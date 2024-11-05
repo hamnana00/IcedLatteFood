@@ -2,9 +2,15 @@ package icedLatteFood.dominio.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-// Clase Menu
+@Entity
 public class CartaMenu {
+    @Column
     private List<icedLatteFood.dominio.entidades.ItemMenu> itemMenu;
 
     // Constructor
