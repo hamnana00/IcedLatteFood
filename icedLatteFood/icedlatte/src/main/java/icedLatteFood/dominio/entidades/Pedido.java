@@ -16,7 +16,7 @@ public class Pedido {
     private double precioTotal; // Atributo para almacenar el precio total del pedido
 
     // Constructor que inicializa la fecha del pedido y crea la lista de items
-    public Pedido(int idPed, int idCli, String nombre, String origen, int destino, double precioTotal, Date fecha, int idRepar) {
+    public Pedido(int idPed, String idCli, String nombre, String origen, int destino, double precioTotal, Date fecha, int idRepar) {
         this.fecha = fecha;
         this.items = new ArrayList<>(); // Inicializa la lista de items como una nueva ArrayList
         this.estado = EstadoPedido.PEDIDO; // Establece el estado inicial del pedido como PEDIDO
