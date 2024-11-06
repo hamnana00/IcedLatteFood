@@ -2,5 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/db8afca3-4691-4b3d-a518-ed988fc631d7/console_2.sql" dialect="Derby" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/db8afca3-4691-4b3d-a518-ed988fc631d7/console_4.sql" dialect="Derby" />
   </component>
 </project>
