@@ -12,11 +12,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 // Clase que maneja las operaciones de base de datos para la entidad Pedido
 public interface PedidoDAO extends JpaRepository<Pedido, Integer> {
-
+/*
     // Constructor que recibe el gestor de base de datos
     /*public PedidoDAO(GestorBaseDatos gestorBD) {
         super(gestorBD); // Llama al constructor de la clase padre
-    }*/
+    }
 
     // Método para agregar un nuevo pedido
     public boolean agregarPedido(Pedido pedido) {
@@ -126,5 +126,5 @@ public interface PedidoDAO extends JpaRepository<Pedido, Integer> {
     @Override
     public List<Restaurante> selectPorCodigoPostal(String s) {
         return new ArrayList<>(); // Retorna una lista vacía o implementar la lógica según sea necesario
-    }
+    }*/
 }

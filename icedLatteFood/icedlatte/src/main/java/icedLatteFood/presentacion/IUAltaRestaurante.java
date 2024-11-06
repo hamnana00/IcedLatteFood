@@ -7,7 +7,7 @@ import icedLatteFood.dominio.controladores.GestorRestaurantes;
 import java.util.Scanner;
 
 public class IUAltaRestaurante {
-
+/*
     private GestorRestaurantes gestorRestaurantes; // Controlador de restaurantes
 
     public IUAltaRestaurante(GestorRestaurantes gestorRestaurantes) {
@@ -63,5 +63,5 @@ public class IUAltaRestaurante {
         } else {
             System.out.println("Error al agregar el restaurante.");
         }
-    }
+    }*/
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+import java.util.Optional;
 import icedLatteFood.*;
 import icedLatteFood.persistencia.UsuarioDAO;
 import icedLatteFood.dominio.entidades.Usuario;
@@ -30,10 +30,13 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario);
     }
 
-    @GetMapping("/{idUsario}")
     public ResponseEntity<Usuario> getUsuario(@PathVariable String idUsuario) {
-        Usuario usuario = usuarioDAO.findById(idUsuario);
-        return ResponseEntity.ok(usuario);
+        Optional<Usuario> usuarioOptional = usuarioDAO.findById(idUsuario);
+        if (usuarioOptional.isPresent()) {
+            return ResponseEntity.ok(usuarioOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/{Favorito}")

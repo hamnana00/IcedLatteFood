@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import icedLatteFood.*;
 
 @Repository
+public interface RestauranteDAO extends JpaRepository <Restaurante, String> {
+    List<Restaurante> findAllRestaurantes();
+}
 /*public interface RestauranteDAO extends JpaRepository<Restaurante, String>{
 
     /*public RestauranteDAO(GestorBaseDatos gestorBD) {
@@ -224,6 +227,3 @@ import icedLatteFood.*;
     }
 }*/
 
-public interface RestauranteDAO extends UsuarioDAO, JpaRepository <Restaurante, String> {
-    List<Restaurante> findAllRestaurantes();
-}

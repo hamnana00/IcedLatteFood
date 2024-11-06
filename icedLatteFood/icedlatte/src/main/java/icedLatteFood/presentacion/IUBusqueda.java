@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class IUBusqueda {
+public class IUBusqueda {/*
 
     @Autowired
     private GestorClientes gestorClientes;  // Instancia del gestor de clientes
@@ -30,12 +30,12 @@ public class IUBusqueda {
         return null; // Devuelve null si no se encuentra
     }
 
-    /**
+
      * Búsqueda de restaurantes por código postal y texto de búsqueda.
      * @param zona CódigoPostal del área.
      * @param textoBusqueda Cadena de texto para buscar en nombre o menú.
      * @return Lista de restaurantes que coinciden con los criterios.
-     */
+
     public List<Restaurante> buscar(CodigoPostal zona, String textoBusqueda) {
         return gestorClientes.buscarRestaurante(zona, textoBusqueda);
     }
@@ -44,7 +44,7 @@ public class IUBusqueda {
      * Marca un restaurante como favorito para el cliente actual.
      * @param cliente Cliente que desea marcar el restaurante.
      * @param idRestaurante ID del restaurante a marcar como favorito.
-     */
+
     public void marcarFavorito(Cliente cliente, String idRestaurante) {
         // Primero buscamos el restaurante en el sistema (puedes agregar el método en GestorClientes)
         Restaurante restaurante = gestorClientes.obtenerRestaurantePorId(idRestaurante);
@@ -74,5 +74,5 @@ public class IUBusqueda {
 
         model.addAttribute("restaurantes", restaurantes);
         return "restaurantes"; // Llama a "restaurantes.html"
-    }
+    }*/
 }

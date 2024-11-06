@@ -8,9 +8,17 @@ import org.springframework.stereotype.Repository;
 import icedLatteFood.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ItemMenuDAO extends JpaRepository<ItemMenu, Long> {
+    @Override
+    ItemMenu save(ItemMenu itemMenu);
+    @Override
+    Optional <ItemMenu> findById(Long id);
+    List<ItemMenu> findAll();
+    void update(ItemMenu itemMenu);
+    void delete(Long id);
 /*
 
     public ItemMenuDAO(GestorBaseDatos gestorBD) {
@@ -76,9 +84,5 @@ public interface ItemMenuDAO extends JpaRepository<ItemMenu, Long> {
         }
     }*/
 
-    void save(ItemMenu itemMenu);
-    ItemMenu findById(Long id);
-    List<ItemMenu> findAll();
-    void update(ItemMenu itemMenu);
-    void delete(Long id);
+
 }
