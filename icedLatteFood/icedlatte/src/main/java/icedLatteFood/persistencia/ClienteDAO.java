@@ -18,10 +18,11 @@ import icedLatteFood.persistencia.DatabaseConnection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import icedLatteFood.*;
 
-//@Repository
+@Repository
 //public class ClienteDAO extends JpaRepository<Usuario, String> { //extender a crudRepository <nombre, log>
-public class ClienteDAO {//extends JpaRepository<Usuario, String> {
+/*public class ClienteDAO {//extends JpaRepository<Usuario, String> {
 
     private Connection connection;
 
@@ -55,4 +56,7 @@ public class ClienteDAO {//extends JpaRepository<Usuario, String> {
 
         return idGenerado; // Retornar el ID generado o -1 si hubo un error
     }
+}*/
+public interface ClienteDAO extends UsuarioDAO, JpaRepository<Cliente, String> {
+    List<Cliente> findAllClientes();
 }

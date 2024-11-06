@@ -18,7 +18,7 @@ public class Repartidor {
     private String nif;
     @Column
     private int eficiencia;
-
+/*
     // Colecciones para servicios y zonas
     Collection<ServicioEntrega> servicios;
     Collection<CodigoPostal> zonas;
@@ -80,5 +80,5 @@ public class Repartidor {
         } else {
             throw new IllegalArgumentException("La lista de zonas no puede ser nula");
         }
-    }
+    }*/
 }

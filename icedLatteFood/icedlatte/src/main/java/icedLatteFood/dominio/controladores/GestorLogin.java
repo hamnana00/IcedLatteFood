@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class GestorLogin {
-
+/*
     @Autowired
     private DataBaseService dataBaseService;
     // Lista de usuarios simulando una base de datos
@@ -43,4 +43,6 @@ public class GestorLogin {
         dataBaseService.testConnection();
         return "Connection tested!";
     }
+    */
+
 }

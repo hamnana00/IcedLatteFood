@@ -6,6 +6,7 @@ import icedLatteFood.dominio.entidades.CodigoPostal;
 import java.util.List;
 
 public class GestorRepartos {
+    /*
 
     // Funcionalidad para marcar que un pedido ha sido recogido
     public void marcarPedidoRecogido(ServicioEntrega servicio) {
@@ -34,4 +35,6 @@ public class GestorRepartos {
         System.out.println("Repartidor registrado: " + nombre + " " + apellidos);
         return nuevoRepartidor;
     }
+
+     */
 }

@@ -19,7 +19,7 @@ public class ServicioEntrega {
     private LocalDateTime fechaRecepcion;
     @Column
     private LocalDateTime fechaEntrega;
-
+/*
     public ServicioEntrega(Pedido pedido, Direccion direccion, Repartidor repartidor) {
         this.pedido = pedido;
         this.direccion = direccion;
@@ -80,5 +80,5 @@ public class ServicioEntrega {
         } else {
             throw new IllegalStateException("No hay repartidor asociado al servicio de entrega."); // Manejo de error si no hay repartidor
         }
-    }
+    }*/
 }

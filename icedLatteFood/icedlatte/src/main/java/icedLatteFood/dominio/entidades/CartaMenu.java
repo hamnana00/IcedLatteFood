@@ -13,9 +13,9 @@ public class CartaMenu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCarta
+    private Long idCarta;
     @Column
-    private Restaurante retaurante
+    private Restaurante retaurante;
     @Column
     private List<icedLatteFood.dominio.entidades.ItemMenu> itemMenu;
 

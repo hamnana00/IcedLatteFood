@@ -19,6 +19,7 @@ import java.util.List;
 
 @RestController
 public class GestorRestaurantes {
+    /*
 
     @Autowired
     private DataBaseService dataBaseService;
@@ -47,7 +48,7 @@ public class GestorRestaurantes {
         } else {
             return restauranteDAO.selectAll();
         }
-    }*/
+    }
 
     // Registrar un nuevo restaurante
     public Restaurante registrarRestaurante(String pass, String nombre, String cif, boolean favorito, Direccion direccion) {
@@ -86,5 +87,5 @@ public class GestorRestaurantes {
     public String testConnection() {
         dataBaseService.testConnection();
         return "Connection tested!";
-    }
+    }*/
 }

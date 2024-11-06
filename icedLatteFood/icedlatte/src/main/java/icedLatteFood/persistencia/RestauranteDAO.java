@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import icedLatteFood.*;
 
 @Repository
-public interface RestauranteDAO extends JpaRepository<Restaurante, String>{
+/*public interface RestauranteDAO extends JpaRepository<Restaurante, String>{
 
     /*public RestauranteDAO(GestorBaseDatos gestorBD) {
         super(gestorBD);
-    }*/
+    }
 
     // Agregar restaurante con nombre, cif y dirección
     public Restaurante obtenerRestaurante(int id) {
@@ -221,4 +222,8 @@ public interface RestauranteDAO extends JpaRepository<Restaurante, String>{
         }
         return restaurantes; // Retorna la lista de restaurantes encontrados
     }
+}*/
+
+public interface RestauranteDAO extends UsuarioDAO, JpaRepository <Restaurante, String> {
+    List<Restaurante> findAllRestaurantes();
 }

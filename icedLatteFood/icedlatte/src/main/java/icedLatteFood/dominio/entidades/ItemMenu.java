@@ -9,6 +9,9 @@ import jakarta.persistence.Id;
 // Clase ItemMenu
 @Entity
 public class ItemMenu {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idItem;
     @Column
     private String nombre;
     @Column
@@ -16,11 +19,18 @@ public class ItemMenu {
 
     // Constructor modificado
     public ItemMenu(String nombre, double precio) {
+        this.idItem = idItem;
         this.nombre = nombre;
         this.precio = precio;
     }
 
     // Getters y Setters
+
+    public long getIdItem() {
+        return idItem;
+    }
+    public void setIdItem(long idItem) {this.idItem = idItem;}
+
     public String getNombre() {
         return nombre;
     }

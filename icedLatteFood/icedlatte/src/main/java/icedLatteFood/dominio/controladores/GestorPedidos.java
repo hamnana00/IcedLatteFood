@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 public class GestorPedidos {
+    /*
 
     private PedidoDAO pedidoDAO;
     private ServicioEntregaDAO servicioEntregaDAO;
@@ -158,6 +159,6 @@ public class GestorPedidos {
         }
     }
 
-
+*/
 
 }

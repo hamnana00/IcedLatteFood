@@ -5,10 +5,13 @@ import java.sql.Connection;
 import icedLatteFood.dominio.entidades.ItemMenu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import icedLatteFood.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
-public abstract class ItemMenuDAO extends EntityDAO<ItemMenu> {
-
+public interface ItemMenuDAO extends JpaRepository<ItemMenu, Long> {
+/*
 
     public ItemMenuDAO(GestorBaseDatos gestorBD) {
         super(gestorBD);
@@ -71,5 +74,11 @@ public abstract class ItemMenuDAO extends EntityDAO<ItemMenu> {
             e.printStackTrace();
             return false;
         }
-    }
+    }*/
+
+    void save(ItemMenu itemMenu);
+    ItemMenu findById(Long id);
+    List<ItemMenu> findAll();
+    void update(ItemMenu itemMenu);
+    void delete(Long id);
 }
