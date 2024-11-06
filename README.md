@@ -33,4 +33,6 @@ Objetivo:
 Duración: 2 semanas
 Objetivo:
 * Prueba de funcionamiento
-
+## Modificación del seguimiento
+* Sprint 1: todos los métodos conseguido
+* Sprint 2: falta configurar lo de BBDD
