@@ -135,9 +135,9 @@ public class Pedido {
     }
 
     // Método para obtener el destino del pedido (dirección de entrega)
-    public String getDestino() {
+    /*public String getDestino() {
         return entrega != null ? String.valueOf(entrega.getDireccion()) : null; // Retorna la dirección de entrega si existe
-    }
+    }*/
 
     // Método para obtener la hora del pedido en formato "HH:mm:ss"
     public String getHora() {
@@ -148,13 +148,13 @@ public class Pedido {
     }
 
     // Método para obtener el ID del repartidor
-    public int getRepartidorId() {
+    /*public int getRepartidorId() {
         if (entrega != null) { // Verifica que el servicio de entrega no sea nulo
             return entrega.getRepartidorId(); // Retorna el ID del repartidor desde el servicio de entrega
         } else {
             throw new IllegalStateException("No hay servicio de entrega asociado al pedido."); // Manejo de error si no hay entrega
         }
-    }
+    }*/
 
     // Método para obtener una representación en cadena del pedido
     @Override
@@ -223,7 +223,7 @@ public class Pedido {
     }
 
     // Método para obtener la dirección de entrega
-    public Direccion getDireccionEntrega() {
+    /*public Direccion getDireccionEntrega() {
         return entrega != null ? entrega.getDireccion() : null; // Retorna la dirección de entrega desde el servicio de entrega
-    }
+    }*/
 }
