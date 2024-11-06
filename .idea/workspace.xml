@@ -35,7 +35,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Feature_HacerPedido" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -88,7 +88,6 @@
     "Spring Boot.RestauranteApplication.executor": "Run",
     "database.data.extractors.current.export.id": "XML-Groovy.xml.groovy",
     "database.data.extractors.current.id": "XML-Groovy.xml.groovy",
-    "git-widget-placeholder": "develop",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Zineb/Downloads/3º AÑO INFORMÁTICA/PRIMER CUATRI/ISO II/LAB/ProyectoI",
@@ -175,7 +174,7 @@
       <workItem from="1730544458596" duration="2269000" />
       <workItem from="1730559700686" duration="34908000" />
       <workItem from="1730646337604" duration="9822000" />
-      <workItem from="1730852563324" duration="5991000" />
+      <workItem from="1730852563324" duration="6929000" />
     </task>
     <task id="LOCAL-00001" summary="Entidades Restaurante">
       <option name="closed" value="true" />
