@@ -1,0 +1,19 @@
+Index: icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package persistencia;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.SQLException;\r\n\r\npublic class DatabaseConnection {\r\n    private static final String URL = \"jdbc:derby:memory:myDB;create=true\"; // Para bases de datos en memoria\r\n\r\n    public static Connection connect() throws SQLException {\r\n        return DriverManager.getConnection(URL);\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        try (Connection connection = connect()) {\r\n            System.out.println(\"Conexión exitosa a la base de datos Derby.\");\r\n        } catch (SQLException e) {\r\n            System.out.println(\"Error de conexión: \" + e.getMessage());\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java b/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java
+--- a/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java	(revision a2a9269ed8da5c69a93fbe2e0ea4e4cbeb7d9494)
++++ b/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java	(date 1730332134832)
+@@ -5,7 +5,7 @@
+ import java.sql.SQLException;
+ 
+ public class DatabaseConnection {
+-    private static final String URL = "jdbc:derby:memory:myDB;create=true"; // Para bases de datos en memoria
++    private static final String URL = "jdbc:derby:myDB;create=true"; // Para base de datos persistente en disco
+ 
+     public static Connection connect() throws SQLException {
+         return DriverManager.getConnection(URL);

@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8c653dec-d73d-405b-918c-71c11bff2fe4" name="Changes" comment="archivos no visibles">
+      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src/main/java/icedLatteFood/dominio/controladores/GestorClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src/main/java/icedLatteFood/dominio/controladores/GestorClientes.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="Feature_HacerPedido" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Feature_HacerPedido" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Zinebelo2004&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/hamnana00/IcedLatteFood.git&quot;,
+    &quot;accountId&quot;: &quot;6bb56a90-3e33-4878-9fa7-25ef0777923b&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot/3.3.4/spring-boot-3.3.4-sources.jar!/org/springframework/boot/SpringApplication.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/icedLatteFood/icedlatte/src/main/java/icedLatteFood/dominio/controladores/GestorClientes.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="23" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2nqC45Z0feLZL13gbn2QztVrk46" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DatabaseConnection.executor": "Run",
+    "Database Script.console.sql.executor": "Run",
+    "JUnit.IcedlatteApplicationTests.executor": "Run",
+    "JavaScript Debug.BuscarRest.html.executor": "Run",
+    "JavaScript Debug.Pedido.html.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.DeliveryApplication.executor": "Run",
+    "Spring Boot.IcedlatteApplication.executor": "Run",
+    "Spring Boot.RestauranteApplication.executor": "Run",
+    "database.data.extractors.current.export.id": "XML-Groovy.xml.groovy",
+    "database.data.extractors.current.id": "XML-Groovy.xml.groovy",
+    "git-widget-placeholder": "develop",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Zineb/Downloads/3º AÑO INFORMÁTICA/PRIMER CUATRI/ISO II/LAB/ProyectoI",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "derby"
+    ],
+    "RunConfigurationTargetLRU": [
+      "db8afca3-4691-4b3d-a518-ed988fc631d7"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zineb\Downloads\3º AÑO INFORMÁTICA\PRIMER CUATRI\ISO II\LAB\ProyectoI\icedLatteFood\icedlatte\src_\main\java" />
+      <recent name="C:\Users\Zineb\Downloads\3º AÑO INFORMÁTICA\PRIMER CUATRI\ISO II\LAB\ProyectoI\icedLatteFood\icedlatte\src_\main\resources\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="console.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
+      <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/db8afca3-4691-4b3d-a518-ed988fc631d7/console.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="db8afca3-4691-4b3d-a518-ed988fc631d7" />
+      <method v="2" />
+    </configuration>
+    <configuration name="IcedlatteApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="icedlatte" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="icedLatteFood.icedlatte.IcedlatteApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c653dec-d73d-405b-918c-71c11bff2fe4" name="Changes" comment="" />
+      <created>1729691026185</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729691026185</updated>
+      <workItem from="1729691027282" duration="2866000" />
+      <workItem from="1729699193992" duration="412000" />
+      <workItem from="1729699625602" duration="4688000" />
+      <workItem from="1729718549336" duration="1712000" />
+      <workItem from="1729720296971" duration="2203000" />
+      <workItem from="1729762440570" duration="8459000" />
+      <workItem from="1729777870050" duration="336000" />
+      <workItem from="1729778218146" duration="23363000" />
+      <workItem from="1730286167382" duration="23057000" />
+      <workItem from="1730370148006" duration="2041000" />
+      <workItem from="1730372269874" duration="1150000" />
+      <workItem from="1730406844553" duration="1290000" />
+      <workItem from="1730464467932" duration="2351000" />
+      <workItem from="1730531587740" duration="1691000" />
+      <workItem from="1730533312628" duration="23000" />
+      <workItem from="1730533351726" duration="2121000" />
+      <workItem from="1730535626378" duration="145000" />
+      <workItem from="1730535788466" duration="130000" />
+      <workItem from="1730535943485" duration="445000" />
+      <workItem from="1730536407999" duration="734000" />
+      <workItem from="1730537205008" duration="2329000" />
+      <workItem from="1730539558439" duration="4001000" />
+      <workItem from="1730543935072" duration="507000" />
+      <workItem from="1730544458596" duration="2269000" />
+      <workItem from="1730559700686" duration="34908000" />
+      <workItem from="1730646337604" duration="9822000" />
+      <workItem from="1730852563324" duration="5991000" />
+    </task>
+    <task id="LOCAL-00001" summary="Entidades Restaurante">
+      <option name="closed" value="true" />
+      <created>1729695210057</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729695210057</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Entidades Direccion del cliente">
+      <option name="closed" value="true" />
+      <created>1729700657613</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729700657613</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Restaurante, menu y itemMenu">
+      <option name="closed" value="true" />
+      <created>1729720123776</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729720123776</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Gestor del restaurante">
+      <option name="closed" value="true" />
+      <created>1729722427645</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729722427645</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Gestor de repartos">
+      <option name="closed" value="true" />
+      <created>1729723312356</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729723312356</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Gestor del restaurante y repartos">
+      <option name="closed" value="true" />
+      <created>1729723465603</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729723465603</updated>
+    </task>
+    <task id="LOCAL-00007" summary="RestauranteDAO">
+      <option name="closed" value="true" />
+      <created>1729769539261</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729769539261</updated>
+    </task>
+    <task id="LOCAL-00008" summary="He hecho la clase EntityDAO">
+      <option name="closed" value="true" />
+      <created>1729770575036</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1729770575036</updated>
+    </task>
+    <task id="LOCAL-00009" summary="He hecho la clase GestorBasesDatos">
+      <option name="closed" value="true" />
+      <created>1729771448627</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1729771448627</updated>
+    </task>
+    <task id="LOCAL-00010" summary="He hecho la clase item menuDAO">
+      <option name="closed" value="true" />
+      <created>1729771604388</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1729771604389</updated>
+    </task>
+    <task id="LOCAL-00011" summary="He hecho la clase Restaurante DAO">
+      <option name="closed" value="true" />
+      <created>1729772285845</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1729772285845</updated>
+    </task>
+    <task id="LOCAL-00012" summary="He hecho la clase Gestor Restaurante">
+      <option name="closed" value="true" />
+      <created>1729773087979</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1729773087979</updated>
+    </task>
+    <task id="LOCAL-00013" summary="He hecho la clase Gestor Reparto">
+      <option name="closed" value="true" />
+      <created>1729773432400</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1729773432400</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Modifico el fichero pom.xml añdiendo unas lineas para poder trabajar con la base de datos adecuada">
+      <option name="closed" value="true" />
+      <created>1729777302943</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1729777302943</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Modifico el fichero pom.xml añdiendo unas lineas para poder trabajar con la base de datos adecuada">
+      <option name="closed" value="true" />
+      <created>1729778376579</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1729778376579</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Gestor base datos modificada">
+      <option name="closed" value="true" />
+      <created>1729779423978</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1729779423978</updated>
+    </task>
+    <task id="LOCAL-00017" summary="He creado la clase ConexionBaseDatos para conectar el proyecto con una base de datos que vamos a usar">
+      <option name="closed" value="true" />
+      <created>1729779533161</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1729779533161</updated>
+    </task>
+    <task id="LOCAL-00018" summary="modificacion del maven">
+      <option name="closed" value="true" />
+      <created>1729787549955</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1729787549955</updated>
+    </task>
+    <task id="LOCAL-00019" summary="modificacion de Base de Datos">
+      <option name="closed" value="true" />
+      <created>1729792166879</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1729792166879</updated>
+    </task>
+    <task id="LOCAL-00020" summary="creacion de archivos.html">
+      <option name="closed" value="true" />
+      <created>1730286419584</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1730286419584</updated>
+    </task>
+    <task id="LOCAL-00021" summary="IUPedido">
+      <option name="closed" value="true" />
+      <created>1730287610045</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1730287610045</updated>
+    </task>
+    <task id="LOCAL-00022" summary="pagina web">
+      <option name="closed" value="true" />
+      <created>1730299569119</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1730299569119</updated>
+    </task>
+    <task id="LOCAL-00023" summary="pagina web actualizada">
+      <option name="closed" value="true" />
+      <created>1730312934845</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1730312934845</updated>
+    </task>
+    <task id="LOCAL-00024" summary="pagina web actualizada (imagenes de categorias)">
+      <option name="closed" value="true" />
+      <created>1730313528819</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1730313528819</updated>
+    </task>
+    <task id="LOCAL-00025" summary="solucionar errores">
+      <option name="closed" value="true" />
+      <created>1730561398818</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1730561398818</updated>
+    </task>
+    <task id="LOCAL-00026" summary="solucionar errores 2">
+      <option name="closed" value="true" />
+      <created>1730593428772</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1730593428772</updated>
+    </task>
+    <task id="LOCAL-00027" summary="solucionar errores 3">
+      <option name="closed" value="true" />
+      <created>1730650754544</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1730650754544</updated>
+    </task>
+    <task id="LOCAL-00028" summary="archivos no visibles">
+      <option name="closed" value="true" />
+      <created>1730889400468</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1730889400468</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Restaurante, menu y itemMenu" />
+    <MESSAGE value="Gestor del restaurante" />
+    <MESSAGE value="Gestor de repartos" />
+    <MESSAGE value="Gestor del restaurante y repartos" />
+    <MESSAGE value="RestauranteDAO" />
+    <MESSAGE value="He hecho la clase EntityDAO" />
+    <MESSAGE value="He hecho la clase GestorBasesDatos" />
+    <MESSAGE value="He hecho la clase item menuDAO" />
+    <MESSAGE value="He hecho la clase Restaurante DAO" />
+    <MESSAGE value="He hecho la clase Gestor Restaurante" />
+    <MESSAGE value="He hecho la clase Gestor Reparto" />
+    <MESSAGE value="Modifico el fichero pom.xml añdiendo unas lineas para poder trabajar con la base de datos adecuada" />
+    <MESSAGE value="Gestor base datos modificada" />
+    <MESSAGE value="He creado la clase ConexionBaseDatos para conectar el proyecto con una base de datos que vamos a usar" />
+    <MESSAGE value="modificacion del maven" />
+    <MESSAGE value="modificacion de Base de Datos" />
+    <MESSAGE value="creacion de archivos.html" />
+    <MESSAGE value="IUPedido" />
+    <MESSAGE value="pagina web" />
+    <MESSAGE value="pagina web actualizada" />
+    <MESSAGE value="pagina web actualizada (imagenes de categorias)" />
+    <MESSAGE value="solucionar errores" />
+    <MESSAGE value="solucionar errores 2" />
+    <MESSAGE value="solucionar errores 3" />
+    <MESSAGE value="archivos no visibles" />
+    <option name="LAST_COMMIT_MESSAGE" value="archivos no visibles" />
+  </component>
+</project>
