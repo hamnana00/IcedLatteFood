@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class CartaMenu {
-
+//poner abstract entity para q las entidades hereden de este
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCarta;

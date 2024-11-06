@@ -26,5 +26,28 @@ public class RestauranteController {
         return ResponseEntity.ok(restaurantes);
     }
 
-    // Otros métodos específicos para restaurantes
+    @GetMapping("/buscar")
+    public List<Restaurante> buscarRestaurantes(@RequestParam(required = false) String nombre,
+                                                @RequestParam(required = false) String codigoPostal) {
+        if (nombre != null) {
+            return restauranteDAO.findByNombreContaining(nombre);
+        } else if (codigoPostal != null) {
+            return restauranteDAO.findByCodigoPostal(codigoPostal);
+        } else {
+            return restauranteDAO.findAll();
+        }
+    }
+    @PostMapping("/{id}/favorito")
+    public ResponseEntity<Void> marcarComoFavorito(@PathVariable Long id) {
+        Optional<Restaurante> restauranteOptional = restauranteDAO.findById(idUsuario);
+        if (restauranteOptional.isPresent()) {
+            Restaurante restaurante = restauranteOptional.get();
+            restaurante.setFavorito(true);
+            restauranteDAO.save(restaurante);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

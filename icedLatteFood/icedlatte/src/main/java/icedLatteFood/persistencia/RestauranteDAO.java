@@ -12,6 +12,8 @@ import icedLatteFood.*;
 @Repository
 public interface RestauranteDAO extends JpaRepository <Restaurante, String> {
     List<Restaurante> findAllRestaurantes();
+    List<Restaurante> findByNombreContaining(String nombre);
+    List<Restaurante> findByCodigoPostal(String codigoPostal);
 }
 /*public interface RestauranteDAO extends JpaRepository<Restaurante, String>{
 
