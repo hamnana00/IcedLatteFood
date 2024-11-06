@@ -2,15 +2,33 @@ package dominio.controladores;
 
 import java.util.*;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import icedLatteFood.dominio.entidades.CodigoPostal;
 import icedLatteFood.dominio.entidades.Direccion;
 import icedLatteFood.dominio.entidades.Restaurante;
+import icedLatteFood.dominio.entidades.Cliente;
+import icedLatteFood.servicios.DataBaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import icedLatteFood.*;
 
+@Controller
 public class GestorClientes {
+/*
+    @Autowired
+    private DataBaseService dataBaseService;
 
     private icedLatteFood.persistencia.RestauranteDAO restauranteDAO;
     private icedLatteFood.persistencia.ClienteDAO clienteDAO;
 
+    //@Autowired
+    //private ClienteDAO clienteDAO;
     // Constructor que recibe el DAO de restaurantes
     public GestorClientes(icedLatteFood.persistencia.RestauranteDAO restauranteDAO, icedLatteFood.persistencia.ClienteDAO clienteDAO) {
         this.restauranteDAO = restauranteDAO;
@@ -19,7 +37,7 @@ public class GestorClientes {
 
     // Buscar restaurante por zona (código postal)
     public List<icedLatteFood.dominio.entidades.Restaurante> buscarRestaurante(CodigoPostal codigoPostal, String textoBusqueda) {
-        return restauranteDAO.selectPorCodigoPostal(String.valueOf(codigoPostal.getCodigo()));
+        return restauranteDAO.selectPorCodigoPostal(codigoPostal.getCodigo());
     }
 
     //Buscar restaurante solo por cadena de búsqueda
@@ -36,15 +54,15 @@ public class GestorClientes {
     }
 
     // Registrar un nuevo cliente
-    public icedLatteFood.dominio.entidades.Cliente registrarCliente(String nombre, String apellido, Direccion direccion) {
+    public icedLatteFood.dominio.entidades.Cliente registrarCliente(String pass, String nombre, String apellido, Direccion direccion) {
         // Crear un nuevo cliente temporal sin ID
-        icedLatteFood.dominio.entidades.Cliente cliente = new icedLatteFood.dominio.entidades.Cliente(0, nombre, apellido, null); // ID temporal
+        icedLatteFood.dominio.entidades.Cliente cliente = new icedLatteFood.dominio.entidades.Cliente(pass, nombre, apellido, null); // ID temporal
         cliente.anadirDireccion(direccion);  // Se añade la dirección al cliente
 
         // Guardar el cliente en la base de datos y obtener el ID generado
-        int idGenerado = clienteDAO.insert(cliente); // Suponiendo que insert devuelve el ID del nuevo cliente
+        int idGenerado = clienteDAO.insert(cliente); // Suponiendo que insert devuelve el ID del nuevo cliente como int
         if (idGenerado > 0) {
-            cliente.setId(idGenerado); // Asignar el ID generado al cliente
+            cliente.setIdUsuario(String.valueOf(idGenerado));// Asignar el ID generado al cliente
         } else {
             System.out.println("Error al registrar el cliente.");
         }
@@ -83,5 +101,5 @@ public class GestorClientes {
 
         return restaurante;  // Retorna el restaurante encontrado (o null si no se encontró)
     }
-
+*/
 }

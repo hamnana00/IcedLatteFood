@@ -6,12 +6,15 @@ import icedLatteFood.dominio.entidades.Restaurante;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 // Clase que maneja las operaciones de base de datos para la entidad Pedido
-public class PedidoDAO extends EntityDAO<Pedido> {
-
+public interface PedidoDAO extends JpaRepository<Pedido, Integer> {
+/*
     // Constructor que recibe el gestor de base de datos
-    public PedidoDAO(GestorBaseDatos gestorBD) {
+    /*public PedidoDAO(GestorBaseDatos gestorBD) {
         super(gestorBD); // Llama al constructor de la clase padre
     }
 
@@ -21,7 +24,7 @@ public class PedidoDAO extends EntityDAO<Pedido> {
         try (Connection connection = gestorBD.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             // Establecer los parámetros del PreparedStatement desde el objeto Pedido
-            stmt.setInt(1, pedido.getCliente().getId()); // Asumiendo que Pedido tiene un método getCliente()
+            stmt.setString(1, pedido.getCliente().getIdUsuario()); // Asumiendo que Pedido tiene un método getCliente()
             stmt.setString(2, pedido.getNombre()); // Método getNombre() en Pedido
             stmt.setString(3, pedido.getOrigen()); // Método getOrigen() en Pedido
             stmt.setInt(4, Integer.parseInt(pedido.getDestino())); // Método getDestino() en Pedido
@@ -47,7 +50,7 @@ public class PedidoDAO extends EntityDAO<Pedido> {
                 // Asegúrate de que los nombres de las columnas coincidan con tu base de datos
                 return new Pedido(
                         rs.getInt("idPed"),
-                        rs.getInt("idCli"),
+                        rs.getString("idCli"),
                         rs.getString("nombre"),
                         rs.getString("origen"),
                         rs.getInt("destino"),
@@ -123,5 +126,5 @@ public class PedidoDAO extends EntityDAO<Pedido> {
     @Override
     public List<Restaurante> selectPorCodigoPostal(String s) {
         return new ArrayList<>(); // Retorna una lista vacía o implementar la lógica según sea necesario
-    }
+    }*/
 }

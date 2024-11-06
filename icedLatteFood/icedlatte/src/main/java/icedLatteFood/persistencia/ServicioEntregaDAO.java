@@ -7,15 +7,18 @@ import icedLatteFood.dominio.entidades.Pedido;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class ServicioEntregaDAO extends EntityDAO<ServicioEntrega> {
-
+@Repository
+public interface ServicioEntregaDAO extends JpaRepository<ServicioEntrega, Integer> {
+/*
     // Constructor que recibe GestorBaseDatos
     public ServicioEntregaDAO(GestorBaseDatos gestorBD) {
         super(gestorBD); // Llama al constructor de la clase base
     }
 
-    @Override
+   // @Override
     public int insert(ServicioEntrega entity) {
         String sql = "INSERT INTO ServicioEntrega (pedidoId, direccionId, repartidorId, fechaRecepcion, fechaEntrega) VALUES (?, ?, ?, ?, ?)";
 
@@ -45,7 +48,7 @@ public class ServicioEntregaDAO extends EntityDAO<ServicioEntrega> {
         return -1; // Retorna -1 si falla
     }
 
-    @Override
+    //@Override
     public int update(ServicioEntrega entity) {
         String sql = "UPDATE ServicioEntrega SET pedidoId = ?, direccionId = ?, repartidorId = ?, fechaRecepcion = ?, fechaEntrega = ? WHERE id = ?";
         try (Connection connection = DatabaseConnection.connect();
@@ -64,7 +67,7 @@ public class ServicioEntregaDAO extends EntityDAO<ServicioEntrega> {
         }
     }
 
-    @Override
+    //@Override
     public int delete(ServicioEntrega entity) {
         String sql = "DELETE FROM ServicioEntrega WHERE id = ?";
         try (Connection connection = DatabaseConnection.connect();
@@ -77,11 +80,11 @@ public class ServicioEntregaDAO extends EntityDAO<ServicioEntrega> {
         }
     }
 
-    @Override
+    //@Override
     public ServicioEntrega select(String id) {
         return null;
     }
-    @Override
+    //@Override
     public List<Restaurante> selectPorCodigoPostal(String s) {
         return List.of();
     }
@@ -107,7 +110,7 @@ public class ServicioEntregaDAO extends EntityDAO<ServicioEntrega> {
             while (rs.next()) {
                 pedidosPendientes.add(new Pedido(
                         rs.getInt("idPed"),
-                        rs.getInt("idCli"),
+                        rs.getString("idCli"),
                         rs.getString("nombre"),
                         rs.getString("origen"),
                         rs.getInt("destino"),
@@ -121,4 +124,6 @@ public class ServicioEntregaDAO extends EntityDAO<ServicioEntrega> {
         }
         return pedidosPendientes;
     }
+
+ */
 }

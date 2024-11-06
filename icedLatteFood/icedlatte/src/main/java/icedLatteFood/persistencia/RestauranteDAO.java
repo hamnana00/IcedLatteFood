@@ -5,10 +5,17 @@ import icedLatteFood.dominio.entidades.Direccion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import icedLatteFood.*;
 
-public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
+@Repository
+public interface RestauranteDAO extends JpaRepository <Restaurante, String> {
+    List<Restaurante> findAllRestaurantes();
+}
+/*public interface RestauranteDAO extends JpaRepository<Restaurante, String>{
 
-    public RestauranteDAO(GestorBaseDatos gestorBD) {
+    /*public RestauranteDAO(GestorBaseDatos gestorBD) {
         super(gestorBD);
     }
 
@@ -30,7 +37,9 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
                 );
                 // Convertir "favorito" manualmente
                 boolean favorito = rs.getInt("favorito") == 1; // Cambia aquí
+
                 return new Restaurante(
+                        rs.getString("pass"),
                         rs.getString("nombre"),
                         rs.getString("cif"),
                         favorito,
@@ -62,6 +71,7 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
                 // Convertir "favorito" manualmente
                 boolean favorito = rs.getInt("favorito") == 1; // Cambia aquí
                 restaurantes.add(new Restaurante(
+                        rs.getString("pass"),
                         rs.getString("nombre"),
                         rs.getString("cif"),
                         favorito,
@@ -90,6 +100,7 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
                         rs.getString("municipio")
                 );
                 restaurantes.add(new Restaurante(
+                        rs.getString("pass"),
                         rs.getString("nombre"),
                         rs.getString("cif"),
                         rs.getBoolean("favorito"),
@@ -133,6 +144,7 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
 
                 // Agregar el restaurante a la lista
                 restaurantes.add(new Restaurante(
+                        rs.getString("pass"),
                         rs.getString("nombre"),
                         rs.getString("cif"),
                         favorito,
@@ -165,6 +177,7 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
                 // Convertir "favorito" manualmente
                 boolean favorito = rs.getInt("favorito") == 1; // Cambia aquí
                 return new Restaurante(
+                        rs.getString("pass"),
                         rs.getString("nombre"),
                         rs.getString("cif"),
                         favorito,
@@ -200,6 +213,7 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
                 boolean favorito = rs.getInt("favorito") == 1; // Cambia aquí
                 // Agregar el restaurante a la lista
                 restaurantes.add(new Restaurante(
+                        rs.getString("pass"),
                         rs.getString("nombre"),
                         rs.getString("cif"),
                         favorito,
@@ -211,5 +225,5 @@ public abstract class RestauranteDAO extends EntityDAO<Restaurante> {
         }
         return restaurantes; // Retorna la lista de restaurantes encontrados
     }
+}*/
 
-}

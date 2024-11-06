@@ -1,5 +1,10 @@
 package icedLatteFood.dominio.controladores;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import icedLatteFood.dominio.entidades.*;
 import icedLatteFood.persistencia.PedidoDAO;
 import icedLatteFood.persistencia.ServicioEntregaDAO;
@@ -10,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 public class GestorPedidos {
+    /*
 
     private PedidoDAO pedidoDAO;
     private ServicioEntregaDAO servicioEntregaDAO;
@@ -22,7 +28,7 @@ public class GestorPedidos {
 
     // Método para realizar un pedido
     public void realizarPedido(Cliente cliente, Restaurante restaurante, List<ItemMenu> items, MetodoPago metodoPago) {
-        Pedido nuevoPedido = new Pedido(0, cliente.getId(), cliente.getNombre(), restaurante.getNombre(), 0, 0.0, new Date(), 0);
+        Pedido nuevoPedido = new Pedido(0, cliente.getIdUsuario(), cliente.getNombre(), restaurante.getNombre(), 0, 0.0, new Date(), 0);
         nuevoPedido.setCliente(cliente);
         nuevoPedido.setRestaurante(restaurante);
 
@@ -79,7 +85,7 @@ public class GestorPedidos {
             if (rs.next()) {
                 pedidoEnMarcha = new Pedido(
                         rs.getInt("idPed"),
-                        rs.getInt("idCli"),
+                        rs.getString("idCli"),
                         rs.getString("nombre"),
                         rs.getString("origen"),
                         rs.getInt("destino"),
@@ -153,6 +159,6 @@ public class GestorPedidos {
         }
     }
 
-
+*/
 
 }

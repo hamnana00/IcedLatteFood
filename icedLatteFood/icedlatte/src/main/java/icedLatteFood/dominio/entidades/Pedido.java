@@ -3,20 +3,36 @@ package icedLatteFood.dominio.entidades;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int pedidoId; // Atributo para almacenar el ID del pedido
+    @Column
     private Cliente cliente; // Cliente que realiza el pedido
+    @Column
     private Restaurante restaurante; // Restaurante donde se realiza el pedido
+    @Column
     private ServicioEntrega entrega; // Servicio de entrega asociado al pedido
+    @Column
     private Date fecha; // Fecha en que se realizó el pedido
+    @Column
     private List<ItemMenu> items; // Lista de items del menú en el pedido
+    @Column
     private EstadoPedido estado; // Estado actual del pedido
+    @Column
     private Pago pago; // Información sobre el pago realizado para el pedido
+    @Column
     private double precioTotal; // Atributo para almacenar el precio total del pedido
 
     // Constructor que inicializa la fecha del pedido y crea la lista de items
-    public Pedido(int idPed, int idCli, String nombre, String origen, int destino, double precioTotal, Date fecha, int idRepar) {
+    public Pedido(int idPed, String idCli, String nombre, String origen, int destino, double precioTotal, Date fecha, int idRepar) {
         this.fecha = fecha;
         this.items = new ArrayList<>(); // Inicializa la lista de items como una nueva ArrayList
         this.estado = EstadoPedido.PEDIDO; // Establece el estado inicial del pedido como PEDIDO
@@ -119,9 +135,9 @@ public class Pedido {
     }
 
     // Método para obtener el destino del pedido (dirección de entrega)
-    public String getDestino() {
+    /*public String getDestino() {
         return entrega != null ? String.valueOf(entrega.getDireccion()) : null; // Retorna la dirección de entrega si existe
-    }
+    }*/
 
     // Método para obtener la hora del pedido en formato "HH:mm:ss"
     public String getHora() {
@@ -132,13 +148,13 @@ public class Pedido {
     }
 
     // Método para obtener el ID del repartidor
-    public int getRepartidorId() {
+    /*public int getRepartidorId() {
         if (entrega != null) { // Verifica que el servicio de entrega no sea nulo
             return entrega.getRepartidorId(); // Retorna el ID del repartidor desde el servicio de entrega
         } else {
             throw new IllegalStateException("No hay servicio de entrega asociado al pedido."); // Manejo de error si no hay entrega
         }
-    }
+    }*/
 
     // Método para obtener una representación en cadena del pedido
     @Override
@@ -207,7 +223,7 @@ public class Pedido {
     }
 
     // Método para obtener la dirección de entrega
-    public Direccion getDireccionEntrega() {
+    /*public Direccion getDireccionEntrega() {
         return entrega != null ? entrega.getDireccion() : null; // Retorna la dirección de entrega desde el servicio de entrega
-    }
+    }*/
 }

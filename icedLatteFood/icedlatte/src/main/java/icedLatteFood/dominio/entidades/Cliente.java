@@ -1,35 +1,33 @@
 package icedLatteFood.dominio.entidades;
 
 import java.util.Collection;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-public class Cliente {
-    private int id; // Atributo para almacenar el ID del cliente
+@Entity
+public class Cliente extends Usuario{
+    @Column
     private String nombre;
+    @Column
     private String apellidos;
+    @Column
     private String dni;
+    @Column
     private Collection<Restaurante> favoritos;
+    @Column
     private Collection<icedLatteFood.dominio.entidades.Pedido> pedidos;
+    @Column
     private Collection<icedLatteFood.dominio.entidades.Direccion> direcciones;
 
     // Constructor que inicializa el nombre, apellidos y dni
-    public Cliente(int idCli, String nombre, String apellidos, String dni) {
+    public Cliente(String pass, String nombre, String apellidos, String dni){
+        super(pass);
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
-    }
-
-    // Getter para el ID del cliente
-    public int getId() {
-        return id; // Retorna el ID del cliente
-    }
-
-    // Setter para el ID del cliente
-    public void setId(int id) {
-        if (id > 0) { // Validación del ID
-            this.id = id; // Asigna el ID del cliente
-        } else {
-            throw new IllegalArgumentException("El ID del cliente debe ser positivo"); // Lanza excepción si el ID no es válido
-        }
     }
 
     // Otros getters y setters
@@ -85,6 +83,10 @@ public class Cliente {
     public void anadirFavorito(Restaurante restaurante) {
         this.favoritos.add(restaurante);
     } // Añadir restaurante favorito a colección
+
+    public void eliminarFavorito(Restaurante restaurante) {
+        this.favoritos.remove(restaurante);
+    }
 
     public void realizarPedido(icedLatteFood.dominio.entidades.Pedido pedido) {
         this.pedidos.add(pedido);

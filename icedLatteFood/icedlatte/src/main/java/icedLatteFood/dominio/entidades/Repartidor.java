@@ -1,22 +1,31 @@
 package icedLatteFood.dominio.entidades;
 
 import java.util.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Repartidor {
-    private static int idCounter = 0; // Contador estático para generar IDs únicos
-    private int id; // ID del repartidor
-    private String nombre;
-    private String apellidos;
-    private String nif;
-    private int eficiencia;
 
+    @Column
+    private String nombre;
+    @Column
+    private String apellidos;
+    @Column
+    private String nif;
+    @Column
+    private int eficiencia;
+/*
     // Colecciones para servicios y zonas
     Collection<ServicioEntrega> servicios;
     Collection<CodigoPostal> zonas;
 
     // Constructor
     public Repartidor(String nombre, String apellidos, String nif, int eficiencia) {
-        this.id = ++idCounter; // Asigna un ID único al repartidor
+        super(pass); // Asigna un ID único al repartidor
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.nif = nif;
@@ -26,9 +35,6 @@ public class Repartidor {
     }
 
     // Método para obtener el ID del repartidor
-    public int getId() {
-        return id; // Retorna el ID del repartidor
-    }
 
     // Métodos adicionales para obtener información del repartidor
     public String getNombre() {
@@ -74,5 +80,5 @@ public class Repartidor {
         } else {
             throw new IllegalArgumentException("La lista de zonas no puede ser nula");
         }
-    }
+    }*/
 }

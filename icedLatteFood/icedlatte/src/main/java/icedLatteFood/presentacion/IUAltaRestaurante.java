@@ -7,7 +7,7 @@ import icedLatteFood.dominio.controladores.GestorRestaurantes;
 import java.util.Scanner;
 
 public class IUAltaRestaurante {
-
+/*
     private GestorRestaurantes gestorRestaurantes; // Controlador de restaurantes
 
     public IUAltaRestaurante(GestorRestaurantes gestorRestaurantes) {
@@ -20,6 +20,9 @@ public class IUAltaRestaurante {
         System.out.println("***** Alta Restaurante *****");
 
         // Captura de datos del restaurante
+        System.out.print("Password: ");
+        String pass = scanner.nextLine();
+
         System.out.print("Nombre del Restaurante: ");
         String nombre = scanner.nextLine();
 
@@ -52,7 +55,7 @@ public class IUAltaRestaurante {
         Direccion direccion = new Direccion(calle, numero, complemento, codigoPostal, municipio);
 
         // Registro del nuevo restaurante
-        Restaurante nuevoRestaurante = gestorRestaurantes.registrarRestaurante(nombre, cif, favorito, direccion);
+        Restaurante nuevoRestaurante = gestorRestaurantes.registrarRestaurante(pass, nombre, cif, favorito, direccion);
 
         // Aquí deberías insertar el restaurante en la base de datos usando el DAO
         if (gestorRestaurantes.getRestauranteDAO().insert(nuevoRestaurante) > 0) {
@@ -60,5 +63,5 @@ public class IUAltaRestaurante {
         } else {
             System.out.println("Error al agregar el restaurante.");
         }
-    }
+    }*/
 }

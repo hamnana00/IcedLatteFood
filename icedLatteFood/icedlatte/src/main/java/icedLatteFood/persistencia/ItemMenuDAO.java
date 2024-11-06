@@ -3,9 +3,23 @@ package icedLatteFood.persistencia;
 import java.sql.*;
 import java.sql.Connection;
 import icedLatteFood.dominio.entidades.ItemMenu;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import icedLatteFood.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-public abstract class ItemMenuDAO extends EntityDAO<ItemMenu> {
-
+@Repository
+public interface ItemMenuDAO extends JpaRepository<ItemMenu, Long> {
+    @Override
+    ItemMenu save(ItemMenu itemMenu);
+    @Override
+    Optional <ItemMenu> findById(Long id);
+    List<ItemMenu> findAll();
+    void update(ItemMenu itemMenu);
+    void delete(Long id);
+/*
 
     public ItemMenuDAO(GestorBaseDatos gestorBD) {
         super(gestorBD);
@@ -68,5 +82,7 @@ public abstract class ItemMenuDAO extends EntityDAO<ItemMenu> {
             e.printStackTrace();
             return false;
         }
-    }
+    }*/
+
+
 }

@@ -3,9 +3,16 @@ package icedLatteFood.dominio.controladores;
 import icedLatteFood.dominio.entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;
+import icedLatteFood.servicios.DataBaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class GestorLogin {
-
+/*
+    @Autowired
+    private DataBaseService dataBaseService;
     // Lista de usuarios simulando una base de datos
     private List<Usuario> usuarios;
 
@@ -15,9 +22,8 @@ public class GestorLogin {
     }
 
     // Método para registrar un nuevo usuario
-    public void registrarUsuario(String id, String pass) {
-        Usuario nuevoUsuario = new Usuario();
-        nuevoUsuario.setIdUsuario(id);
+    public void registrarUsuario(String pass) {
+        Usuario nuevoUsuario = new Usuario(pass);
         nuevoUsuario.setPass(pass);
         usuarios.add(nuevoUsuario);
     }
@@ -31,4 +37,12 @@ public class GestorLogin {
         }
         return false; // Si no se encontró el usuario o la contraseña es incorrecta
     }
+
+    @GetMapping("/test-connection")
+    public String testConnection() {
+        dataBaseService.testConnection();
+        return "Connection tested!";
+    }
+    */
+
 }

@@ -2,14 +2,38 @@ package icedLatteFood.dominio.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-// Clase Menu
+@Entity
 public class CartaMenu {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idCarta;
+    @Column
+    private Restaurante retaurante;
+    @Column
     private List<icedLatteFood.dominio.entidades.ItemMenu> itemMenu;
+
 
     // Constructor
     public CartaMenu() {
         this.itemMenu = new ArrayList<>();
+    }
+
+    public Long getIdCarta() { return idCarta; }
+    public void setIdCarta(Long idCarta) { this.idCarta = idCarta; }
+
+    public Restaurante getRetaurante() {
+        return retaurante;
+    }
+
+    public void setRetaurante(Restaurante retaurante) {
+        this.retaurante = retaurante;
     }
 
     // Método para agregar un plato al menú

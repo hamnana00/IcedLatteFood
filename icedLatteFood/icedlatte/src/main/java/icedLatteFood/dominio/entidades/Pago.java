@@ -3,12 +3,21 @@ package icedLatteFood.dominio.entidades;
 import java.util.UUID;
 import java.util.Date;
 import icedLatteFood.dominio.entidades.EstadoPedido;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Pago {
-
+    @Column
     icedLatteFood.dominio.entidades.Pedido pedido;
+    @Column
     MetodoPago tipo;
+    @Column
     private UUID idTransaccion;
+    @Column
     private Date fechaTransaccion;
 
     public Pago(icedLatteFood.dominio.entidades.Pedido pedido, MetodoPago tipo) {
