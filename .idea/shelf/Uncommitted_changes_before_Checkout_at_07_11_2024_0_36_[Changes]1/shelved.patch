@@ -1,0 +1,17 @@
+Index: .idea/dataSources.local.xml
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+deleted file mode 100644
+--- a/.idea/dataSources.local.xml	(revision 77e4d92b1f8b76687dbdc9d0b5b0fc30bb727b9d)
++++ /dev/null	(revision 77e4d92b1f8b76687dbdc9d0b5b0fc30bb727b9d)
+@@ -1,9 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-242.23339.11">
+-    <data-source name="myDB" uuid="db8afca3-4691-4b3d-a518-ed988fc631d7">
+-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="DERBY" />
+-      <schema-mapping />
+-    </data-source>
+-  </component>
+-</project>
+\ No newline at end of file
