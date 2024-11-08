@@ -5,6 +5,7 @@ import icedLatteFood.dominio.entidades.Direccion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import icedLatteFood.*;
@@ -14,6 +15,7 @@ public interface RestauranteDAO extends JpaRepository <Restaurante, String> {
     List<Restaurante> findAllRestaurantes();
     List<Restaurante> findByNombreContaining(String nombre);
     List<Restaurante> findByCodigoPostal(String codigoPostal);
+    Optional<Restaurante> findById(String idUsuario);
 }
 /*public interface RestauranteDAO extends JpaRepository<Restaurante, String>{
 

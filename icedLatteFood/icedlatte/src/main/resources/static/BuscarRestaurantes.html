@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Restaurantes</title>
+    <script>
+        async function buscarRestaurantes() {
+            const nombre = document.getElementById('nombre').value;
+            const codigoPostal = document.getElementById('codigoPostal').value;
+            let url = '/restaurantes/buscar?';
+            if (nombre) {
+                url += `nombre=${nombre}&`;
+            }
+            if (codigoPostal) {
+                url += `codigoPostal=${codigoPostal}&`;
+            }
+            const response = await fetch(url);
+            const restaurantes = await response.json();
+            mostrarRestaurantes(restaurantes);
+        }
+
+        async function marcarComoFavorito(id) {
+            await fetch(`/restaurantes/${id}/favorito`, { method: 'POST' });
+            buscarRestaurantes();
+        }
+
+        function mostrarRestaurantes(restaurantes) {
+            const lista = document.getElementById('listaRestaurantes');
+            lista.innerHTML = '';
+            restaurantes.forEach(restaurante => {
+                const item = document.createElement('li');
+                item.textContent = `${restaurante.nombre} - ${restaurante.direccion.codigoPostal}`;
+                if (restaurante.favorito) {
+                    item.textContent += ' (Favorito)';
+                } else {
+                    const botonFavorito = document.createElement('button');
+                    botonFavorito.textContent = 'Agregar a Favoritos';
+                    botonFavorito.onclick = () => marcarComoFavorito(restaurante.id);
+                    item.appendChild(botonFavorito);
+                }
+                lista.appendChild(item);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', buscarRestaurantes);
+    </script>
+</head>
+<body>
+    <h1>Buscar Restaurantes</h1>
+    <div>
+        <input type="text" id="nombre" placeholder="Nombre del restaurante">
+        <input type="text" id="codigoPostal" placeholder="Código Postal">
+        <button onclick="buscarRestaurantes()">Buscar</button>
+    </div>
+    <ul id="listaRestaurantes"></ul>
+</body>
+</html>

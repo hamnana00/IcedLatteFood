@@ -6,6 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import java.util.List;
+import java.util.ArrayList;
+
 // Clase Restaurante
 @Entity
 public class Restaurante extends Usuario{
@@ -15,12 +19,12 @@ public class Restaurante extends Usuario{
     private String cif;
     @Column
     private boolean favorito;  // Atributo para saber si el restaurante es favorito
-    @Column
+    @OneToOne
     private Direccion direccion; // Atributo para la dirección del restaurante
-    @OneToMany
-    private CartaMenu cartaMenu;
-    //@OneToMany
-    //private List<Pedido> pedidos;
+    @OneToMany(mappedBy = "restaurante")
+    private List<CartaMenu> cartaMenu;
+    @OneToMany(mappedBy = "pedidos")
+    private List<Pedido> pedidos;
 
     // Constructor
     public Restaurante(String pass, String nombre, String cif, boolean favorito, Direccion direccion) {
@@ -29,7 +33,8 @@ public class Restaurante extends Usuario{
         this.cif = cif;
         this.favorito = favorito; // Ahora inicializamos favorito
         this.direccion = direccion;
-        this.cartaMenu = new CartaMenu(); // Inicializar cartaMenu aquí
+        this.cartaMenu = new ArrayList<>();
+        this.pedidos = new ArrayList<>();
     }
 
     // Getters y Setters
@@ -65,7 +70,8 @@ public class Restaurante extends Usuario{
         this.direccion = direccion;
     }
 
-    public CartaMenu getCartaMenu() {
+    //DESCOMENTAR PARA QUE FUNCION HACER PEDIDO PUEDA TRABAJAR
+    /*public CartaMenu getCartaMenu() {
         return cartaMenu;
     }
 
@@ -84,7 +90,7 @@ public class Restaurante extends Usuario{
 
     public void modificarMenu(CartaMenu cartaMenu) {
         this.cartaMenu = cartaMenu;
-    }
+    }*/
     /*public void mostrarPedidos() {
         for (Pedido pedido : pedidos) {
             System.out.println(pedido);

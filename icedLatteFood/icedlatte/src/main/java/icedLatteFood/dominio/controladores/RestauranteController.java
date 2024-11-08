@@ -20,13 +20,12 @@ public class RestauranteController {
     private RestauranteDAO restauranteDAO;
 
     @GetMapping
-    public ResponseEntity<List<Restaurante>> getAllRestaurantes() {
-        logger.info("Obteniendo todos los restaurantes");
-        List<Restaurante> restaurantes = restauranteDAO.findAllRestaurantes();
-        return ResponseEntity.ok(restaurantes);
+     public List<Restaurante> listarRestaurantes() {
+        logger.info("Listando todos los restaurantes");
+        return restauranteDAO.findAllRestaurantes();
     }
 
-    @GetMapping("/buscar")
+    @GetMapping("/buscar") //buscar restaurante
     public List<Restaurante> buscarRestaurantes(@RequestParam(required = false) String nombre,
                                                 @RequestParam(required = false) String codigoPostal) {
         if (nombre != null) {
@@ -37,13 +36,24 @@ public class RestauranteController {
             return restauranteDAO.findAll();
         }
     }
-    @PostMapping("/{id}/favorito")
-    public ResponseEntity<Void> marcarComoFavorito(@PathVariable Long id) {
+    /*@GetMapping("/buscarcp") //buscar restaurante por codigopostal
+    public List<Restaurante> buscarRestaurantes(@RequestParam(required = false) String codigoPostal) {
+        if (codigoPostal != null) {
+            return restauranteDAO.findByCodigoPostal(codigoPostal);
+        } else {
+            return restauranteDAO.findAll();
+        }
+    }*/ //no es necesario separar el metodo anterior porque busca dde las dos formas
+
+    @PostMapping("/{idUsuario}/favorito")
+    public ResponseEntity<Void> marcarComoFavorito(@PathVariable String idUsuario) {
+        logger.info("Marcando restaurante con ID: {} como favorito", idUsuario);
         Optional<Restaurante> restauranteOptional = restauranteDAO.findById(idUsuario);
         if (restauranteOptional.isPresent()) {
             Restaurante restaurante = restauranteOptional.get();
             restaurante.setFavorito(true);
             restauranteDAO.save(restaurante);
+            logger.info("Restaurante con ID: {} marcado como favorito", idUsuario);
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();

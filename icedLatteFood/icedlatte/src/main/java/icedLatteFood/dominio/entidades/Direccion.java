@@ -8,6 +8,10 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Direccion {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
     @Column
     private String calle;
     @Column
