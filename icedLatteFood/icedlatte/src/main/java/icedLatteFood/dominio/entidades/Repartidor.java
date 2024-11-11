@@ -8,7 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Repartidor {
+public class Repartidor extends Usuario{
 
     @Column
     private String nombre;
@@ -21,17 +21,17 @@ public class Repartidor {
 /*
     // Colecciones para servicios y zonas
     Collection<ServicioEntrega> servicios;
-    Collection<CodigoPostal> zonas;
+    Collection<CodigoPostal> zonas;*/
 
     // Constructor
-    public Repartidor(String nombre, String apellidos, String nif, int eficiencia) {
+    public Repartidor(String pass, String nombre, String apellidos, String nif, int eficiencia) {
         super(pass); // Asigna un ID único al repartidor
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.nif = nif;
-        this.eficiencia = eficiencia;
-        this.servicios = new ArrayList<>(); // Inicializa la colección de servicios
-        this.zonas = new ArrayList<>(); // Inicializa la colección de zonas
+        //this.eficiencia = eficiencia;
+        //this.servicios = new ArrayList<>(); // Inicializa la colección de servicios
+        //this.zonas = new ArrayList<>(); // Inicializa la colección de zonas
     }
 
     // Método para obtener el ID del repartidor
@@ -53,7 +53,7 @@ public class Repartidor {
         return eficiencia;
     }
 
-    public Collection<ServicioEntrega> getServicios() {
+    /*public Collection<ServicioEntrega> getServicios() {
         return servicios; // Devuelve la colección de servicios
     }
 

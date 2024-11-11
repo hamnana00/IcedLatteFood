@@ -1,11 +1,9 @@
 package icedLatteFood.dominio.entidades;
 
 import java.util.Collection;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class Cliente extends Usuario{
@@ -19,8 +17,9 @@ public class Cliente extends Usuario{
     private Collection<Restaurante> favoritos;
     @Column
     private Collection<icedLatteFood.dominio.entidades.Pedido> pedidos;
-    @Column
-    private Collection<icedLatteFood.dominio.entidades.Direccion> direcciones;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "cliente_id")
+    private List<Direccion> direcciones;
 
     // Constructor que inicializa el nombre, apellidos y dni
     public Cliente(String pass, String nombre, String apellidos, String dni){
@@ -71,11 +70,10 @@ public class Cliente extends Usuario{
         this.pedidos = pedidos;
     }
 
-    public Collection<icedLatteFood.dominio.entidades.Direccion> getDirecciones() {
+     public List<Direccion> getDirecciones() {
         return direcciones;
     }
-
-    public void setDirecciones(Collection<icedLatteFood.dominio.entidades.Direccion> direcciones) {
+    public void setDirecciones(List<Direccion> direcciones) {
         this.direcciones = direcciones;
     }
 

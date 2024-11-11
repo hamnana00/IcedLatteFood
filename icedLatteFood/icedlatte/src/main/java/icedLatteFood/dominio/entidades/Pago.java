@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Pago {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idPago;
     @Column
     icedLatteFood.dominio.entidades.Pedido pedido;
     @Column
@@ -21,8 +24,16 @@ public class Pago {
     private Date fechaTransaccion;
 
     public Pago(icedLatteFood.dominio.entidades.Pedido pedido, MetodoPago tipo) {
+        this.idPago=idPago;
         this.pedido = pedido;
         this.tipo = tipo;
+    }
+    public Long getIdPago() {
+        return idPago;
+    }
+
+    public void setIdPago(Long idPago) {
+        this.idPago = idPago;
     }
 
     public UUID getIdTransaccion() {

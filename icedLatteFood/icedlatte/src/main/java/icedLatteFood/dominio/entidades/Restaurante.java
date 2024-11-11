@@ -1,12 +1,6 @@
 package icedLatteFood.dominio.entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -19,11 +13,12 @@ public class Restaurante extends Usuario{
     private String cif;
     @Column
     private boolean favorito;  // Atributo para saber si el restaurante es favorito
-    @OneToOne
-    private Direccion direccion; // Atributo para la dirección del restaurante
-    @OneToMany(mappedBy = "restaurante")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "direccion_id")
+    private Direccion direccion;; // Atributo para la dirección del restaurante
+    @OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartaMenu> cartaMenu;
-    @OneToMany(mappedBy = "pedidos")
+    @OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedido> pedidos;
 
     // Constructor
@@ -70,9 +65,11 @@ public class Restaurante extends Usuario{
         this.direccion = direccion;
     }
 
-    //DESCOMENTAR PARA QUE FUNCION HACER PEDIDO PUEDA TRABAJAR
-    /*public CartaMenu getCartaMenu() {
+    /*public List<CartaMenu> getCartaMenu() {
         return cartaMenu;
+    }
+    public void setCartaMenu(List<CartaMenu> cartaMenu) {
+        this.cartaMenu = cartaMenu;
     }
 
     // Métodos para interactuar con la carta de menú
@@ -90,8 +87,8 @@ public class Restaurante extends Usuario{
 
     public void modificarMenu(CartaMenu cartaMenu) {
         this.cartaMenu = cartaMenu;
-    }*/
-    /*public void mostrarPedidos() {
+    }
+    public void mostrarPedidos() {
         for (Pedido pedido : pedidos) {
             System.out.println(pedido);
         }

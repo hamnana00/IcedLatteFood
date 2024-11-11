@@ -9,6 +9,9 @@ import jakarta.persistence.Id;
 
 @Entity
 public class ServicioEntrega {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEntrega;
     @Column
     Pedido pedido;
     @Column
