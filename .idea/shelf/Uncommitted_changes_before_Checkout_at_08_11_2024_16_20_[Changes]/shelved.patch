@@ -1,0 +1,73 @@
+Index: icedLatteFood/icedlatte/src/main/java/icedLatteFood/icedlatte/ServletInitializer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package icedLatteFood.icedlatte;\r\n\r\nimport org.springframework.boot.builder.SpringApplicationBuilder;\r\nimport org.springframework.boot.web.servlet.support.SpringBootServletInitializer;\r\n\r\npublic class ServletInitializer extends SpringBootServletInitializer {\r\n\r\n\t@Override\r\n\tprotected SpringApplicationBuilder configure(SpringApplicationBuilder application) {\r\n\t\treturn application.sources(IcedlatteApplication.class);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/icedLatteFood/icedlatte/src/main/java/icedLatteFood/icedlatte/ServletInitializer.java b/icedLatteFood/icedlatte/src/main/java/icedLatteFood/icedlatte/ServletInitializer.java
+--- a/icedLatteFood/icedlatte/src/main/java/icedLatteFood/icedlatte/ServletInitializer.java	(revision 5dbf467cf9a0a8b01818660314ac1f86ba2b38f8)
++++ b/icedLatteFood/icedlatte/src/main/java/icedLatteFood/icedlatte/ServletInitializer.java	(date 1731079191354)
+@@ -7,7 +7,7 @@
+ 
+ 	@Override
+ 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+-		return application.sources(IcedlatteApplication.class);
++		return application.sources(DeliveryApplication.class);
+ 	}
+ 
+ }
+Index: icedLatteFood/icedlatte/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0\r\nhttp://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n    <parent>\r\n        <groupId>org.springframework.boot</groupId>\r\n        <artifactId>spring-boot-starter-parent</artifactId>\r\n        <version>3.3.4</version>\r\n        <relativePath/> <!-- lookup parent from repository -->\r\n    </parent>\r\n    <groupId>icedLatteFood</groupId>\r\n    <artifactId>icedlatte</artifactId>\r\n    <version>0.0.1-SNAPSHOT</version>\r\n    <packaging>war</packaging>\r\n    <name>icedlatte</name>\r\n    <description>Demo project for Spring Boot</description>\r\n    <url/>\r\n    <licenses>\r\n        <license/>\r\n    </licenses>\r\n    <developers>\r\n        <developer/>\r\n    </developers>\r\n    <scm>\r\n        <connection/>\r\n        <developerConnection/>\r\n        <tag/>\r\n        <url/>\r\n    </scm>\r\n    <properties>\r\n        <java.version>23</java.version> <!--original estaba 17 -->\r\n    </properties>\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-thymeleaf</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-web</artifactId>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-tomcat</artifactId>\r\n            <scope>provided</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-test</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n\r\n        <!-- Dependencias para Apache Derby -->\r\n        <dependency>\r\n            <groupId>org.apache.derby</groupId>\r\n            <artifactId>derby</artifactId>\r\n            <version>10.15.2.0</version> <!-- Versión de Derby -->\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.apache.derby</groupId>\r\n            <artifactId>derbytools</artifactId>\r\n            <version>10.15.2.0</version> <!-- Versión de Derby Tools -->\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-data-jpa</artifactId>\r\n        </dependency>\r\n\r\n        <!-- Fin de dependencias para Apache Derby -->\r\n    </dependencies>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.springframework.boot</groupId>\r\n                <artifactId>spring-boot-maven-plugin</artifactId>\r\n                <version>3.3.4</version>\r\n                <executions>\r\n                    <execution>\r\n                        <goals>\r\n                            <goal>run</goal>\r\n                        </goals>\r\n                    </execution>\r\n                </executions>\r\n                <configuration>\r\n                    <mainClass>icedLatteFood.icedlatte.IcedlatteApplication</mainClass>\r\n                </configuration>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/icedLatteFood/icedlatte/pom.xml b/icedLatteFood/icedlatte/pom.xml
+--- a/icedLatteFood/icedlatte/pom.xml	(revision 5dbf467cf9a0a8b01818660314ac1f86ba2b38f8)
++++ b/icedLatteFood/icedlatte/pom.xml	(date 1731078986256)
+@@ -52,6 +52,10 @@
+             <artifactId>spring-boot-starter-test</artifactId>
+             <scope>test</scope>
+         </dependency>
++        <dependency>
++            <groupId>org.springframework.boot</groupId>
++            <artifactId>spring-boot-starter-data-jpa</artifactId>
++        </dependency>
+ 
+         <!-- Dependencias para Apache Derby -->
+         <dependency>
+@@ -64,11 +68,6 @@
+             <artifactId>derbytools</artifactId>
+             <version>10.15.2.0</version> <!-- Versión de Derby Tools -->
+         </dependency>
+-        <dependency>
+-            <groupId>org.springframework.boot</groupId>
+-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+-        </dependency>
+-
+         <!-- Fin de dependencias para Apache Derby -->
+     </dependencies>
+ 
+@@ -78,17 +77,10 @@
+                 <groupId>org.springframework.boot</groupId>
+                 <artifactId>spring-boot-maven-plugin</artifactId>
+                 <version>3.3.4</version>
+-                <executions>
+-                    <execution>
+-                        <goals>
+-                            <goal>run</goal>
+-                        </goals>
+-                    </execution>
+-                </executions>
+                 <configuration>
+-                    <mainClass>icedLatteFood.icedlatte.IcedlatteApplication</mainClass>
++                    <mainClass>icedLatteFood.icedlatte.IcedlatteApplication.java</mainClass> <!-- Cambia esto -->
+                 </configuration>
+             </plugin>
+         </plugins>
+     </build>
+-</project>
+\ No newline at end of file
++</project>

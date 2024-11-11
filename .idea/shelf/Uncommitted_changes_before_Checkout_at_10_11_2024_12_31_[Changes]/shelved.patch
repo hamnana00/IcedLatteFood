@@ -1,0 +1,77 @@
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_10_30_[Changes]1/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_10_30_[Changes]1/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_10_30_[Changes]1/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_10_30_[Changes]1/shelved.patch	(revision 77e4d92b1f8b76687dbdc9d0b5b0fc30bb727b9d)
++++ /dev/null	(revision 77e4d92b1f8b76687dbdc9d0b5b0fc30bb727b9d)
+@@ -1,19 +0,0 @@
+-Index: icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package persistencia;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.SQLException;\r\n\r\npublic class DatabaseConnection {\r\n    private static final String URL = \"jdbc:derby:memory:myDB;create=true\"; // Para bases de datos en memoria\r\n\r\n    public static Connection connect() throws SQLException {\r\n        return DriverManager.getConnection(URL);\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        try (Connection connection = connect()) {\r\n            System.out.println(\"Conexión exitosa a la base de datos Derby.\");\r\n        } catch (SQLException e) {\r\n            System.out.println(\"Error de conexión: \" + e.getMessage());\r\n        }\r\n    }\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java b/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java
+---- a/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java	(revision a2a9269ed8da5c69a93fbe2e0ea4e4cbeb7d9494)
+-+++ b/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ConexionBaseDatos.java	(date 1730332134832)
+-@@ -5,7 +5,7 @@
+- import java.sql.SQLException;
+- 
+- public class DatabaseConnection {
+--    private static final String URL = "jdbc:derby:memory:myDB;create=true"; // Para bases de datos en memoria
+-+    private static final String URL = "jdbc:derby:myDB;create=true"; // Para base de datos persistente en disco
+- 
+-     public static Connection connect() throws SQLException {
+-         return DriverManager.getConnection(URL);
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_10_30__Changes_1.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_10_30__Changes_1.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_10_30__Changes_1.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_10_30__Changes_1.xml	(revision 77e4d92b1f8b76687dbdc9d0b5b0fc30bb727b9d)
++++ /dev/null	(revision 77e4d92b1f8b76687dbdc9d0b5b0fc30bb727b9d)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_31_10_2024_10_30_[Changes]1" date="1730367017591" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_10_30_[Changes]1/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 31/10/2024 10:30 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/dataSources.local.xml
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+deleted file mode 100644
+--- a/.idea/dataSources.local.xml	(revision 77e4d92b1f8b76687dbdc9d0b5b0fc30bb727b9d)
++++ /dev/null	(revision 77e4d92b1f8b76687dbdc9d0b5b0fc30bb727b9d)
+@@ -1,9 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-242.23339.11">
+-    <data-source name="myDB" uuid="db8afca3-4691-4b3d-a518-ed988fc631d7">
+-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="DERBY" />
+-      <schema-mapping />
+-    </data-source>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"089ee8c1-fb70-43ef-8ab8-965e2df82b86\" name=\"Changes\" comment=\"archivos no visibles\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"git-widget-placeholder\": \"Feature__HacerPedido\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\"\r\n  }\r\n}]]></component>\r\n  <component name=\"TaskManager\">\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"archivos no visibles\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"archivos no visibles\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 77e4d92b1f8b76687dbdc9d0b5b0fc30bb727b9d)
++++ b/.idea/workspace.xml	(date 1731238162829)
+@@ -18,7 +18,10 @@
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+-    "git-widget-placeholder": "Feature__HacerPedido",
++    "RequestMappingsPanelOrder0": "0",
++    "RequestMappingsPanelOrder1": "1",
++    "RequestMappingsPanelWidth0": "75",
++    "RequestMappingsPanelWidth1": "75",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
