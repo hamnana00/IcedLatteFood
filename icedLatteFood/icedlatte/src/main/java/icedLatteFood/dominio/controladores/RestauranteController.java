@@ -39,7 +39,7 @@ public class RestauranteController {
     }
     @PostMapping("/{id}/favorito")
     public ResponseEntity<Void> marcarComoFavorito(@PathVariable Long id) {
-        Optional<Restaurante> restauranteOptional = restauranteDAO.findById(idUsuario);
+        Optional<Restaurante> restauranteOptional = restauranteDAO.findById(String.valueOf(id));
         if (restauranteOptional.isPresent()) {
             Restaurante restaurante = restauranteOptional.get();
             restaurante.setFavorito(true);

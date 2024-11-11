@@ -18,6 +18,8 @@ public class Direccion {
     private int codigoPostal;
     @Column
     private String municipio;
+    @Id
+    private Long id;
 
     // Constructor
     public Direccion(String calle, int numero, String complemento, int codigoPostal, String municipio) {
@@ -26,6 +28,10 @@ public class Direccion {
         this.complemento = complemento;
         this.codigoPostal = codigoPostal;
         this.municipio = municipio;
+    }
+
+    public Direccion() {
+
     }
 
     // Métodos getters y setters
@@ -81,4 +87,11 @@ public class Direccion {
                 '}';
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

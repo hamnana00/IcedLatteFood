@@ -1,6 +1,6 @@
 package icedLatteFood.presentacion;
 
-import dominio.controladores.GestorClientes;
+import icedLatteFood.dominio.controladores.GestorClientes;
 import java.util.*;
 import icedLatteFood.dominio.entidades.CodigoPostal;
 import icedLatteFood.dominio.entidades.Restaurante;
