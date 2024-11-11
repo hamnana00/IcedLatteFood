@@ -2,6 +2,7 @@ package persistencia;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import dominio.entidades.ItemMenu;
 
 public class ItemMenuDAO extends EntityDAO<ItemMenu> {
 

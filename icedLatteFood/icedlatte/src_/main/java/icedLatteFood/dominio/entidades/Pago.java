@@ -1,30 +1,32 @@
 package dominio.entidades;
+import java.util.UUID;
+import java.util.Date;
 
 public class Pago {
 
-	Pedido pedido;
-	MetodoPago tipo;
-	private UUID idTransaccion;
-	private Date fechaTransaccion;
+    Pedido pedido;
+    MetodoPago tipo;
+    private UUID idTransaccion;
+    private Date fechaTransaccion;
 
-	public Pago(Pedido pedido, MetodoPago tipo) {
+    public Pago(Pedido pedido, MetodoPago tipo) {
         this.pedido = pedido;
         this.tipo = tipo;
     }
-	
-	public UUID getIdTransaccion() {
+
+    public UUID getIdTransaccion() {
         return idTransaccion;
     }
     public Date getFechaTransaccion() {
         return fechaTransaccion;
     }
-	
-	public boolean procesarPago() {
+
+    public boolean procesarPago() {
         if (tipo == null) {
             System.out.println("Metodo de pago no seleccionado");
             return false;
         }
-        
+
         //llamar a api
         this.idTransaccion = UUID.randomUUID(); // Generr id para transaccion
         this.fechaTransaccion = new Date(); // Registra la fecha y hora

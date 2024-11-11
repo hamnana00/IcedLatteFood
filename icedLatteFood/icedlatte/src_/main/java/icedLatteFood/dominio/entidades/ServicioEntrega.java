@@ -3,13 +3,13 @@ package dominio.entidades;
 import java.time.LocalDateTime;
 
 public class ServicioEntrega {
-	Pedido pedido;
-	Direccion direccion;
-	Repartidor repartidor;
-	private DateTime fechaRecepcion;
-	private DateTime fechaEntrega;
-	
-	public ServicioEntrega(Pedido pedido, Direccion direccion, Repartidor repartidor) {
+    Pedido pedido;
+    Direccion direccion;
+    Repartidor repartidor;
+    private LocalDateTime fechaRecepcion;
+    private LocalDateTime fechaEntrega;
+
+    public ServicioEntrega(Pedido pedido, Direccion direccion, Repartidor repartidor) {
         this.pedido = pedido;
         this.direccion = direccion;
         this.repartidor = repartidor;
@@ -17,7 +17,7 @@ public class ServicioEntrega {
         this.fechaEntrega = null;   // Inicialmente no se ha registrado la entrega
     }
 
-	public Pedido getPedido() {
+    public Pedido getPedido() {
         return pedido;
     }
     public void setPedido(Pedido pedido) {
@@ -41,7 +41,7 @@ public class ServicioEntrega {
     public LocalDateTime getFechaEntrega() {
         return fechaEntrega;
     }
-    
+
     //otros metodos
     public void registrarRecepcion() {
         this.fechaRecepcion = LocalDateTime.now();
@@ -52,5 +52,5 @@ public class ServicioEntrega {
     public boolean entregaCompletada() {
         return fechaEntrega != null;
     }
-   
+
 }

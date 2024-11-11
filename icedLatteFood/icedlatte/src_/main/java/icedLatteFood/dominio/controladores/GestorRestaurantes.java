@@ -4,12 +4,39 @@ import dominio.entidades.Restaurante;
 import dominio.entidades.ItemMenu;
 import dominio.entidades.Direccion;
 import dominio.entidades.TipoItemMenu;
+import persistencia.RestauranteDAO;
 
 import java.util.List;
 
-public class GestorRestaurante {
+public class GestorRestaurantes {
 
-    // Funcionalidad para registrar un nuevo restaurante
+    private RestauranteDAO restauranteDAO;
+
+    public GestorRestaurantes (RestauranteDAO restauranteDAO) {
+        this.restauranteDAO = restauranteDAO;
+    }
+
+    //mostrar retaurantes
+    public List<Restaurante> obtenerTodosRestaurantes() {
+        return restauranteDAO.selectAll();  // MPLEMENTAR EN EL DAO! no olvidar
+    }
+
+    //buscar restaurantee por codigo postal o texto
+    public List<Restaurante> buscarRestaurantes(String codigoPostal, String texto) {
+        if (codigoPostal != null && !codigoPostal.isEmpty() && texto != null && !texto.isEmpty()) {
+            return restauranteDAO.selectPorCodigoPostalYTextoLibre(codigoPostal, texto);
+        } else if (codigoPostal != null && !codigoPostal.isEmpty()) {
+            return restauranteDAO.selectPorCodigoPostal(codigoPostal);
+        } else {
+            return restauranteDAO.selectAll();
+        }
+    }
+    //seleccionar todos son filtro
+    public List<Restaurante> obtenerRestaurantes() {
+        return restauranteDAO.selectAll();
+    }
+
+    // Registrar un nuevo restaurante
     public Restaurante registrarRestaurante(String nombre, String cif, Direccion direccion) {
         // Crear una nueva instancia de Restaurante con los datos proporcionados
         Restaurante nuevoRestaurante = new Restaurante(nombre, cif, direccion);
