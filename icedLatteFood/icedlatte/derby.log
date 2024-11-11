@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri Nov 08 15:02:00 CET 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0193-0c14-f4ce-0000024bfbc0 
+Mon Nov 11 08:43:59 CET 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0193-1a2d-f276-0000023004d0 
 on database directory C:\Users\dacil\git\IcedLatteFood\IcedLatteFood\icedLatteFood\icedlatte\bbdd with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@33909752 
 Loaded from file:/C:/Users/dacil/.m2/repository/org/apache/derby/derby/10.15.2.0/derby-10.15.2.0.jar
 java.vendor=Oracle Corporation

@@ -30,7 +30,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <url/>
     </scm>
     <properties>
-        <java.version>23</java.version> <!--original estaba 17 -->
+        <java.version>17</java.version> <!--tenemos ver 23-->
     </properties>
     <dependencies>
         <dependency>
@@ -86,7 +86,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>icedLatteFood.icedlatte.IcedlatteApplication</mainClass>
+                    <mainClass>icedLatteFood.DeliveryApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
