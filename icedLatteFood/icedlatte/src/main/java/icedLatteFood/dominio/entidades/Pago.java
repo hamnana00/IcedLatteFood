@@ -3,19 +3,15 @@ package icedLatteFood.dominio.entidades;
 import java.util.UUID;
 import java.util.Date;
 import icedLatteFood.dominio.entidades.EstadoPedido;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPago;
-    @Column
-    icedLatteFood.dominio.entidades.Pedido pedido;
+    @OneToOne(mappedBy = "pago", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Pedido pedido;
     @Column
     MetodoPago tipo;
     @Column

@@ -17,17 +17,17 @@ public class Cliente extends Usuario{
     @ManyToMany
     @JoinTable(
         name = "cliente_favoritos",
-        joinColumns = @JoinColumn(name = "cliente_id"),
-        inverseJoinColumns = @JoinColumn(name = "restaurante_id")
+        joinColumns = @JoinColumn(name = "idUsuario"),
+        inverseJoinColumns = @JoinColumn(name = "idUsuario")
     )
-    private Collection<Restaurante> favoritos;
+    private Collection<Restaurante> favoritos = new ArrayList<>();
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<icedLatteFood.dominio.entidades.Pedido> pedidos;
-    
+    private Collection<Pedido> pedidos = new ArrayList<>();
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cliente_id")
-    private List<Direccion> direcciones;
+    @JoinColumn(name = "idUsuario")
+    private List<Direccion> direcciones = new ArrayList<>();
 
     // Constructor que inicializa el nombre, apellidos y dni
     public Cliente(String pass, String nombre, String apellidos, String dni){
@@ -35,6 +35,9 @@ public class Cliente extends Usuario{
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
+        this.favoritos = new ArrayList<>();
+        this.pedidos = new ArrayList<>();
+        this.direcciones = new ArrayList<>();
     }
 
     // Otros getters y setters

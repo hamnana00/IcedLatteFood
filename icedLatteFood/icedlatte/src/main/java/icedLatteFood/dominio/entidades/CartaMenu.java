@@ -11,7 +11,7 @@ public class CartaMenu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCarta;
     @ManyToOne
-    @JoinColumn(name = "restaurante_id")
+    @JoinColumn(name = "idRestaurante")
     private Restaurante restaurante;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemMenu> itemMenu;

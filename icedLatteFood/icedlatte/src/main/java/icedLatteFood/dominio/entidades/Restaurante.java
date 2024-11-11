@@ -12,14 +12,14 @@ public class Restaurante extends Usuario{
     @Column
     private String cif;
     @Column
-    private boolean favorito;  // Atributo para saber si el restaurante es favorito
+    private boolean favorito; 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "direccion_id")
-    private Direccion direccion;; // Atributo para la dirección del restaurante
+    @JoinColumn(name = "idDire")
+    private Direccion direccion; 
     @OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartaMenu> cartaMenu;
+    private List<CartaMenu> cartaMenu = new ArrayList<>();
     @OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Pedido> pedidos;
+    private List<Pedido> pedidos = new ArrayList<>();
 
     // Constructor
     public Restaurante(String pass, String nombre, String cif, boolean favorito, Direccion direccion) {
