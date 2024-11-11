@@ -13,10 +13,18 @@ public class Cliente extends Usuario{
     private String apellidos;
     @Column
     private String dni;
-    @Column
+
+    @ManyToMany
+    @JoinTable(
+        name = "cliente_favoritos",
+        joinColumns = @JoinColumn(name = "cliente_id"),
+        inverseJoinColumns = @JoinColumn(name = "restaurante_id")
+    )
     private Collection<Restaurante> favoritos;
-    @Column
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<icedLatteFood.dominio.entidades.Pedido> pedidos;
+    
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cliente_id")
     private List<Direccion> direcciones;
