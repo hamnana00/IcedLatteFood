@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="089ee8c1-fb70-43ef-8ab8-965e2df82b86" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ClienteDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/presentacion/IUAltaRestaurante.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/presentacion/IUAltaUsuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/presentacion/IUBusqueda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/presentacion/IUEdicionMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/presentacion/IULogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/presentacion/IUPedido.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/controladores/GestorClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/controladores/GestorClientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/controladores/GestorPedidos.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/controladores/GestorPedidos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/controladores/GestorRestaurantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/controladores/GestorRestaurantes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/CartaMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/CartaMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/CodigoPostal.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/CodigoPostal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/ItemMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/ItemMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/Pago.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/Pago.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/Restaurante.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/Restaurante.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/ServicioEntrega.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/ServicioEntrega.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/dominio/entidades/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ItemMenuDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/ItemMenuDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/PedidoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/PedidoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/RestauranteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/icedLatteFood/icedlatte/src_/main/java/icedLatteFood/persistencia/RestauranteDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +26,27 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Zinebelo2004"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/hamnana00/IcedLatteFood.git",
+    "accountId": "6bb56a90-3e33-4878-9fa7-25ef0777923b"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2oiFDb4XhhmGGLdNDF8QrOM7FSe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -49,8 +60,28 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
 }</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0288c43b-c340-4fe7-ab74-05d9d9815c18" name="Changes" comment="Clases necesarias" />
+      <created>1731344372546</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731344372546</updated>
+      <workItem from="1731344375071" duration="353000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="archivos no visibles" />
