@@ -2,6 +2,12 @@
 ## Introducción
 Este proyecto tiene como objetivo desarrollar un sistema de software que facilite la gestión de pedidos y repartos de comida a domicilio. El sistema permitirá a distintos tipos de usuarios (Clientes, Restaurantes y Repartidores) interactuar con las funcionalidades clave de la plataforma, optimizando la comunicación, control y colaboración durante el proceso de gestión de pedidos.
 ## Plan de seguimiento
+### Elementos que hay que tener en cuenta
+* Backlog: Espacio deonde está todas las tareas pendientes que todavía no está inicializada.
+* Ready: Las tareas que están en esta columna han sido priorizadas y están completamente definidas, por lo que pueden ser tomadas para empezar a trabajar.
+* In progress: Las tareas que están trabajando actuarmente
+* In review: Las tareas que están en esta columna han sido priorizadas y están completamente definidas, por lo que pueden ser tomadas para empezar a trabajar.
+* Done: Esta columna representa las tareas que han sido completadas con éxito. Significa que el trabajo está finalizado y ya no requiere más intervención.
 ### Sprint 1: Configuración del entorno y análisis de los requisitos
 Duración: 1 semana ya que los requisitos y la realización del diagrama ya nos lo ha proporcionado el profesor
 Objetivos: 
