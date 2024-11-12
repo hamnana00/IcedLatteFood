@@ -10,10 +10,12 @@ public class ServicioEntrega {
     private Long idEntrega;
     @OneToOne(mappedBy = "entrega", cascade = CascadeType.ALL, orphanRemoval = true)
     private Pedido pedido;
-    @Column
-    Direccion direccion;
-    @Column
-    Repartidor repartidor;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idDire")
+    private Direccion direccion;
+    @ManyToOne
+    @JoinColumn(name = "repartidor_id", referencedColumnName = "idUsuario", insertable = false, updatable = false)
+    private Repartidor repartidor;
     @Column
     private LocalDateTime fechaRecepcion;
     @Column

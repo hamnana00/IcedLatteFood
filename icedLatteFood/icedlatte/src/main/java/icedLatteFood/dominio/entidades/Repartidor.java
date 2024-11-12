@@ -1,11 +1,7 @@
 package icedLatteFood.dominio.entidades;
 
 import java.util.*;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Repartidor extends Usuario{
@@ -18,10 +14,13 @@ public class Repartidor extends Usuario{
     private String nif;
     @Column
     private int eficiencia;
-/*
-    // Colecciones para servicios y zonas
-    Collection<ServicioEntrega> servicios;
-    Collection<CodigoPostal> zonas;*/
+    @OneToMany(mappedBy = "repartidor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ServicioEntrega> serviciosEntrega = new ArrayList<>();
+    @ElementCollection(targetClass = CodigoPostal.class)
+    @CollectionTable(name = "repartidor_zonas", joinColumns = @JoinColumn(name = "idUsuario_rep"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "codigo_postal")
+    private List<CodigoPostal> zonas = new ArrayList<>();
 
     // Constructor
     public Repartidor(String pass, String nombre, String apellidos, String nif, int eficiencia) {
@@ -29,9 +28,7 @@ public class Repartidor extends Usuario{
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.nif = nif;
-        //this.eficiencia = eficiencia;
-        //this.servicios = new ArrayList<>(); // Inicializa la colección de servicios
-        //this.zonas = new ArrayList<>(); // Inicializa la colección de zonas
+        this.eficiencia = eficiencia;
     }
 
     // Método para obtener el ID del repartidor
@@ -53,32 +50,19 @@ public class Repartidor extends Usuario{
         return eficiencia;
     }
 
-    /*public Collection<ServicioEntrega> getServicios() {
-        return servicios; // Devuelve la colección de servicios
+    public List<ServicioEntrega> getServiciosEntrega() {
+        return serviciosEntrega;
     }
 
-    public void addServicio(ServicioEntrega servicio) {
-        if (servicio != null) {
-            servicios.add(servicio); // Añade un servicio a la colección
-        }
+    public void setServiciosEntrega(List<ServicioEntrega> serviciosEntrega) {
+        this.serviciosEntrega = serviciosEntrega;
     }
 
-    public Collection<CodigoPostal> getZonas() {
-        return zonas; // Devuelve la colección de zonas
-    }
-
-    public void addZona(CodigoPostal zona) {
-        if (zona != null) {
-            zonas.add(zona); // Añade una zona a la colección
-        }
+    public List<CodigoPostal> getZonas() {
+        return zonas;
     }
 
     public void setZonas(List<CodigoPostal> zonas) {
-        if (zonas != null) {
-            this.zonas.clear(); // Limpiamos las zonas actuales
-            this.zonas.addAll(zonas); // Añadimos las nuevas zonas
-        } else {
-            throw new IllegalArgumentException("La lista de zonas no puede ser nula");
-        }
-    }*/
+        this.zonas = zonas;
+    }
 }

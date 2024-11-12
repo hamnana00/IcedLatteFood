@@ -3,11 +3,12 @@ package icedLatteFood.dominio.entidades;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String idUsuario;
+//@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idUsuario;
 	@Column
 	private String pass;
 
@@ -15,12 +16,12 @@ public class Usuario {
 		this.pass=pass;
 	}
 	
-	public String getIdUsuario() {
+	/*public String getIdUsuario() {
 		 return idUsuario;
 	}
 	public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
-	}
+	}*/
 	public String getPass() {
 		return pass;
 	}

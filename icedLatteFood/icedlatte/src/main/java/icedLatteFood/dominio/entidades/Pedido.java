@@ -12,11 +12,11 @@ public class Pedido {
     private int pedidoId; 
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "idUsuario")
+    @JoinColumn(name = "cliente_id", referencedColumnName = "idUsuario", insertable = false, updatable = false)
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "restaurante_id", referencedColumnName = "idUsuario")
+    @JoinColumn(name = "restaurante_id", referencedColumnName = "idUsuario", insertable = false, updatable = false)
     private Restaurante restaurante;
     
     @ManyToOne

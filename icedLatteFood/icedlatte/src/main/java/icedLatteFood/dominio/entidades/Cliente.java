@@ -26,7 +26,7 @@ public class Cliente extends Usuario{
     private Collection<Pedido> pedidos = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "idUsuario")
+    @JoinColumn(name = "idDire")
     private List<Direccion> direcciones = new ArrayList<>();
 
     // Constructor que inicializa el nombre, apellidos y dni
